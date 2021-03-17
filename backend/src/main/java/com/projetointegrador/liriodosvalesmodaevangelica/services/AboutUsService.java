@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +30,21 @@ public class AboutUsService {
 	@Transactional(readOnly = true)
 	public AboutUsDTO findById(Long id) {
 		Optional<AboutUs> obj = repository.findById(id);
-		AboutUs entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entidade não encontrada"));
+		AboutUs entity = obj.orElseThrow(() -> new ResourceNotFoundException("O 'Sobre nós' solicitado não existe."));
 		return new AboutUsDTO(entity);
+	}
+	
+	@Transactional
+	public AboutUsDTO update(Long id, AboutUsDTO dto) {
+		try {
+			AboutUs entity = repository.getOne(id);
+			entity.setImgUrl(dto.getImgUrl());
+			entity.setDescription(dto.getDescription());
+			entity = repository.save(entity);
+			return new AboutUsDTO(entity);
+		}
+		catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("O 'Sobre nós' que você quer atualizar não existe.");
+		}
 	}
 }
