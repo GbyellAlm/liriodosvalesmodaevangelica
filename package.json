@@ -1,0 +1,22 @@
+{
+  "name": "liriodosvalesmodaevangelica",
+  "version": "1.0.0",
+  "description": "Projeto Integrador (catálogo online de produtos da loja Lírio dos Vales - Moda Evangélica)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GbyellAlm/liriodosvalesmodaevangelica.git"
+  },
+  "author": "Gbyell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GbyellAlm/liriodosvalesmodaevangelica/issues"
+  },
+  "homepage": "https://github.com/GbyellAlm/liriodosvalesmodaevangelica#readme",
+  "dependencies": {
+    "create-react-app": "^4.0.3"
+  }
+}
