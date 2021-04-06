@@ -12,43 +12,44 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Product implements Serializable{
+public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@OneToMany(mappedBy = "product", orphanRemoval = true)
+	private Set<ProductImage> images = new HashSet<>();
 	private String name;
 	private Double price;
-	private String paymentTerms;
-	@Column(name = "sizes")
-	private String sizes;
 	private boolean isPromotion;
 	@Column(name = "promotional_price")
 	private Double promotionalPrice;
+	private String paymentTerms;
+	@Column(name = "sizes")
+	private String sizes;
 	@Column(columnDefinition = "TEXT")
 	private String description;
-	
 	@ManyToMany
-	@JoinTable(name = "product_category", 
-		joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
-	Set<Category> categories = new HashSet<>();
-	
+	@JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+	private Set<Category> categories = new HashSet<>();
+
 	public Product() {
-		
+
 	}
 
-	public Product(Long id, String name, Double price, String paymentTerms, String sizes, boolean isPromotion,
-			Double promotionalPrice, String description) {
+	public Product(Long id, String name, Double price, boolean isPromotion, Double promotionalPrice,
+			String paymentTerms, String sizes, String description) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
-		this.paymentTerms = paymentTerms;
-		this.sizes = sizes;
 		this.isPromotion = isPromotion;
 		this.promotionalPrice = promotionalPrice;
+		this.paymentTerms = paymentTerms;
+		this.sizes = sizes;
 		this.description = description;
 	}
 
@@ -76,22 +77,6 @@ public class Product implements Serializable{
 		this.price = price;
 	}
 
-	public String getPaymentTerms() {
-		return paymentTerms;
-	}
-
-	public void setPaymentTerms(String paymentTerms) {
-		this.paymentTerms = paymentTerms;
-	}
-	
-	public String getSizes() {
-		return sizes;
-	}
-
-	public void setSizes(String sizes) {
-		this.sizes = sizes;
-	}
-
 	public boolean isPromotion() {
 		return isPromotion;
 	}
@@ -108,6 +93,22 @@ public class Product implements Serializable{
 		this.promotionalPrice = promotionalPrice;
 	}
 
+	public String getPaymentTerms() {
+		return paymentTerms;
+	}
+
+	public void setPaymentTerms(String paymentTerms) {
+		this.paymentTerms = paymentTerms;
+	}
+
+	public String getSizes() {
+		return sizes;
+	}
+
+	public void setSizes(String sizes) {
+		this.sizes = sizes;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -115,7 +116,11 @@ public class Product implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
+	public Set<ProductImage> getImages() {
+		return images;
+	}
+
 	public Set<Category> getCategories() {
 		return categories;
 	}

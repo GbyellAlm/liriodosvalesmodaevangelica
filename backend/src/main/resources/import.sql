@@ -12,6 +12,11 @@ INSERT INTO Product (name, price, is_promotion, promotional_price, payment_terms
 INSERT INTO Product (name, price, is_promotion, promotional_price, payment_terms, sizes, description) VALUES ('Rosalie - Vestido Penas Moda Evangélica com Botões', 100.2, false, null, '4x de R$ 25,05 sem juros no cartão', 'P, M e G.', 'Moda Evangélica. Vestido em malha de algodão. Possui botões decorativos no decote frente, mangas 3/4 bufantes, recorte costas.');
 INSERT INTO Product (name, price, is_promotion, promotional_price, payment_terms, sizes, description) VALUES ('Actual - Camiseta Cinza com Detalhe nas Mangas', 49.9, false, null, '2x de R$ 24,99 sem juros no cartão', 'P, M e G.', 'Camiseta Actual confeccionada em malha de algodão com poliéster. Possui detalhe de retilínea na manga e bolso.');
 
+INSERT INTO product_image (url, is_main_image, product_id) VALUES ('https://canaaljevangelica.com.br/product_images/h/067/TULIPA-LILAS-S-1__81537_zoom.jpg', true, 1);
+INSERT INTO product_image (url, is_main_image, product_id) VALUES ('https://ph-cdn1.ecosweb.com.br/imagens01/foto/moda-feminina/vestido-midi/vestido-penas-moda-evangelica-com-botoes_323440_1000_1.jpg', true, 2);
+INSERT INTO product_image (url, is_main_image, product_id) VALUES ('https://ph-cdn1.ecosweb.com.br/imagens01/foto/moda-feminina/jaqueta/jaqueta-jeans-azul_294289_1000_1.jpg', false, 2);
+INSERT INTO product_image (url, is_main_image, product_id) VALUES ('https://ph-cdn1.ecosweb.com.br/imagens01/foto/moda-masculina/camiseta-manga-curta/camiseta-at-romulo-cinza_272739_1000_1.jpg', true, 3);
+
 INSERT INTO product_category (product_id, category_id) VALUES (1, 1);
 INSERT INTO product_category (product_id, category_id) VALUES (2, 2);
 INSERT INTO product_category (product_id, category_id) VALUES (3, 3);

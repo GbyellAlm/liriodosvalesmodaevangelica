@@ -7,50 +7,52 @@ import java.util.Set;
 
 import com.projetointegrador.liriodosvalesmodaevangelica.entities.Category;
 import com.projetointegrador.liriodosvalesmodaevangelica.entities.Product;
+import com.projetointegrador.liriodosvalesmodaevangelica.entities.ProductImage;
 
-public class ProductDTO implements Serializable{
+public class ProductDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
+	private List<ProductImageDTO> images = new ArrayList<>();
 	private String name;
 	private Double price;
-	private String paymentTerms;
-	private String sizes;
 	private boolean isPromotion;
 	private Double promotionalPrice;
+	private String paymentTerms;
+	private String sizes;
 	private String description;
-	
 	private List<CategoryDTO> categories = new ArrayList<>();
-	
+
 	public ProductDTO() {
-		
+
 	}
 
-	public ProductDTO(Long id, String name, Double price, String paymentTerms, String sizes, boolean isPromotion,
-			Double promotionalPrice, String description) {
+	public ProductDTO(Long id, String name, Double price, boolean isPromotion, Double promotionalPrice,
+			String paymentTerms, String sizes, String description) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
-		this.paymentTerms = paymentTerms;
-		this.sizes = sizes;
 		this.isPromotion = isPromotion;
 		this.promotionalPrice = promotionalPrice;
+		this.paymentTerms = paymentTerms;
+		this.sizes = sizes;
 		this.description = description;
 	}
-	
+
 	public ProductDTO(Product entity) {
 		this.id = entity.getId();
 		this.name = entity.getName();
 		this.price = entity.getPrice();
-		this.paymentTerms = entity.getPaymentTerms();
-		this.sizes = entity.getSizes();
 		this.isPromotion = entity.isPromotion();
 		this.promotionalPrice = entity.getPromotionalPrice();
+		this.paymentTerms = entity.getPaymentTerms();
+		this.sizes = entity.getSizes();
 		this.description = entity.getDescription();
 	}
-	
-	public ProductDTO(Product entity, Set<Category> categories) {
+
+	public ProductDTO(Product entity, Set<ProductImage> images, Set<Category> categories) {
 		this(entity);
+		images.forEach(img -> this.images.add(new ProductImageDTO(img)));
 		categories.forEach(cat -> this.categories.add(new CategoryDTO(cat)));
 	}
 
@@ -60,6 +62,14 @@ public class ProductDTO implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public List<ProductImageDTO> getImages() {
+		return images;
+	}
+
+	public void setImages(List<ProductImageDTO> images) {
+		this.images = images;
 	}
 
 	public String getName() {
@@ -78,22 +88,6 @@ public class ProductDTO implements Serializable{
 		this.price = price;
 	}
 
-	public String getPaymentTerms() {
-		return paymentTerms;
-	}
-
-	public void setPaymentTerms(String paymentTerms) {
-		this.paymentTerms = paymentTerms;
-	}
-	
-	public String getSizes() {
-		return sizes;
-	}
-
-	public void setSizes(String sizes) {
-		this.sizes = sizes;
-	}
-
 	public boolean isPromotion() {
 		return isPromotion;
 	}
@@ -108,6 +102,22 @@ public class ProductDTO implements Serializable{
 
 	public void setPromotionalPrice(Double promotionalPrice) {
 		this.promotionalPrice = promotionalPrice;
+	}
+
+	public String getPaymentTerms() {
+		return paymentTerms;
+	}
+
+	public void setPaymentTerms(String paymentTerms) {
+		this.paymentTerms = paymentTerms;
+	}
+
+	public String getSizes() {
+		return sizes;
+	}
+
+	public void setSizes(String sizes) {
+		this.sizes = sizes;
 	}
 
 	public String getDescription() {

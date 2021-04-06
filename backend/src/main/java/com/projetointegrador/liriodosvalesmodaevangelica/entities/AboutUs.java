@@ -10,17 +10,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "about_us")
-public class AboutUs implements Serializable{
+public class AboutUs implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String imgUrl;
 	private String description;
-	
+
 	public AboutUs() {
-		
+
 	}
 
 	public AboutUs(Long id, String imgUrl, String description) {

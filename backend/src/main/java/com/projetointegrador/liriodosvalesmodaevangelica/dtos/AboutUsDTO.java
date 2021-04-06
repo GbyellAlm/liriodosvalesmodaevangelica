@@ -4,15 +4,15 @@ import java.io.Serializable;
 
 import com.projetointegrador.liriodosvalesmodaevangelica.entities.AboutUs;
 
-public class AboutUsDTO implements Serializable{
+public class AboutUsDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
 	private String imgUrl;
 	private String description;
-	
+
 	public AboutUsDTO() {
-		
+
 	}
 
 	public AboutUsDTO(Long id, String imgUrl, String description) {
@@ -20,7 +20,7 @@ public class AboutUsDTO implements Serializable{
 		this.imgUrl = imgUrl;
 		this.description = description;
 	}
-	
+
 	public AboutUsDTO(AboutUs entity) {
 		this.id = entity.getId();
 		this.imgUrl = entity.getImgUrl();

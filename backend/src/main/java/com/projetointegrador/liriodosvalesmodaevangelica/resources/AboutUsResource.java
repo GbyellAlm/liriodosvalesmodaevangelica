@@ -17,22 +17,22 @@ import com.projetointegrador.liriodosvalesmodaevangelica.services.AboutUsService
 @RestController
 @RequestMapping(value = "/aboutus")
 public class AboutUsResource {
-	
+
 	@Autowired
 	private AboutUsService service;
-	
+
 	@GetMapping
 	public ResponseEntity<List<AboutUsDTO>> findAll() {
 		List<AboutUsDTO> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
-	
+
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<AboutUsDTO> findById(@PathVariable Long id) {
 		AboutUsDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
-	
+
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<AboutUsDTO> update(@PathVariable Long id, @RequestBody AboutUsDTO dto) {
 		dto = service.update(id, dto);

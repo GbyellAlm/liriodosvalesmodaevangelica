@@ -6,23 +6,33 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Category implements Serializable {
+@Table(name = "product_image")
+public class ProductImage implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
+	@ManyToOne
+	@JoinColumn(name = "product_id")
+	private Product product;
+	private boolean isMainImage;
+	private String url;
 
-	public Category() {
+	public ProductImage() {
 
 	}
 
-	public Category(Long id, String name) {
+	public ProductImage(Long id, Product product, boolean isMainImage, String url) {
 		this.id = id;
-		this.name = name;
+		this.product = product;
+		this.isMainImage = isMainImage;
+		this.url = url;
 	}
 
 	public Long getId() {
@@ -33,12 +43,28 @@ public class Category implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public boolean isMainImage() {
+		return isMainImage;
+	}
+
+	public void setMainImage(boolean isMainImage) {
+		this.isMainImage = isMainImage;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	@Override
@@ -57,7 +83,7 @@ public class Category implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		ProductImage other = (ProductImage) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
