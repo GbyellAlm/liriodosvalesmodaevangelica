@@ -1,0 +1,11 @@
+$theme-colors: (
+    "primary": #63C0E1
+);
+
+$body-bg: #F2F2F2;
+$body-color: #263238;
+$navbar-dark-toggler-border-color: white;
+$navbar-dark-hover-color: white;
+
+@import '~bootstrap/scss/bootstrap.scss';
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css");

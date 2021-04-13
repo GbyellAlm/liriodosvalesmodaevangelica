@@ -1,0 +1,35 @@
+.product-card {
+    border: 1px solid #E5E5E5;
+    height: 291px;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;  
+}
+
+.product-info {
+    border-top: 1px solid #E1E1E1;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.product-name {
+    font-size: 14px;
+    letter-spacing: -0.015em;
+    line-height: 19px;  
+}
+
+.product-promotion-price-container {
+    display: flex;
+    font-size: 12px;
+    visibility: hidden;
+}
+
+.product-price-container {
+    display: flex;
+}
+
+.product-payment-condition {
+    color: #9e9e9e;
+}

@@ -1,0 +1,11 @@
+.product-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 251px);
+    justify-content: space-between;
+}
+
+.padding-l-r-b-25 {
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+}
