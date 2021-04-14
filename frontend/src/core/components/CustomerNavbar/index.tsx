@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const CustomerNavbar = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary py-1 x-small font-size-14">
+        <nav className="navbar navbar-expand-xl navbar-dark bg-primary py-1 x-small font-size-14">
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
                     <MainImage />
@@ -35,7 +35,7 @@ const CustomerNavbar = () => {
                     </ul>
                     <form className="d-flex">
                         <input className="form-control me-2 border border-light search-box font-size-14" type="search" placeholder="Pesquisar produto" aria-label="Pesquisar produto" />
-                        <button className="btn btn-sm search-button" type="submit">Pesquisar</button>
+                        <button type="submit" className="btn btn-sm search-button">Pesquisar</button>
                     </form>
                 </div>
             </div>

@@ -1,6 +1,5 @@
-.product-card {
-    border: 1px solid #E5E5E5;
-    height: 291px;
+.product-card-container {
+    height: 298px;
     margin-top: 20px;
     padding-top: 10px;
     padding-left: 10px;
@@ -8,22 +7,26 @@
     text-align: center;  
 }
 
-.product-info {
+.product-info-container {
     border-top: 1px solid #E1E1E1;
     margin-top: 10px;
     padding-top: 10px;
+    text-align: left;
 }
 
 .product-name {
-    font-size: 14px;
     letter-spacing: -0.015em;
-    line-height: 19px;  
+    line-height: 19px;
+    padding-bottom: 6.5px;
 }
 
-.product-promotion-price-container {
+.product-currency {
+    padding-right: 4px;
+}
+
+.old-product-price-container {
     display: flex;
     font-size: 12px;
-    visibility: hidden;
 }
 
 .product-price-container {
@@ -32,4 +35,5 @@
 
 .product-payment-condition {
     color: #9e9e9e;
+    font-size: 12px;
 }
