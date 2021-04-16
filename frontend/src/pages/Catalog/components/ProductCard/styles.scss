@@ -1,10 +1,17 @@
+a {
+    &:hover {
+      text-decoration: none;
+      color: unset;
+    }
+}
+
 .product-card-container {
     height: 286px;
     margin-top: 25px;
     padding-top: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    text-align: center;  
+    text-align: center;
 }
 
 .product-info-container {
@@ -17,6 +24,7 @@
 
 .p-c-product-name {
     line-height: normal;
+    color: #263238;
 }
 
 .p-c-product-currency {

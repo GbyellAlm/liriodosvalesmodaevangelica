@@ -1,18 +1,16 @@
-import testImage from '../../../../../core/assets/images/biblia-da-mulher-sabia-rosa-escuro.png';
+import testImage from '../../../../../core/assets/images/teste.png';
+import smallTestImage from '../../../../../core/assets/images/biblia-da-mulher-sabia-rosa-escuro.png';
 import './styles.scss';
 
 const ProductImagesCarousel = () => {
     return (
-        <div id="productImages" className="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div id="productImages" className="carousel slide" data-bs-ride="carousel">
             <div className="carousel-inner">
-                <div className="carousel-item active" data-bs-interval="8000">
+                <div className="carousel-item active" data-bs-interval="9000">
                     <img src={testImage} className="d-block w-100 img-fluid" alt="..." />
                 </div>
-                <div className="carousel-item" data-bs-interval="8000">
-                    <img src={testImage} className="d-block w-100 img-fluid" alt="..." />
-                </div>
-                <div className="carousel-item" data-bs-interval="8000">
-                    <img src={testImage}className="d-block w-100 img-fluid" alt="..." />
+                <div className="carousel-item" data-bs-interval="9000">
+                    <img src={smallTestImage} className="d-block w-100 img-fluid" alt="..." />
                 </div>
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#productImages" data-bs-slide="prev">

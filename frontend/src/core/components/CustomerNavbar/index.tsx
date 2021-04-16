@@ -30,7 +30,7 @@ const CustomerNavbar = () => {
                             <Link className="nav-link" to="/presentes">Presentes</Link>
                         </li>
                         <li className="nav-item padding-r-9">
-                            <Link className="nav-link" to="sobrenos">Sobre nós</Link>
+                            <Link className="nav-link" to="/sobrenos">Sobre nós</Link>
                         </li>
                     </ul>
                     <form className="d-flex">

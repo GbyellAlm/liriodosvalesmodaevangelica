@@ -1,10 +1,16 @@
+import BaseBox from '../../../core/components/BaseBox';
 import './styles.scss';
 
 const Bibles = () => {
     return (
-        <div>
-            <h1>Bíblias</h1>
-        </div>
+        <BaseBox>
+            <p>oioioi</p>
+            <p>oioioi</p>
+            <p>oioioi</p>
+            <p>oioioi</p>
+            <p>oioioi</p>
+            <p>oioioi</p>
+        </BaseBox>
     )
 }
 

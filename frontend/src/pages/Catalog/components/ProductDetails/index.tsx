@@ -23,12 +23,12 @@ const ProductDetails = () => {
                     <button type="button" onClick={backButton} className="btn btn-sm btn-primary text-white back-button">Voltar</button>
                 </div>
                 <div className="row padding-t-25">
-                    <div className="col-lg-6 border-1-solid-e5e5e5 border-radius-10 d-flex justify-content-center">
+                    <div className="col-lg-6 product-images-container d-flex justify-content-center border-1-solid-e5e5e5 border-radius-10">
                         <ProductImagesCarousel />
                     </div>
                     <div className="col-lg-6">
                         <h6 className="font-size-16 font-w-600">Bíblia de Estudo da Mulher Sábia (Rosa Escuro)</h6>
-                            <div className="d-flex visibility-hh">
+                            <div className="d-flex visibility-h">
                                 <span className="p-d-product-currency color-9e9e9e font-size-12"><s>De: R$</s></span>
                                 <p className="color-9e9e9e font-size-12"><s>95,00</s></p>
                             </div>

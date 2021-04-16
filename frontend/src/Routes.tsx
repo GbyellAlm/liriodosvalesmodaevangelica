@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Homepage from './pages/Catalog/Home';
+import Home from './pages/Catalog/Home';
 import Bibles from './pages/Catalog/Bibles';
 import Female from './pages/Catalog/Female';
 import Male from './pages/Catalog/Male';
@@ -16,9 +16,9 @@ const Routes = () => (
         <CustomerNavbar />
         <Switch>
             <Route path="/" exact>
-                <Homepage />
+                <Home />
             </Route>
-            <Route path="/:productId" exact>
+            <Route path="/:productId">
                 <ProductDetails />
             </Route>
             <Route path="/biblias" exact>
@@ -51,10 +51,10 @@ const Routes = () => (
             <Route path="/presentes/:productId">
                 <ProductDetails />
             </Route>
-            <Route path="/sobrenos">
+            <Route path="/sobrenos" exact>
                 <AboutUs />
             </Route>
-            <Route path="/admin">
+            <Route path="/admin" exact>
                 <Administrative />
             </Route>
         </Switch>

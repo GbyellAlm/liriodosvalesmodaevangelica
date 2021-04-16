@@ -5,7 +5,7 @@ import ProductCard from '../components/ProductCard';
 import PromotionProductCard from '../components/PromotionProductCard';
 import './styles.scss';
 
-const Homepage = () => {
+const Home = () => {
     return (
         <CustomerBox>
             <div className="homepage-container">
@@ -37,4 +37,4 @@ const Homepage = () => {
     )
 }
 
-export default Homepage;
+export default Home;
