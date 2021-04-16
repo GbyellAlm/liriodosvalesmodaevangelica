@@ -1,6 +1,6 @@
-import './styles.scss';
-import { ReactComponent as MainImage } from '../../assets/images/logo.svg';
 import { Link } from 'react-router-dom';
+import { ReactComponent as MainImage } from '../../assets/images/logo.svg';
+import './styles.scss';
 
 const CustomerNavbar = () => {
     return (

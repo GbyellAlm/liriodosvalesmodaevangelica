@@ -1,4 +1,5 @@
 import CustomerBox from '../../../core/components/BaseBox';
+import TitleOfPageOrSession from '../../../core/components/TitleOfPageOrSession';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import PromotionProductCard from '../components/PromotionProductCard';
@@ -8,9 +9,7 @@ const Homepage = () => {
     return (
         <CustomerBox>
             <div className="homepage-container">
-                <div className="border-bottom-1-solid-e5e5e5">
-                    <h6 className="font-size-16 font-w-600">PRODUTOS EM DESTAQUE</h6>
-                </div>
+                <TitleOfPageOrSession title="PRODUTOS EM DESTAQUE"/>
                 <div className="product-layout">
                     <Link to="/1"><ProductCard /></Link>
                     <Link to="/2"><ProductCard /></Link>
@@ -23,8 +22,8 @@ const Homepage = () => {
                     <Link to="/9"><ProductCard /></Link>
                     <Link to="/10"><ProductCard /></Link>
                 </div>
-                <div className="padding-t-25 border-bottom-1-solid-e5e5e5">
-                    <h6 className="font-size-16 font-w-600">PROMOÇÕES</h6>
+                <div className="padding-t-25">
+                    <TitleOfPageOrSession title="PROMOÇÕES" />
                 </div>
                 <div className="product-layout">
                     <PromotionProductCard />
