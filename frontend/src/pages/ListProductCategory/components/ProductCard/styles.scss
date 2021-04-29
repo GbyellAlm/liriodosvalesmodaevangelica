@@ -1,0 +1,31 @@
+a {
+    &:hover {
+      text-decoration: none;
+      color: unset;
+    }
+}
+
+.product-card-container {
+    height: 308px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.product-card-image {
+    height: 150px;
+}
+
+.product-card-info-container {
+    border-top: 1px solid #E1E1E1;
+    margin-top: 15px;
+    padding-top: 12px;
+    text-align: left;
+}
+
+.product-name {
+    color: #263238;
+    line-height: normal;
+    padding-bottom: 3.5px;
+}

@@ -1,6 +1,6 @@
 import './styles.scss';
 
-const Administrative = () => {
+const Admin = () => {
     return (
         <div>
             <h1>Administrativo</h1>
@@ -8,4 +8,4 @@ const Administrative = () => {
     )
 }
 
-export default Administrative;
+export default Admin;

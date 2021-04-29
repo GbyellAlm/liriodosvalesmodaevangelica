@@ -4,60 +4,66 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-.font-size-12 {
+.f-s-12 {
     font-size: 12px;
 }
 
-.font-size-14 {
+.f-s-14 {
     font-size: 14px;
 }
 
-.font-size-16 {
-    font-size: 16px;
-}
-
-.font-w-600 {
+.f-w-600 {
     font-weight: 600;
 }
 
-.font-w-700 {
+.f-w-700 {
     font-weight: 700;
 }
 
-.border-radius-10 {
+.b-r-10 {
     border-radius: 10px;
 }
 
-.box-shadow-1-10 {
+.b-s-1-10 {
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25);
 }
 
-.border-1-solid-e5e5e5 {
+.b-1-s-e5e5e5 {
     border: 1px solid #e5e5e5;
 }
 
-.border-bottom-1-solid-e5e5e5 {
+.b-b-1-s-e5e5e5 {
     border-bottom: 1px solid #E5E5E5;
 }
 
-.color-9e9e9e {
+.c-9e9e9e {
     color: #9e9e9e;
 }
 
-.color-63c0e1 {
+.c-63c0e1 {
     color: #63C0E1;
 }
 
-.padding-t-3-point-5 {
-    padding-top: 3.5px;
+.p-25 {
+    padding: 25px 25px 25px 25px;
 }
 
-.padding-t-25 {
+.p-t-3-point-5 {
+    padding-top: 5px;
+}
+
+.p-t-25 {
     padding-top: 25px;
 }
 
-.visibility-h {
-    visibility: hidden;
+.p-r-3 {
+    padding-right: 3px;
+}
+
+.product-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 251px);
+    justify-content: space-between;
 }
 
 .carousel-control-prev-icon,

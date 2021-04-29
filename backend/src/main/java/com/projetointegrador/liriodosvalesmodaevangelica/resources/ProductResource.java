@@ -27,7 +27,7 @@ public class ProductResource {
 	@Autowired
 	private ProductService service;
 
-	@GetMapping(value = "/categoryId={catId}")
+	@GetMapping(value = "/categoryId/{catId}")
 	public ResponseEntity<Page<ProductDTO>> findAllByCategoryId(@PathVariable Long catId,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "15") Integer linesPerPage,
