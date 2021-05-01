@@ -1,7 +1,7 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import HomePage from './pages/ListProductCategory/Home';
-import ProductDetails from './pages/ListProductCategory/components/ProductDetails';
-import ListOfProductsByCategory from './pages/ListProductCategory';
+import HomePage from './pages/ProductsByCategory/Home';
+import ProductDetails from './pages/ProductsByCategory/components/ProductDetails';
+import ListOfProductsByCategory from './pages/ProductsByCategory';
 import AboutUs from './pages/About';
 import Administrative from './pages/Admin';
 import CustomerNavbar from './core/components/ClientNavbar';
@@ -14,10 +14,10 @@ const Routes = () => (
             <Route path="/" exact>
                 <HomePage />
             </Route>
-            <Route path="/products/:productId">
+            <Route path="/products/:prodId">
                 <ProductDetails />
             </Route>
-            <Route path="/category/:categoryId">
+            <Route path="/category/:catId">
                 <ListOfProductsByCategory />
             </Route>
             <Route path="/aboutUs" exact>

@@ -1,13 +1,19 @@
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { makeRequest } from '../../core/utils/request';
 import { ProductsResponse } from '../../core/types/Product';
-import WhiteContainer from '../../core/components/WhiteContainer';
+import { makeRequest } from '../../core/utils/request';
 import PageSectionTitle from '../../core/components/PageSectionTitle';
 import { Link } from 'react-router-dom';
 import ProductCard from './components/ProductCard';
 import './styles.scss';
 
-const ListProductCategory = () => {
+type ParamsType = {
+    catId: string;
+}
+
+const ProductsByCategory = () => {
+    const { catId } = useParams<ParamsType>();
+
     const [productsResponse, setProductsResponse] = useState<ProductsResponse>();
     
     useEffect(() => {
@@ -16,14 +22,18 @@ const ListProductCategory = () => {
             linesPerPage: 15
         }
 
-        makeRequest({url: '/products/categoryId/1', params})
+        makeRequest({url: `/products/categoryId/${catId}`, params})
         .then(response => setProductsResponse(response.data));
-    }, []);
+    }, [catId]);
     
     return (
-        <WhiteContainer>
+        <div className="base-container b-r-10 b-s-1-10 m-25 p-25">
             <div>
-                <PageSectionTitle title="BÍBLIAS"/>
+                {catId === "1" && <PageSectionTitle title="BÍBLIAS"/>}
+                {catId === "2" && <PageSectionTitle title="FEMININO"/>}
+                {catId === "3" && <PageSectionTitle title="MASCULINO"/>}
+                {catId === "4" && <PageSectionTitle title="LIVROS"/>}
+                {catId === "5" && <PageSectionTitle title="PRESENTES"/>}
                 <div className="product-layout">
                     {productsResponse?.content.map(product => (
                         <Link to={`/products/${product.id}`} key={product.id}>
@@ -32,8 +42,8 @@ const ListProductCategory = () => {
                     ))}
                 </div>
             </div>
-        </WhiteContainer>
+        </div>
     )
 }
 
-export default ListProductCategory;
+export default ProductsByCategory;

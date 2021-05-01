@@ -6,7 +6,7 @@ a {
 }
 
 .product-card-container {
-    height: 308px;
+    height: 293px;
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 15px;
@@ -27,5 +27,9 @@ a {
 .product-name {
     color: #263238;
     line-height: normal;
-    padding-bottom: 3.5px;
+    overflow: hidden;
+    padding-bottom: 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 221px;  
 }
