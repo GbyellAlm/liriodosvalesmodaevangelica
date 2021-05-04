@@ -15,25 +15,25 @@ const ProductsByCategory = () => {
     const { catId } = useParams<ParamsType>();
 
     const [productsResponse, setProductsResponse] = useState<ProductsResponse>();
-    
+
     useEffect(() => {
         const params = {
             page: 0,
             linesPerPage: 15
         }
 
-        makeRequest({url: `/products/categoryId/${catId}`, params})
-        .then(response => setProductsResponse(response.data));
+        makeRequest({ url: `/products/categoryId/${catId}`, params })
+            .then(response => setProductsResponse(response.data));
     }, [catId]);
-    
+
     return (
         <div className="base-container b-r-10 b-s-1-10 m-25 p-25">
             <div>
-                {catId === "1" && <PageSectionTitle title="BÍBLIAS"/>}
-                {catId === "2" && <PageSectionTitle title="FEMININO"/>}
-                {catId === "3" && <PageSectionTitle title="MASCULINO"/>}
-                {catId === "4" && <PageSectionTitle title="LIVROS"/>}
-                {catId === "5" && <PageSectionTitle title="PRESENTES"/>}
+                {catId === "1" && <PageSectionTitle title="BÍBLIAS" />}
+                {catId === "2" && <PageSectionTitle title="FEMININO" />}
+                {catId === "3" && <PageSectionTitle title="MASCULINO" />}
+                {catId === "4" && <PageSectionTitle title="LIVROS" />}
+                {catId === "5" && <PageSectionTitle title="PRESENTES" />}
                 <div className="product-layout">
                     {productsResponse?.content.map(product => (
                         <Link to={`/products/${product.id}`} key={product.id}>

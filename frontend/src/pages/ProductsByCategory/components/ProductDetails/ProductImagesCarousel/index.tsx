@@ -12,7 +12,7 @@ const ProductImagesCarousel = ({ product }: Props) => {
     return (
         <div id="productImages" className="carousel slide" data-bs-ride="carousel">
             <div className="carousel-inner">
-                {images?.map(image => <ProductImages imgUrl={image.url}/>)}
+                {images?.map(image => <ProductImages imgUrl={image.url} />)}
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#productImages" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon f-w-700" aria-hidden="true"></span>

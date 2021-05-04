@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { ReactComponent as MainImage } from '../../assets/images/logo.svg';
+import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import './styles.scss';
 
 const ClientNavbar = () => {
@@ -7,7 +7,7 @@ const ClientNavbar = () => {
         <nav className="navbar navbar-expand-xl navbar-dark bg-primary py-1 f-s-14">
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">
-                    <MainImage />
+                    <Logo />
                 </NavLink>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Menu suspenso">
                     <span className="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@ const ClientNavbar = () => {
                             <NavLink to="/category/5" className="nav-link">Presentes</NavLink>
                         </li>
                         <li className="nav-item padding-r-9">
-                            <NavLink to="/aboutUs" className="nav-link">Sobre nós</NavLink>
+                            <NavLink to="/about" className="nav-link">Sobre nós</NavLink>
                         </li>
                     </ul>
                     <form className="d-flex">

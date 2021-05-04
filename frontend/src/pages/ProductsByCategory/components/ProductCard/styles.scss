@@ -1,12 +1,13 @@
 a {
     &:hover {
-      text-decoration: none;
-      color: unset;
+        text-decoration: none;
+        color: unset;
     }
 }
 
 .product-card-container {
-    height: 293px;
+    height: 310px;
+    margin-top: 25px;
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 15px;
@@ -18,7 +19,7 @@ a {
 }
 
 .product-card-info-container {
-    border-top: 1px solid #E1E1E1;
+    border-top: 1px solid #e1e1e1;
     margin-top: 15px;
     padding-top: 12px;
     text-align: left;
@@ -31,5 +32,5 @@ a {
     padding-bottom: 8px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 221px;  
+    width: 221px;
 }

@@ -14,15 +14,20 @@ type ParamsType = {
 
 const ProductDetails = () => {
     const { prodId } = useParams<ParamsType>();
-    
+
     const [product, setProduct] = useState<Product>();
-    
+
     useEffect(() => {
         makeRequest({ url: `/products/${prodId}` })
             .then(response => setProduct(response.data))
     }, [prodId]);
 
     const history = useHistory();
+
+    let description = " "
+    if (product?.description !== undefined) {
+        description = product?.description;
+    }
 
     return (
         <div className="base-container b-r-10 b-s-1-10 m-25 p-25">
@@ -45,7 +50,9 @@ const ProductDetails = () => {
                 </div>
                 <div className="row product-description b-r-10 b-1-s-e5e5e5">
                     <h5 className="f-w-600">Descrição do produto</h5>
-                    
+                    <div className="f-s-14">
+                        <p dangerouslySetInnerHTML={{ __html: description }} />
+                    </div>
                 </div>
             </div>
         </div>

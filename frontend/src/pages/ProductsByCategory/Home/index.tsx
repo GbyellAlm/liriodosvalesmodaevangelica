@@ -12,7 +12,7 @@ const Home = () => {
                 <div className="container-promotions">
                     <PageSectionTitle title="PROMOÇÕES" />
                 </div>
-            </div> 
+            </div>
         </div>
     )
 }
