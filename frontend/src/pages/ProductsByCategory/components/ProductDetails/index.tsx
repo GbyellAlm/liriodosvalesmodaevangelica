@@ -1,3 +1,4 @@
+import {Helmet} from 'react-helmet';
 import { useEffect, useState } from 'react';
 import { makeRequest } from '../../../../core/utils/request';
 import { useHistory, useParams } from 'react-router-dom';
@@ -31,6 +32,7 @@ const ProductDetails = () => {
 
     return (
         <div className="base-container b-r-10 b-s-1-10 m-25 p-25">
+            <Helmet title={product?.name + " | Lírio dos Vales - Moda Evangélica"}/>
             <div className="product-details-container">
                 <div className="row">
                     <button type="button" onClick={history.goBack} className="btn btn-sm btn-primary text-white f-s-12 back-button">Voltar</button>

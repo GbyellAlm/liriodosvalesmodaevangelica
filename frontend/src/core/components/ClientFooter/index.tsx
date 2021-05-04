@@ -7,10 +7,10 @@ const ClientFooter = () => (
             <p>Rua Manoel Vieira Garção, 99 | sala 02 | Centro | Itajaí - SC</p>
             <p>Atendimento de Seg a Sex das 09:00 ás 18:00 | Sáb das 09:00 ás 13:00</p>
             <p>(47) 3349-3854 | (47) 99116-8031</p>
-            <a href="#" target="_blank">
+            <a href="https://www.facebook.com/LivrariaLirioDosValesItajai97" target="_blank">
                 <i className="bi bi-facebook"></i>
             </a>
-            <a href="#" target="_blank">
+            <a href="https://www.instagram.com/moda.liriodosvales/" target="_blank">
                 <i className="bi bi-instagram"></i>
             </a>
         </div>
