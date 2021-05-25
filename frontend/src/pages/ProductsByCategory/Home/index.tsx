@@ -1,8 +1,8 @@
-import { Helmet } from 'react-helmet'
 import { useEffect, useState } from 'react';
 import { ProductsResponse } from '../../../core/types/Product';
 import { makeRequest } from '../../../core/utils/request';
-import PageSectionTitle from '../../../core/components/PageSectionTitle';
+import { Helmet } from 'react-helmet';
+import PageOrSectionTitle from '../../../core/components/PageOrSectionTitle';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 
@@ -26,7 +26,7 @@ const Home = () => {
             <Helmet title="Lírio dos Vales - Moda Evangélica" />
             <div>
                 <div className="featured-products-container">
-                    <PageSectionTitle title="PRODUTOS EM DESTAQUE" />
+                    <PageOrSectionTitle title="PRODUTOS EM DESTAQUE" />
                     {featuredProductsResponse?.content.map(product => (
                         <Link to={`/products/${product.id}`} key={product.id}>
                             <ProductCard product={product} />
@@ -34,7 +34,7 @@ const Home = () => {
                     ))}
                 </div>
                 <div className="container-promotions">
-                    <PageSectionTitle title="PROMOÇÕES" />
+                    <PageOrSectionTitle title="PROMOÇÕES" />
                     {promotionsResponse?.content.map(product => (
                         <Link to={`/products/${product.id}`} key={product.id}>
                             <ProductCard product={product} />

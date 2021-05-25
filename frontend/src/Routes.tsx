@@ -1,11 +1,11 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import CustomerNavbar from './pages/ProductsByCategory/components/Navbar';
 import HomePage from './pages/ProductsByCategory/Home';
 import ProductDetails from './pages/ProductsByCategory/components/ProductDetails';
-import ListOfProductsByCategory from './pages/ProductsByCategory';
+import ProductsByCategory from './pages/ProductsByCategory';
 import About from './pages/About';
 import Administrative from './pages/Admin';
-import CustomerNavbar from './core/components/ClientNavbar';
-import CustomerFooter from './core/components/ClientFooter';
+import CustomerFooter from './pages/ProductsByCategory/components/Footer';
 
 const Routes = () => (
     <BrowserRouter>
@@ -14,11 +14,11 @@ const Routes = () => (
             <Route path="/" exact>
                 <HomePage />
             </Route>
-            <Route path="/products/:prodId">
+            <Route path="/products/:productId">
                 <ProductDetails />
             </Route>
             <Route path="/category/:catId">
-                <ListOfProductsByCategory />
+                <ProductsByCategory />
             </Route>
             <Route path="/about" exact>
                 <About />

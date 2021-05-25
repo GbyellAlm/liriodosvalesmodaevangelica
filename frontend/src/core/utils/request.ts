@@ -1,4 +1,4 @@
-import axios, { Method } from 'axios'
+import axios, { Method } from 'axios';
 
 type RequestParams = {
     method?: Method;

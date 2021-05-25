@@ -1,8 +1,8 @@
-import {Helmet} from 'react-helmet';
-import { useEffect, useState } from 'react';
-import { makeRequest } from '../../../../core/utils/request';
 import { useHistory, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { Product } from '../../../../core/types/Product';
+import { makeRequest } from '../../../../core/utils/request';
+import {Helmet} from 'react-helmet';
 import ProductImagesCarousel from './ProductImagesCarousel';
 import OldProductPrice from '../../../../core/components/OldProductPrice';
 import ProductPrice from '../../../../core/components/ProductPrice';
@@ -10,18 +10,18 @@ import ProductSizes from '../../../../core/components/ProductSizes';
 import './styles.scss';
 
 type ParamsType = {
-    prodId: string;
+    productId: string;
 }
 
 const ProductDetails = () => {
-    const { prodId } = useParams<ParamsType>();
+    const { productId } = useParams<ParamsType>();
 
     const [product, setProduct] = useState<Product>();
 
     useEffect(() => {
-        makeRequest({ url: `/products/${prodId}` })
+        makeRequest({ url: `/products/${productId}` })
             .then(response => setProduct(response.data))
-    }, [prodId]);
+    }, [productId]);
 
     const history = useHistory();
 

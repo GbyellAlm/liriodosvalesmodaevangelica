@@ -18,9 +18,9 @@ export type Product = {
 
 export type Image = {
     id: number;
-    productId: number;
-    url: string;
     mainImage: boolean;
+    productId: number;
+    url: string;  
 }
 
 export type Category = {
