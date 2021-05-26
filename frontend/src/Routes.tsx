@@ -3,7 +3,7 @@ import CustomerNavbar from './pages/ProductsByCategory/components/Navbar';
 import HomePage from './pages/ProductsByCategory/Home';
 import ProductDetails from './pages/ProductsByCategory/components/ProductDetails';
 import ProductsByCategory from './pages/ProductsByCategory';
-import About from './pages/About';
+import About from './pages/AboutUs';
 import Administrative from './pages/Admin';
 import CustomerFooter from './pages/ProductsByCategory/components/Footer';
 
@@ -20,7 +20,7 @@ const Routes = () => (
             <Route path="/category/:catId">
                 <ProductsByCategory />
             </Route>
-            <Route path="/about" exact>
+            <Route path="/about-us" exact>
                 <About />
             </Route>
             <Route path="/admin" exact>

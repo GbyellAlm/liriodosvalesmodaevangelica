@@ -30,7 +30,7 @@ const Navbar = () => {
                             <NavLink to="/category/5" className="nav-link">Presentes</NavLink>
                         </li>
                         <li className="nav-item padding-r-9">
-                            <NavLink to="/about" className="nav-link">Sobre nós</NavLink>
+                            <NavLink to="/about-us" className="nav-link">Sobre nós</NavLink>
                         </li>
                     </ul>
                     <form className="d-flex">

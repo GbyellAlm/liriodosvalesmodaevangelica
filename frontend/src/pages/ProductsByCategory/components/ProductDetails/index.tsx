@@ -25,7 +25,7 @@ const ProductDetails = () => {
 
     const history = useHistory();
 
-    let description = " "
+    let description = ""
     if (product?.description !== undefined) {
         description = product?.description;
     }

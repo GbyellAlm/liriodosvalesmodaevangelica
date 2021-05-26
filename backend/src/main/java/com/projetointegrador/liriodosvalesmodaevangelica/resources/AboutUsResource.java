@@ -15,7 +15,7 @@ import com.projetointegrador.liriodosvalesmodaevangelica.dtos.AboutUsDTO;
 import com.projetointegrador.liriodosvalesmodaevangelica.services.AboutUsService;
 
 @RestController
-@RequestMapping(value = "/aboutus")
+@RequestMapping(value = "/about-us")
 public class AboutUsResource {
 
 	@Autowired

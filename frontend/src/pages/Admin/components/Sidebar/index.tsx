@@ -1,11 +1,11 @@
 import './styles.scss';
 
-const About = () => {
+const Sidebar = () => {
     return (
         <div>
-            <h1>Sobre nós</h1>
+            
         </div>
     )
 }
 
-export default About;
+export default Sidebar;

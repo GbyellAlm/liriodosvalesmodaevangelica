@@ -1,4 +1,4 @@
-INSERT INTO about_us (description, img_url) VALUES ('Lorem ipsum dolor sit amet...', 'https://www.petz.com.br/blog/wp-content/uploads/2020/07/tipos-de-lirios.jpg');
+INSERT INTO about_us (description, img_url) VALUES ('No mercado de Itajaí - SC desde 1997, a Lírio dos Vales - Moda Evangélica está sempre trazendo o que há de melhor no seguimento evangélico (Moda feminina e masculina, e artigos evangélicos). Venha nos conhecer! (Endereço no rodapé do site).', 'https://i.imgur.com/GDAssK2.png');
 
 INSERT INTO Category (name) VALUES ('Bíblias');
 INSERT INTO Category (name) VALUES ('Feminino');
