@@ -2,6 +2,8 @@ package com.projetointegrador.liriodosvalesmodaevangelica.resources;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,6 +29,19 @@ public class ProductResource {
 	@Autowired
 	private ProductService service;
 
+	@GetMapping
+	public ResponseEntity<Page<ProductDTO>> findAllByCategoryIdOrName(
+			@RequestParam(value = "catId", defaultValue = "0") Long catId,
+			@RequestParam(value = "name", defaultValue = "") String name,
+			@RequestParam(value = "page", defaultValue = "0") Integer page,
+			@RequestParam(value = "linesPerPage", defaultValue = "15") Integer linesPerPage,
+			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
+			@RequestParam(value = "orderBy", defaultValue = "name") String orderBy) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		Page<ProductDTO> list = service.findAllByCategoryIdOrName(catId, name.trim(), pageRequest);
+		return ResponseEntity.ok().body(list);
+	}
+
 	@GetMapping(value = "/categoryId/{catId}")
 	public ResponseEntity<Page<ProductDTO>> findAllByCategoryId(@PathVariable Long catId,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
@@ -39,19 +54,6 @@ public class ProductResource {
 		return ResponseEntity.ok().body(list);
 	}
 
-	@GetMapping
-	public ResponseEntity<Page<ProductDTO>> findAllByCategoryIdAndName(
-			@RequestParam(value = "catId", defaultValue = "0") Long catId,
-			@RequestParam(value = "name", defaultValue = "") String name,
-			@RequestParam(value = "page", defaultValue = "0") Integer page,
-			@RequestParam(value = "linesPerPage", defaultValue = "15") Integer linesPerPage,
-			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
-			@RequestParam(value = "orderBy", defaultValue = "name") String orderBy) {
-		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		Page<ProductDTO> list = service.findAllByCategoryIdAndName(catId, name.trim(), pageRequest);
-		return ResponseEntity.ok().body(list);
-	}
-
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
 		ProductDTO dto = service.findById(id);
@@ -59,14 +61,14 @@ public class ProductResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO dto) {
+	public ResponseEntity<ProductDTO> insert(@Valid @RequestBody ProductDTO dto) {
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 
 	@PutMapping(value = "{id}")
-	public ResponseEntity<ProductDTO> update(@PathVariable Long id, @RequestBody ProductDTO dto) {
+	public ResponseEntity<ProductDTO> update(@PathVariable Long id, @Valid @RequestBody ProductDTO dto) {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}

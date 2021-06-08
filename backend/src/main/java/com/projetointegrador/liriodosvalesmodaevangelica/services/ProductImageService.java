@@ -42,14 +42,13 @@ public class ProductImageService {
 		try {
 			repository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
-			throw new ResourceNotFoundException("A imagem que você quer deletar não existe.");
+			throw new ResourceNotFoundException("A imagem que você está querendo deletar não existe.");
 		}
 	}
 
 	private void copyDTOToEntity(ProductImageDTO dto, ProductImage entity) {
 		Product product = productRepository.getOne(dto.getProductId());
 		entity.setProduct(product);
-		// List<ProductImageDTO> productImage = repository.findAll(dto.getProductId());
 		entity.setMainImage(dto.isMainImage());
 		entity.setUrl(dto.getUrl());
 	}

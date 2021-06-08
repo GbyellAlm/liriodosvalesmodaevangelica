@@ -22,7 +22,7 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="base-container b-r-10 b-s-1-10 m-25 p-25">
+        <div className="base-container m-h-487 b-r-10 b-s-1-10 m-25 p-25">
             <Helmet title="Lírio dos Vales - Moda Evangélica" />
             <div>
                 <div className="featured-products-container">

@@ -28,7 +28,7 @@ const ProductsByCategory = () => {
     }, [catId, activePage]);
 
     return (
-        <div className="base-container b-r-10 b-s-1-10 m-25 p-25">
+        <div className="base-container m-h-487 b-r-10 b-s-1-10 m-25 p-25">
             {catId === "1" && <Helmet title="Bíblias | Lírio dos vales - Moda Evangélica" />}
             {catId === "2" && <Helmet title="Feminino | Lírio dos vales - Moda Evangélica" />}
             {catId === "3" && <Helmet title="Masculino | Lírio dos vales - Moda Evangélica" />}

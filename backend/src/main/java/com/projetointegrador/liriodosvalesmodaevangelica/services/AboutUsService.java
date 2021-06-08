@@ -22,16 +22,16 @@ public class AboutUsService {
 	private AboutUsRepository repository;
 
 	@Transactional(readOnly = true)
-	public List<AboutUsDTO> findAll() {
-		List<AboutUs> list = repository.findAll();
-		return list.stream().map(x -> new AboutUsDTO(x)).collect(Collectors.toList());
-	}
-
-	@Transactional(readOnly = true)
 	public AboutUsDTO findById(Long id) {
 		Optional<AboutUs> obj = repository.findById(id);
 		AboutUs entity = obj.orElseThrow(() -> new ResourceNotFoundException("O 'Sobre nós' solicitado não existe."));
 		return new AboutUsDTO(entity);
+	}
+
+	@Transactional(readOnly = true)
+	public List<AboutUsDTO> findAll() {
+		List<AboutUs> list = repository.findAll();
+		return list.stream().map(x -> new AboutUsDTO(x)).collect(Collectors.toList());
 	}
 
 	@Transactional
@@ -43,7 +43,7 @@ public class AboutUsService {
 			entity = repository.save(entity);
 			return new AboutUsDTO(entity);
 		} catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("O 'Sobre nós' que você quer atualizar não existe.");
+			throw new ResourceNotFoundException("O 'Sobre nós' que você está querendo atualizar não existe.");
 		}
 	}
 }

@@ -21,32 +21,43 @@ public class Product implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@OneToMany(mappedBy = "product", orphanRemoval = true)
-	private Set<ProductImage> images = new HashSet<>();
+
+	@Column(nullable = false)
 	private String name;
+
+	@Column(nullable = false)
 	private Double price;
-	private boolean isPromotion;
-	@Column(name = "promotional_price")
+
+	@Column(nullable = false)
+	private boolean promotion;
+
 	private Double promotionalPrice;
+
+	@Column(nullable = false)
 	private String paymentTerms;
-	@Column(name = "sizes")
-	private String sizes;
-	@Column(columnDefinition = "TEXT")
-	private String description;
+
 	@ManyToMany
 	@JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private Set<Category> categories = new HashSet<>();
+
+	private String sizes;
+
+	@OneToMany(mappedBy = "product", orphanRemoval = true)
+	private Set<ProductImage> images = new HashSet<>();
+
+	@Column(columnDefinition = "TEXT", nullable = false)
+	private String description;
 
 	public Product() {
 
 	}
 
-	public Product(Long id, String name, Double price, boolean isPromotion, Double promotionalPrice,
-			String paymentTerms, String sizes, String description) {
+	public Product(Long id, String name, Double price, boolean promotion, Double promotionalPrice, String paymentTerms,
+			String sizes, String description) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
-		this.isPromotion = isPromotion;
+		this.promotion = promotion;
 		this.promotionalPrice = promotionalPrice;
 		this.paymentTerms = paymentTerms;
 		this.sizes = sizes;
@@ -78,11 +89,11 @@ public class Product implements Serializable {
 	}
 
 	public boolean isPromotion() {
-		return isPromotion;
+		return promotion;
 	}
 
-	public void setPromotion(boolean isPromotion) {
-		this.isPromotion = isPromotion;
+	public void setPromotion(boolean promotion) {
+		this.promotion = promotion;
 	}
 
 	public Double getPromotionalPrice() {
@@ -101,6 +112,10 @@ public class Product implements Serializable {
 		this.paymentTerms = paymentTerms;
 	}
 
+	public Set<Category> getCategories() {
+		return categories;
+	}
+
 	public String getSizes() {
 		return sizes;
 	}
@@ -109,20 +124,16 @@ public class Product implements Serializable {
 		this.sizes = sizes;
 	}
 
+	public Set<ProductImage> getImages() {
+		return images;
+	}
+
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Set<ProductImage> getImages() {
-		return images;
-	}
-
-	public Set<Category> getCategories() {
-		return categories;
 	}
 
 	@Override

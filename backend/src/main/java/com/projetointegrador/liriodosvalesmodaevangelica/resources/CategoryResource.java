@@ -25,7 +25,9 @@ public class CategoryResource {
 		return ResponseEntity.ok().body(list);
 	}
 
-	// Dar uma olhada
+	// Não sei se vai ser útil, pois acho que o endpoint "findAll" já é o suficiente
+	// para trabalhar com o "imput" "select" de categorias no cadastro de produtos
+	// no front.
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<CategoryDTO> findById(@PathVariable Long id) {
 		CategoryDTO dto = service.findById(id);

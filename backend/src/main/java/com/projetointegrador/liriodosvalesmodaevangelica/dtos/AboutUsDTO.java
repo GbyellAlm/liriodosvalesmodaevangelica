@@ -2,13 +2,27 @@ package com.projetointegrador.liriodosvalesmodaevangelica.dtos;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+
 import com.projetointegrador.liriodosvalesmodaevangelica.entities.AboutUs;
 
 public class AboutUsDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+
+	// Não consegui validar esse campo, mesmo usando os validadores próprios para o
+	// tipo desse atributo (NotNull (funciona pois também tenho uma validação igual
+	// na entidade), NotEmpty e NotBlank). P.S. Penso que essa validação pode ser
+	// feita no front, e que deve existir um validador que funcione aqui.
+	@NotBlank(message = "Campo obrigatório.")
 	private String imgUrl;
+
+	// Não consegui validar esse campo, mesmo usando os validadores próprios para o
+	// tipo desse atributo (NotNull (funciona pois também tenho uma validação igual
+	// na entidade), NotEmpty e NotBlank). P.S. Penso que essa validação pode ser
+	// feita no front, e que deve existir um validador que funcione aqui.
+	@NotBlank(message = "Campo obrigatório.")
 	private String description;
 
 	public AboutUsDTO() {

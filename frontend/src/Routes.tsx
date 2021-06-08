@@ -1,33 +1,44 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import CustomerNavbar from './pages/ProductsByCategory/components/Navbar';
-import HomePage from './pages/ProductsByCategory/Home';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import CustomerNavbar from './customer/components/Navbar';
+import Home from './pages/ProductsByCategory/Home';
 import ProductDetails from './pages/ProductsByCategory/components/ProductDetails';
 import ProductsByCategory from './pages/ProductsByCategory';
-import About from './pages/AboutUs';
-import Administrative from './pages/Admin';
-import CustomerFooter from './pages/ProductsByCategory/components/Footer';
+import AboutUs from './pages/AboutUs';
+import Admin from './pages/Admin';
+import CustomerFooter from './customer/components/Footer';
+import AdminNavbar from './admin/components/Navbar';
+import AdminFooter from './admin/components/Footer';
 
 const Routes = () => (
     <BrowserRouter>
-        <CustomerNavbar />
         <Switch>
             <Route path="/" exact>
-                <HomePage />
+                <CustomerNavbar />
+                <Home />
+                <CustomerFooter />
             </Route>
             <Route path="/products/:productId">
+                <CustomerNavbar />
                 <ProductDetails />
+                <CustomerFooter />
             </Route>
             <Route path="/category/:catId">
+                <CustomerNavbar />
                 <ProductsByCategory />
+                <CustomerFooter />
             </Route>
-            <Route path="/about-us" exact>
-                <About />
+            <Route path="/about-us">
+                <CustomerNavbar />
+                <AboutUs />
+                <CustomerFooter />
             </Route>
-            <Route path="/admin" exact>
-                <Administrative />
+            <Redirect from="/admin" to="/admin/products" exact/>
+            <Route path="/admin">
+                <AdminNavbar />
+                <Admin />
+                <AdminFooter />
             </Route>
         </Switch>
-        <CustomerFooter />
     </BrowserRouter>
 );
 

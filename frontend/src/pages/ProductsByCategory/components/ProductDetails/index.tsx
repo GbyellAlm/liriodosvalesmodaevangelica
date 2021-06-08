@@ -31,7 +31,7 @@ const ProductDetails = () => {
     }
 
     return (
-        <div className="base-container b-r-10 b-s-1-10 m-25 p-25">
+        <div className="base-container m-h-487 b-r-10 b-s-1-10 m-25 p-25">
             <Helmet title={product?.name + " | Lírio dos Vales - Moda Evangélica"}/>
             <div className="product-details-container">
                 <div className="row">

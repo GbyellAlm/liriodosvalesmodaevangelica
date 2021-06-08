@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../../../core/assets/images/logo.svg';
+import { ReactComponent as Logo } from '../../../core/assets/images/logo.svg';
 import './styles.scss';
 
 const Navbar = () => {
     return (
-        <nav className="navbar navbar-expand-xl py-1 bg-primary navbar-dark f-s-14">
+        <nav className="navbar navbar-expand-xl bg-primary navbar-dark py-1 f-s-14">
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">
                     <Logo />

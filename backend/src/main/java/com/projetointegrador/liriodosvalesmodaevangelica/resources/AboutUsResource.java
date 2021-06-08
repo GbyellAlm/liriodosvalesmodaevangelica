@@ -21,16 +21,18 @@ public class AboutUsResource {
 	@Autowired
 	private AboutUsService service;
 
-	@GetMapping
-	public ResponseEntity<List<AboutUsDTO>> findAll() {
-		List<AboutUsDTO> list = service.findAll();
-		return ResponseEntity.ok().body(list);
-	}
-
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<AboutUsDTO> findById(@PathVariable Long id) {
 		AboutUsDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
+	}
+
+	// Não sei se vai ser útil, pois acho que o endpoint "findById" já é o
+	// suficiente para listar e editar o "sobre nós" no administrativo.
+	@GetMapping
+	public ResponseEntity<List<AboutUsDTO>> findAll() {
+		List<AboutUsDTO> list = service.findAll();
+		return ResponseEntity.ok().body(list);
 	}
 
 	@PutMapping(value = "/{id}")

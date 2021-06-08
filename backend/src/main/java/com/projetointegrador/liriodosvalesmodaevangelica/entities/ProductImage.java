@@ -2,36 +2,40 @@ package com.projetointegrador.liriodosvalesmodaevangelica.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "product_image")
 public class ProductImage implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
-	private boolean isMainImage;
+
+	@Column(nullable = false)
+	private boolean mainImage;
+
+	@Column(nullable = false)
 	private String url;
 
 	public ProductImage() {
 
 	}
 
-	public ProductImage(Long id, Product product, boolean isMainImage, String url) {
+	public ProductImage(Long id, Product product, boolean mainImage, String url) {
 		this.id = id;
 		this.product = product;
-		this.isMainImage = isMainImage;
+		this.mainImage = mainImage;
 		this.url = url;
 	}
 
@@ -52,11 +56,11 @@ public class ProductImage implements Serializable {
 	}
 
 	public boolean isMainImage() {
-		return isMainImage;
+		return mainImage;
 	}
 
-	public void setMainImage(boolean isMainImage) {
-		this.isMainImage = isMainImage;
+	public void setMainImage(boolean mainImage) {
+		this.mainImage = mainImage;
 	}
 
 	public String getUrl() {
