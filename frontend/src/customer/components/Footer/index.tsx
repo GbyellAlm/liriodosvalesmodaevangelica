@@ -1,7 +1,7 @@
 import './styles.scss';
 
 const Footer = () => (
-    <footer className="bg-primary text-white text-center f-s-14 customer-footer">
+    <footer className="bg-primary text-center f-s-14 text-white customer-footer">
         <div>
             <p>Lírio dos Vales - Moda Evangélica</p>
             <p>Rua Manoel Vieira Garção, 99 | sala 02 | Centro | Itajaí - SC</p>
@@ -17,7 +17,7 @@ const Footer = () => (
             </a>
         </div>
         <div>
-            <p className="f-s-12 customer-developed-by">Desenvolvido por Gabriel Leonardo de Almeida</p>
+            <p className="f-s-12 customer-footer-credits">Desenvolvido por Gabriel Leonardo de Almeida</p>
         </div>
     </footer>
 );

@@ -30,7 +30,7 @@ public class ProductDTO implements Serializable {
 
 	// Não consegui validar esse campo. Tentei o unico validador que serve para o
 	// tipo boolean (NotNull) e não funcionou.
-	private boolean promotion;
+	// private boolean promotion;
 
 	// ATENÇÃO: Se eu não conseguir ocultar e habilitar o "imput" correspondente a
 	// esse atributo ao selecionar "Sim" no "imput" correspondente ao atributo
@@ -52,8 +52,8 @@ public class ProductDTO implements Serializable {
 	// problema.
 	private List<CategoryDTO> categories = new ArrayList<>();
 
-	@Null
-	@Size(min = 1, max = 12, message = "Esse campo deve conter entre 1 e 12 caracteres.")
+	//@Null
+	//@Size(min = 1, max = 12, message = "Esse campo deve conter entre 1 e 12 caracteres.")
 	private String sizes;
 
 	// Não consegui validar direito esse campo. O unico validador que funciona + ou
@@ -76,12 +76,11 @@ public class ProductDTO implements Serializable {
 
 	}
 
-	public ProductDTO(Long id, String name, Double price, boolean promotion, Double promotionalPrice,
-			String paymentTerms, String sizes, String description) {
+	public ProductDTO(Long id, String name, Double price, Double promotionalPrice, String paymentTerms, String sizes,
+			String description) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
-		this.promotion = promotion;
 		this.promotionalPrice = promotionalPrice;
 		this.paymentTerms = paymentTerms;
 		this.sizes = sizes;
@@ -92,7 +91,6 @@ public class ProductDTO implements Serializable {
 		this.id = entity.getId();
 		this.name = entity.getName();
 		this.price = entity.getPrice();
-		this.promotion = entity.isPromotion();
 		this.promotionalPrice = entity.getPromotionalPrice();
 		this.paymentTerms = entity.getPaymentTerms();
 		this.sizes = entity.getSizes();
@@ -127,14 +125,6 @@ public class ProductDTO implements Serializable {
 
 	public void setPrice(Double price) {
 		this.price = price;
-	}
-
-	public boolean isPromotion() {
-		return promotion;
-	}
-
-	public void setPromotion(boolean promotion) {
-		this.promotion = promotion;
 	}
 
 	public Double getPromotionalPrice() {

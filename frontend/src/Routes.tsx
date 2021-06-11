@@ -1,13 +1,14 @@
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import CustomerNavbar from './customer/components/Navbar';
-import Home from './pages/ProductsByCategory/Home';
-import ProductDetails from './pages/ProductsByCategory/components/ProductDetails';
-import ProductsByCategory from './pages/ProductsByCategory';
-import AboutUs from './pages/AboutUs';
-import Admin from './pages/Admin';
 import CustomerFooter from './customer/components/Footer';
-import AdminNavbar from './admin/components/Navbar';
-import AdminFooter from './admin/components/Footer';
+import Home from './customer/pages/Home';
+import ProductDetails from './customer/components/ProductDetails';
+import ProductsByCategory from './customer/pages/ProductsByCategory';
+import About from './customer/pages/About';
+import AdminNavbar from './administrative/components/Navbar';
+import AdminFooter from './administrative/components/Footer';
+import Auth from './administrative/pages/Auth';
+import Admin from './administrative/pages/Admin';
 
 const Routes = () => (
     <BrowserRouter>
@@ -27,12 +28,18 @@ const Routes = () => (
                 <ProductsByCategory />
                 <CustomerFooter />
             </Route>
-            <Route path="/about-us">
+            <Route path="/about">
                 <CustomerNavbar />
-                <AboutUs />
+                <About />
                 <CustomerFooter />
             </Route>
-            <Redirect from="/admin" to="/admin/products" exact/>
+            <Redirect from="/admin/auth" to="/admin/auth/login" exact />
+            <Route path="/admin/auth">
+                <AdminNavbar />
+                <Auth />
+                <AdminFooter />
+            </Route>
+            <Redirect from="/admin" to="/admin/products" exact />
             <Route path="/admin">
                 <AdminNavbar />
                 <Admin />

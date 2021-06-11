@@ -97,7 +97,6 @@ public class ProductService {
 	private void copyDTOToEntity(ProductDTO dto, Product entity) {
 		entity.setName(dto.getName());
 		entity.setPrice(dto.getPrice());
-		entity.setPromotion(dto.isPromotion());
 		entity.setPromotionalPrice(dto.getPromotionalPrice());
 		entity.setPaymentTerms(dto.getPaymentTerms());
 		entity.setSizes(dto.getSizes());

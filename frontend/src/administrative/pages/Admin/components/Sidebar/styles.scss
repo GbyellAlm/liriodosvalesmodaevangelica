@@ -1,0 +1,50 @@
+.sidebar-container {
+    background: white;
+    height: calc(100vh - 86px);
+    width: 280px;
+}
+
+.sidebar-item {
+    align-items: center;
+    display: block;
+    display: flex;
+    height: 75px;
+    justify-content: center;
+    
+    &.active {
+        background: rgba(99, 192, 225, 0.4);
+        color: #63C0E1;
+    }
+
+    &:hover {
+        color: #63C0E1;
+    }
+}
+
+.view-site {
+    align-items: center;
+    display: block;
+    display: flex;
+    height: 75px;
+    justify-content: center;
+
+    &:hover {
+        color: #63C0E1;
+    }
+}
+
+.c-dc3545 {
+    color: #DC3545;
+}
+
+.logout {
+    align-items: center;
+    display: block;
+    display: flex;
+    height: 75px;
+    justify-content: center;
+
+    &:hover {
+        color: #DC3545;
+    }
+}

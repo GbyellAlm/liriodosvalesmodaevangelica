@@ -4,12 +4,19 @@ import './styles.scss';
 
 const Navbar = () => {
     return (
-        <nav className="navbar navbar-expand-xl bg-primary navbar-dark py-1 f-s-14">
+        <nav className="navbar navbar-expand-xl py-1 bg-primary navbar-dark f-s-14">
             <div className="container-fluid">
-                <NavLink className="navbar-brand" to="/">
+                <NavLink to="/" className="navbar-brand">
                     <Logo />
                 </NavLink>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Menu suspenso">
+                <button type="button"
+                    className="navbar-toggler"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbar"
+                    aria-controls="navbar"
+                    aria-expanded="false"
+                    aria-label="Menu suspenso"
+                >
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbar">
@@ -29,13 +36,17 @@ const Navbar = () => {
                         <li className="nav-item">
                             <NavLink to="/category/5" className="nav-link">Presentes</NavLink>
                         </li>
-                        <li className="nav-item padding-r-9">
-                            <NavLink to="/about-us" className="nav-link">Sobre nós</NavLink>
+                        <li className="nav-item p-r-9">
+                            <NavLink to="/about" className="nav-link">Sobre nós</NavLink>
                         </li>
                     </ul>
                     <form className="d-flex">
-                        <input className="form-control me-2 border border-light b-r-10 search-box f-s-14" type="search" placeholder="Pesquisar produto" aria-label="Pesquisar produto" />
-                        <button type="submit" className="btn btn-sm b-r-10 search-button f-s-12">Pesquisar</button>
+                        <input type="search"
+                            className="form-control b-r-10 me-2 f-s-14 search-box"
+                            placeholder="Pesquisar produto"
+                            aria-label="Pesquisar produto"
+                        />
+                        <button type="submit" className="btn btn-sm b-r-10 f-s-12 search-button">Pesquisar</button>
                     </form>
                 </div>
             </div>

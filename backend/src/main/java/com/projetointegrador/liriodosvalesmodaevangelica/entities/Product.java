@@ -28,8 +28,8 @@ public class Product implements Serializable {
 	@Column(nullable = false)
 	private Double price;
 
-	@Column(nullable = false)
-	private boolean promotion;
+	// @Column(nullable = false)
+	// private boolean promotion;
 
 	private Double promotionalPrice;
 
@@ -52,12 +52,11 @@ public class Product implements Serializable {
 
 	}
 
-	public Product(Long id, String name, Double price, boolean promotion, Double promotionalPrice, String paymentTerms,
-			String sizes, String description) {
+	public Product(Long id, String name, Double price, Double promotionalPrice, String paymentTerms, String sizes,
+			String description) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
-		this.promotion = promotion;
 		this.promotionalPrice = promotionalPrice;
 		this.paymentTerms = paymentTerms;
 		this.sizes = sizes;
@@ -86,14 +85,6 @@ public class Product implements Serializable {
 
 	public void setPrice(Double price) {
 		this.price = price;
-	}
-
-	public boolean isPromotion() {
-		return promotion;
-	}
-
-	public void setPromotion(boolean promotion) {
-		this.promotion = promotion;
 	}
 
 	public Double getPromotionalPrice() {

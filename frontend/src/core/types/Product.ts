@@ -13,7 +13,6 @@ export type Product = {
     sizes: string;
     description: string;
     categories: Category[];
-    promotion: boolean;
 }
 
 export type Image = {

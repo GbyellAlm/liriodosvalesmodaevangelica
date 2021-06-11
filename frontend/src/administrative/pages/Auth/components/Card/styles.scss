@@ -1,0 +1,17 @@
+.auth-card-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 86px);
+    justify-content: center;
+}
+
+.auth-card {
+    height: 480px;
+    padding: 41px 41px 41px 41px;
+    width: 440px;
+}
+
+.auth-card-title {
+    text-align: center;
+}
