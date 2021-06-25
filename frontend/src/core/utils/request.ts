@@ -40,7 +40,7 @@ export const makeLogin = (loginData: LoginData) => {
     return makeRequest({ url: '/oauth/token', data: payload, method: 'POST', headers });
 }
 
-export const makePrivateRequest = ({  method = 'GET', url, data, params }: RequestParams) => {
+export const makePrivateRequest = ({ method = 'GET', url, data, params }: RequestParams) => {
     const sessionData = getSessionData();
 
     const headers = {

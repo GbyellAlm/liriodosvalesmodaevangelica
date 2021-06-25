@@ -1,8 +1,7 @@
 import { Route, Switch } from 'react-router-dom';
 import Login from './components/Login';
-import './styles.scss';
 
-const Authentication = () => (
+const Auth = () => (
     <div>
         <Switch>
             <Route path="/admin/auth/login">
@@ -12,4 +11,4 @@ const Authentication = () => (
     </div>
 );
 
-export default Authentication
+export default Auth;

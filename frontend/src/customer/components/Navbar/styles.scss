@@ -2,14 +2,21 @@
     padding-right: 9px;
 }
 
-.search-box {
-    height: 34px;
-    width: 25rem;
+.nav-link.active {
+    color: #fff;
+    font-weight: 600;
+}
+
+.input-group {
+    width: 30rem;
+}
+
+.search-input {
+    border-radius: 10px 0 0 10px;
 }
 
 .search-button {
-    background-color: #f8f9fa;
-    height: 34px;
-    text-align: center;
-    width: 78px;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 0 10px 10px 0;
+    color: rgba(255, 255, 255, 0.65);
 }

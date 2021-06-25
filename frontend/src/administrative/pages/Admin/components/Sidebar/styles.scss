@@ -1,50 +1,49 @@
 .sidebar-container {
     background: white;
-    height: calc(100vh - 86px);
-    width: 280px;
+    height: 100vh;
+    width: 300px;
 }
 
-.sidebar-item {
+.sidebar-user {
+    align-items: center;
+    background: #eeeeee4a;
+    color: #263238;
+    display: block;
+    display: flex;
+    height: 90px;
+    padding-left: 35px;
+}
+
+.sidebar-icons {
+    height: 24px;
+    width: 24px;
+}
+
+.sidebar-links {
     align-items: center;
     display: block;
     display: flex;
     height: 75px;
-    justify-content: center;
-    
+    padding-left: 35px;
+
     &.active {
         background: rgba(99, 192, 225, 0.4);
-        color: #63C0E1;
+        color: #63c0e1;
     }
 
     &:hover {
-        color: #63C0E1;
+        color: #63c0e1;
     }
 }
 
-.view-site {
+.view-sidebar-store {
     align-items: center;
     display: block;
     display: flex;
     height: 75px;
-    justify-content: center;
+    padding-left: 35px;
 
     &:hover {
-        color: #63C0E1;
-    }
-}
-
-.c-dc3545 {
-    color: #DC3545;
-}
-
-.logout {
-    align-items: center;
-    display: block;
-    display: flex;
-    height: 75px;
-    justify-content: center;
-
-    &:hover {
-        color: #DC3545;
+        color: #63c0e1;
     }
 }

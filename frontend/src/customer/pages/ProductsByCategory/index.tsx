@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { ProductsResponse } from '../../../core/types/Product';
 import { makeRequest } from '../../../core/utils/request';
 import { Helmet } from 'react-helmet';
-import PageSectionTitle from '../../../core/components/PageOrSectionTitle';
-import { ProductsResponse } from '../../../core/types/Product';
+import PageOrSectionTitle from '../../../core/components/PageOrSectionTitle';
 import { Link } from 'react-router-dom';
 import ProductCard from '../../components/ProductCard';
 import Pagination from '../../../core/components/Pagination';
@@ -14,7 +14,9 @@ type ParamsType = {
 
 const ProductsByCategory = () => {
     const { catId } = useParams<ParamsType>();
+
     const [productsResponse, setProductsResponse] = useState<ProductsResponse>();
+
     const [activePage, setActivePage] = useState(0);
 
     useEffect(() => {
@@ -28,18 +30,18 @@ const ProductsByCategory = () => {
     }, [catId, activePage]);
 
     return (
-        <div className="base-container m-25 m-h-487 b-r-10 b-s-1-10 p-25">
-            {catId === "1" && <Helmet title="Bíblias | Lírio dos vales - Moda Evangélica" />}
-            {catId === "2" && <Helmet title="Feminino | Lírio dos vales - Moda Evangélica" />}
-            {catId === "3" && <Helmet title="Masculino | Lírio dos vales - Moda Evangélica" />}
-            {catId === "4" && <Helmet title="Livros | Lírio dos vales - Moda Evangélica" />}
-            {catId === "5" && <Helmet title="Presentes | Lírio dos vales - Moda Evangélica" />}
+        <div className="m-25 base-container m-h-485 b-r-10 b-s-1-10 p-25">
+            {catId === "1" && <Helmet title="Bíblias · Lírio dos vales - Moda Evangélica" />}
+            {catId === "2" && <Helmet title="Feminino · Lírio dos vales - Moda Evangélica" />}
+            {catId === "3" && <Helmet title="Masculino · Lírio dos vales - Moda Evangélica" />}
+            {catId === "4" && <Helmet title="Livros · Lírio dos vales - Moda Evangélica" />}
+            {catId === "5" && <Helmet title="Presentes · Lírio dos vales - Moda Evangélica" />}
 
-            {catId === "1" && <PageSectionTitle title="BÍBLIAS" />}
-            {catId === "2" && <PageSectionTitle title="FEMININO" />}
-            {catId === "3" && <PageSectionTitle title="MASCULINO" />}
-            {catId === "4" && <PageSectionTitle title="LIVROS" />}
-            {catId === "5" && <PageSectionTitle title="PRESENTES" />}
+            {catId === "1" && <PageOrSectionTitle title="BÍBLIAS" />}
+            {catId === "2" && <PageOrSectionTitle title="FEMININO" />}
+            {catId === "3" && <PageOrSectionTitle title="MASCULINO" />}
+            {catId === "4" && <PageOrSectionTitle title="LIVROS" />}
+            {catId === "5" && <PageOrSectionTitle title="PRESENTES" />}
             <div className="product-layout">
                 {productsResponse?.content.map(product => (
                     <Link to={`/products/${product.id}`} key={product.id}>

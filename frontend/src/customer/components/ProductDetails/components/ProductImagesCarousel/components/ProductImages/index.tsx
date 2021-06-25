@@ -1,12 +1,12 @@
 import './styles.scss';
 
 type Props = {
-    imgUrl: string;
+    url: string;
 }
 
-const ProductImages = ({ imgUrl }: Props) => (
+const ProductImages = ({ url }: Props) => (
     <div className="carousel-item active" data-bs-interval="9000">
-        <img src={imgUrl} className="d-block w-100 img-fluid" alt="..." />
+        <img src={url} className="d-block w-100 img-fluid" alt="Foto do produto" />
     </div>
 )
 

@@ -5,16 +5,17 @@ import { Helmet } from 'react-helmet';
 import PageOrSectionTitle from '../../../core/components/PageOrSectionTitle';
 import { Link } from 'react-router-dom';
 import ProductCard from '../../../customer/components/ProductCard';
+import './styles.scss';
 
 const Home = () => {
-    const [featuredProductsResponse, setFeaturedProductsResponse] = useState<ProductsResponse>();
+    const [featuredProductResponse, setFeaturedProductResponse] = useState<ProductsResponse>();
+
+    const [promotionsResponse, setPromotionsResponse] = useState<ProductsResponse>();
 
     useEffect(() => {
         makeRequest({ url: '/products/categoryId/6' })
-            .then(response => setFeaturedProductsResponse(response.data));
+            .then(response => setFeaturedProductResponse(response.data));
     }, []);
-
-    const [promotionsResponse, setPromotionsResponse] = useState<ProductsResponse>();
 
     useEffect(() => {
         makeRequest({ url: '/products/categoryId/7' })
@@ -22,25 +23,23 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="base-container m-25 m-h-487 b-r-10 b-s-1-10 p-25">
+        <div className="m-25 base-container m-h-485 b-r-10 b-s-1-10 p-25">
             <Helmet title="Lírio dos Vales - Moda Evangélica" />
-            <div>
-                <div className="featured-products-container">
-                    <PageOrSectionTitle title="PRODUTOS EM DESTAQUE" />
-                    {featuredProductsResponse?.content.map(product => (
-                        <Link to={`/products/${product.id}`} key={product.id}>
-                            <ProductCard product={product} />
-                        </Link>
-                    ))}
-                </div>
-                <div className="container-products-on-sale">
-                    <PageOrSectionTitle title="PROMOÇÕES" />
-                    {promotionsResponse?.content.map(product => (
-                        <Link to={`/products/${product.id}`} key={product.id}>
-                            <ProductCard product={product} />
-                        </Link>
-                    ))}
-                </div>
+            <PageOrSectionTitle title="PRODUTOS EM DESTAQUE" />
+            <div className="product-layout m-b-25">
+                {featuredProductResponse?.content.map(product => (
+                    <Link to={`/products/${product.id}`} key={product.id}>
+                        <ProductCard product={product} />
+                    </Link>
+                ))}
+            </div>
+            <PageOrSectionTitle title="PROMOÇÕES" />
+            <div className="product-layout">
+                {promotionsResponse?.content.map(product => (
+                    <Link to={`/products/${product.id}`} key={product.id}>
+                        <ProductCard product={product} />
+                    </Link>
+                ))}
             </div>
         </div>
     )

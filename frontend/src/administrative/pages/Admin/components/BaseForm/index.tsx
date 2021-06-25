@@ -16,12 +16,12 @@ const BaseForm = ({ children }: Props) => {
 
     return (
         <div className="base-container b-r-10 b-s-1-10 p-25">
-            <Helmet title="Admin: Cadastrar novo produto | Lírio dos Vales - Moda Evangélica" />
+            <Helmet title="Administrativo: Cadastrar novo produto · Lírio dos Vales - Moda Evangélica" />
             <PageOrSectionTitle title="CADASTRAR NOVO PRODUTO" />
             {children}
-            <div className="col-12 baseform-actions">
-                <button type="button" className="btn btn-outline-danger mr-3 b-r-10" onClick={handleCancel}>CANCELAR</button>
-                <button type="submit" className="btn btn-primary b-r-10 text-white">CADASTRAR</button>
+            <div className="base-form-actions">
+                <button className="btn btn-outline-danger mr-3 b-r-10" type="button" onClick={handleCancel}>CANCELAR</button>
+                <button className="btn btn-primary b-r-10 text-white" type="submit">CADASTRAR</button>
             </div>
         </div>
     )

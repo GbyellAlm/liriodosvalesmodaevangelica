@@ -6,16 +6,14 @@ const List = () => {
     const history = useHistory();
 
     const handleCreate = () => {
-        history.push('/admin/products/create');
+        history.push('/admin/products/new-product');
     }
 
     return (
         <div className="admin-product-list-container">
-            <Helmet title="Admin: Meus produtos | Lírio dos Vales - Moda Evangélica" />
+            <Helmet title="Administrativo: Produtos · Lírio dos Vales - Moda Evangélica" />
             <div className="d-flex">
-                <span className="p-r-3">OLÁ,</span>
-                <p className="c-63c0e1 f-w-600 p-r-25">ADMIN</p>
-                <button type="button" className="btn btn-primary btn-lg b-r-10 text-white f-s-14" onClick={handleCreate}>CADASTRAR NOVO PRODUTO</button>
+                <button className="btn btn-primary btn-lg b-r-10 text-white f-s-14" type="button" title="Cadastrar novo produto" onClick={handleCreate}>NOVO</button>
             </div>
         </div>
     )

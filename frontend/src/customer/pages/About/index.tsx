@@ -19,14 +19,14 @@ const AboutUs = () => {
     }
 
     return (
-        <div className="base-container m-25 m-h-487 b-r-10 b-s-1-10 p-25">
-            <Helmet title="Sobre nós | Lírio dos vales - Moda Evangélica" />
+        <div className="m-25 base-container m-h-485 b-r-10 b-s-1-10 p-25">
+            <Helmet title="Sobre nós · Lírio dos vales - Moda Evangélica" />
             <PageOrSectionTitle title="SOBRE NÓS" />
             <div className="store-photo-container">
-                <img src={aboutResponse?.imgUrl} className="img-fluid store-image" alt="Fachada da loja"/>
+                <img src={aboutResponse?.imgUrl} className="img-fluid store-image" alt="Fachada da loja" />
             </div>
             <div className="f-s-14 store-description-container">
-                <p dangerouslySetInnerHTML={{ __html: description }}/>
+                <p dangerouslySetInnerHTML={{ __html: description }} />
             </div>
         </div>
     )

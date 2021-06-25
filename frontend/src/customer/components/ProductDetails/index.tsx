@@ -31,30 +31,32 @@ const ProductDetails = () => {
     }
 
     return (
-        <div className="base-container m-25 m-h-487 b-r-10 b-s-1-10 p-25">
-            <Helmet title={product?.name + " | Lírio dos Vales - Moda Evangélica"} />
-            <div className="product-details-container">
-                <div className="row">
-                    <button type="button" className="btn btn-sm btn-primary f-s-12 text-white back-btn" onClick={history.goBack}>Voltar</button>
+        <div className="m-25 base-container m-h-485 b-r-10 b-s-1-10 p-25 product-details-container">
+            <Helmet title={product?.name + " · Lírio dos Vales - Moda Evangélica"} />
+            <div>
+                <button className="btn btn-sm btn-primary text-white back-button" type="button" onClick={history.goBack}>Voltar</button>
+            </div>
+            <div className="row">
+                <div className="col-6 d-flex b-1-s-e5e5e5 b-r-10 justify-content-center product-images-container">
+                    <ProductImagesCarousel product={product} />
                 </div>
-                <div className="row">
-                    <div className="d-flex col-lg-6 b-1-s-e5e5e5 b-r-10 justify-content-center product-images-container">
-                        <ProductImagesCarousel product={product} />
-                    </div>
-                    <div className="col-lg-6">
-                        <h5 className="f-s-16 f-w-600">{product?.name}</h5>
-                        {product?.promotionalPrice !== null && product?.price && <OldProductPrice price={product?.price} />}
-                        {product?.price && <ProductPrice price={product?.promotionalPrice !== null ? product?.promotionalPrice : product?.price} />}
-                        <p className="c-9e9e9e f-s-14">{product?.paymentTerms}</p>
-                        <br />
-                        {product?.sizes !== null && product?.sizes && <ProductSizes sizes={product?.sizes} />}
-                    </div>
+                <div className="col-6 product-details">
+                    <h5 className="f-w-600">
+                        {product?.name}
+                    </h5>
+                    {product?.promotionalPrice !== null && product?.price && <OldProductPrice price={product?.price} />}
+                    {product?.price && <ProductPrice price={product?.promotionalPrice !== null ? product?.promotionalPrice : product?.price} />}
+                    <p className="c-9e9e9e f-s-14">
+                        {product?.paymentTerms}
+                    </p>
+                    <br />
+                    {product?.sizes !== null && product?.sizes && <ProductSizes sizes={product?.sizes} />}
                 </div>
-                <div className="row b-1-s-e5e5e5 b-r-10 product-description">
-                    <h5 className="f-w-600">Descrição do produto</h5>
-                    <div className="f-s-14">
-                        <p dangerouslySetInnerHTML={{ __html: description }} />
-                    </div>
+            </div>
+            <div className="product-description">
+                <h5 className="f-w-600">Descrição do produto</h5>
+                <div className="f-s-14">
+                    <p dangerouslySetInnerHTML={{ __html: description }} />
                 </div>
             </div>
         </div>

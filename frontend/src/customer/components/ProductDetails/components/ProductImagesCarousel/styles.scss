@@ -1,11 +1,6 @@
-.carousel-item {
-    height: auto;
-    width: auto;
-}
-
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    align-items: center;
+    //align-items: center;
     background-image: none;
     background-size: 100%, 100%;
     display: flex;
@@ -17,7 +12,7 @@
 }
 
 .carousel-control-next-icon:after {
-    align-self: center;
+    //align-self: center;
     color: gray;
     content: ">";
     font-size: 20px;
