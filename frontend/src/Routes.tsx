@@ -1,4 +1,5 @@
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { Redirect, Route, Router, Switch } from 'react-router-dom';
+import history from './core/utils/history';
 import CustomerNavbar from './customer/components/Navbar';
 import Home from './customer/pages/Home';
 import ProductDetails from './customer/components/ProductDetails';
@@ -7,11 +8,12 @@ import About from './customer/pages/About';
 import CustomerFooter from './customer/components/Footer';
 import AdminNavbar from './administrative/components/Navbar';
 import Auth from './administrative/pages/Auth';
+import PrivateRoute from './core/Routes/PrivateRoute';
 import Admin from './administrative/pages/Admin';
 import AdminFooter from './administrative/components/Footer';
 
 const Routes = () => (
-    <BrowserRouter>
+    <Router history={history}>
         <Switch>
             <Route path="/" exact>
                 <CustomerNavbar />
@@ -45,13 +47,13 @@ const Routes = () => (
             </Route>
 
             <Redirect from="/admin" to="/admin/products" exact />
-            <Route path="/admin">
+            <PrivateRoute path="/admin">
                 <AdminNavbar />
                 <Admin />
                 <AdminFooter />
-            </Route>
+            </PrivateRoute>
         </Switch>
-    </BrowserRouter>
+    </Router>
 );
 
 export default Routes;

@@ -1,5 +1,3 @@
-INSERT INTO about_us (description, img_url) VALUES ('No mercado de Itajaí - SC desde 1997, a Lírio dos Vales - Moda Evangélica está sempre trazendo o que há de melhor no seguimento evangélico (moda feminina e masculina, e artigos evangélicos). Venha nos conhecer! (Endereço no rodapé do site.)', 'https://i.imgur.com/6bYbUxw.png');
-
 INSERT INTO Category (name) VALUES ('Bíblias');
 INSERT INTO Category (name) VALUES ('Feminino');
 INSERT INTO Category (name) VALUES ('Masculino');
@@ -7,6 +5,8 @@ INSERT INTO Category (name) VALUES ('Livros');
 INSERT INTO Category (name) VALUES ('Presentes');
 INSERT INTO Category (name) VALUES ('Produtos em destaque');
 INSERT INTO Category (name) VALUES ('Promoções');
+
+INSERT INTO about_us (description, img_url) VALUES ('No mercado de Itajaí - SC desde 1997, a Lírio dos Vales - Moda Evangélica está sempre trazendo o que há de melhor no seguimento evangélico (moda feminina e masculina, e artigos evangélicos). Venha nos conhecer! (Endereço no rodapé do site.)', 'https://i.imgur.com/6bYbUxw.png');
 
 INSERT INTO Product (name, price, promotional_price, payment_terms, sizes, description) VALUES ('Bíblia de Estudo da Mulher Sábia | Harpa Avivada e Corinhos | P/ Bolsa | Rosa', 105.0, null, 'em até 4x de R$ 26,25 s/ juros no cartão', null, 'Bíblia Sagrada, com a linguagem na versão ARC (Revista Corrigida) de João Ferreira de Almeida. Sendo a versão mais utilizada pelos evangélicos do Brasil. Com sua fidelidade traduzida dos textos originais pelo missionário português João Ferreira de Almeida, esta obra tem como destaque sua linguagem elegante e culta.<br /><br /><b>Letras:</b> Normais<br /><b>Capa:</b> PU Rosa<br/><b>Índice:</b> Não<br /><b>Páginas:</b> 1.544<br /><b>Editora:</b> CPP');
 INSERT INTO Product (name, price, promotional_price, payment_terms, sizes, description) VALUES ('Bíblia de Estudo da Mulher Sábia | Harpa Avivada e Corinhos | P/ Bolsa | Vermelha', 105.0, null, 'em até 4x de R$ 26,25 s/ juros no cartão', null, 'A Bíblia de Estudo da Mulher Sábia com Harpa Avivada e Corinhos foi pensada e desenvolvida especialmente para o público feminino. Esta Bíblia de estudo contém aplicações e estudos de acordo com cada versículo ou livro da Bíblia.');
@@ -19,6 +19,8 @@ INSERT INTO Product (name, price, promotional_price, payment_terms, sizes, descr
 INSERT INTO Product (name, price, promotional_price, payment_terms, sizes, description) VALUES ('Bíblia c/ Espaço para Anotações | Floral Rosa | Espiral', 105.0, null, 'em até 4x de R$ 26,25 s/ juros no cartão', null, 'Bíblia Sagrada, com a linguagem na versão ARC (Revista Corrigida) de João Ferreira de Almeida. Sendo a versão mais utilizada pelos evangélicos do Brasil. Com sua fidelidade traduzida dos textos originais pelo missionário português João Ferreira de Almeida, esta obra tem como destaque sua linguagem elegante e culta. Agora a mais nova edição da Casa Publicadora Paulista, apresentamos a vocês a Bíblia com Espaço para Anotações Pautados, com diferenciais exclusivos e também muito procurados, a bíblia com espaço para anotações contém Harpa, Corinhos e Índice lateral.');
 INSERT INTO Product (name, price, promotional_price, payment_terms, sizes, description) VALUES ('Bíblia c/ Espaço para Anotações | Leão Pintura | Espiral', 105.0, null, 'em até 4x de R$ 26,25 s/ juros no cartão', null, 'Bíblia Sagrada, com a linguagem na versão ARC (Revista Corrigida) de João Ferreira de Almeida. Sendo a versão mais utilizada pelos evangélicos do Brasil. Com sua fidelidade traduzida dos textos originais pelo missionário português João Ferreira de Almeida, esta obra tem como destaque sua linguagem elegante e culta. Agora a mais nova edição da Casa Publicadora Paulista, apresentamos a vocês a Bíblia com Espaço para Anotações Pautados, com diferenciais exclusivos e também muito procurados, a bíblia com espaço para anotações contém Harpa, Corinhos e Índice lateral.');
 
+INSERT INTO Product (name, price, promotional_price, payment_terms, sizes, description) VALUES ('Rosalie | Vestido Preto e Branco Tubinho', 59.99, null, 'em até 2x de R$ 30,00 s/ juros no cartão', 'P, M, G e GG', 'Vestido em malha de algodão com recorte na frente e mangas em malha flamê. Modelo com decote redondo, mangas 3/4 com franzidos nos ombros e recorte centralizado nas costas. Possui botões decorativos na frente.</br></br><b>Comprimento:</b> Midi</br><b>Modelagem:</b> Justo</br><b>Modelo:</b> Tubinho');
+
 INSERT INTO product_image (url, main_image, product_id) VALUES ('https://i.imgur.com/qwsGI0r.png', true, 1);
 INSERT INTO product_image (url, main_image, product_id) VALUES ('https://i.imgur.com/cQyqXrk.png', true, 2);
 INSERT INTO product_image (url, main_image, product_id) VALUES ('https://i.imgur.com/B6KVA7h.png', true, 3);
@@ -29,6 +31,8 @@ INSERT INTO product_image (url, main_image, product_id) VALUES ('https://i.imgur
 INSERT INTO product_image (url, main_image, product_id) VALUES ('https://i.imgur.com/Wd034WV.png', true, 8);
 INSERT INTO product_image (url, main_image, product_id) VALUES ('https://i.imgur.com/OccYQih.jpg', true, 9);
 INSERT INTO product_image (url, main_image, product_id) VALUES ('https://i.imgur.com/mdsiTFr.jpeg', true, 10);
+
+INSERT INTO product_image (url, main_image, product_id) VALUES ('https://i.imgur.com/xYSlxuQ.jpeg', true, 11);
 
 INSERT INTO product_category (product_id, category_id) VALUES (1, 1);
 INSERT INTO product_category (product_id, category_id) VALUES (2, 1);
@@ -41,4 +45,6 @@ INSERT INTO product_category (product_id, category_id) VALUES (8, 1);
 INSERT INTO product_category (product_id, category_id) VALUES (9, 1);
 INSERT INTO product_category (product_id, category_id) VALUES (10, 1);
 
-INSERT INTO User (user_Name, email, password) VALUES ('Admin', 'liriodosvales_2009@hotmail.com', '$2a$10$.v05InGkIEBeTrT353DLweSQxTpDLKAiD1..9S0XtQZFyXhXMnsxi');
+INSERT INTO product_category (product_id, category_id) VALUES (11, 2);
+
+INSERT INTO User (user_Name, email, password) VALUES ('Administrador', 'liriodosvales_2009@hotmail.com', '$2a$10$.v05InGkIEBeTrT353DLweSQxTpDLKAiD1..9S0XtQZFyXhXMnsxi');

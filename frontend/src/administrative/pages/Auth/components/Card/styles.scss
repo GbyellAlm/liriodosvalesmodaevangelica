@@ -1,5 +1,7 @@
 .auth-card-container {
     align-items: center;
+    background: url(../../../../../core/assets/images/auth-background.svg) no-repeat;
+    background-size: 100%;
     display: flex;
     flex-direction: row;
     height: calc(100vh - 86px);

@@ -27,19 +27,17 @@ public class Product implements Serializable {
 
 	@Column(nullable = false)
 	private Double price;
-
-	// @Column(nullable = false)
-	// private boolean promotion;
+	
+	@ManyToMany
+	@JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+	private Set<Category> categories = new HashSet<>();
 
 	private Double promotionalPrice;
 
 	@Column(nullable = false)
 	private String paymentTerms;
-
-	@ManyToMany
-	@JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
-	private Set<Category> categories = new HashSet<>();
-
+	
+	@Column(nullable = true)
 	private String sizes;
 
 	@OneToMany(mappedBy = "product", orphanRemoval = true)
@@ -87,6 +85,10 @@ public class Product implements Serializable {
 		this.price = price;
 	}
 
+	public Set<Category> getCategories() {
+		return categories;
+	}
+
 	public Double getPromotionalPrice() {
 		return promotionalPrice;
 	}
@@ -101,10 +103,6 @@ public class Product implements Serializable {
 
 	public void setPaymentTerms(String paymentTerms) {
 		this.paymentTerms = paymentTerms;
-	}
-
-	public Set<Category> getCategories() {
-		return categories;
 	}
 
 	public String getSizes() {

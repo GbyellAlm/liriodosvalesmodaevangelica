@@ -8,7 +8,6 @@ import java.util.Set;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
@@ -28,29 +27,18 @@ public class ProductDTO implements Serializable {
 	@Positive(message = "Esse campo deve conter um valor positivo.")
 	private Double price;
 
-	// Não consegui validar esse campo. Tentei o unico validador que serve para o
-	// tipo boolean (NotNull) e não funcionou.
-	// private boolean promotion;
+	// Não consegui validar esse campo. Tentei o unico validador que
+	// serve para o tipo List (NotNull (NotNull dentro do "<>" do List)) e não
+	// funcionou. P.S. Penso que, em último caso, a validação por si só no front irá
+	// resolver esse problema.
+	private List<CategoryDTO> categories = new ArrayList<>();
 
-	// ATENÇÃO: Se eu não conseguir ocultar e habilitar o "imput" correspondente a
-	// esse atributo ao selecionar "Sim" no "imput" correspondente ao atributo
-	// "promotion", codar validação para não permitir que o usuário insira um preço
-	// promocional sem que o produto esteja em promoção. P.S. Penso que posso fazer
-	// essa validação no front.
 	@Positive(message = "Esse campo deve conter um valor positivo.")
 	private Double promotionalPrice;
 
 	@NotBlank(message = "Campo obrigatório.")
 	@Size(min = 39, max = 41, message = "Esse campo deve conter entre 39 e 41 caracteres.")
 	private String paymentTerms;
-
-	// Também não consegui validar esse campo. Também tentei o unico validador que
-	// serve para o tipo List (NotNull (NotNull dentro do "<>" do List)) e não
-	// funcionou. P.S. Penso que não faz sentido validar aqui esse atributo, visto
-	// que como ele tem uma relação com outra classe, é obrigatório passar o "id"
-	// dessa outra classe. Penso também que a validação no front irá resolver esse
-	// problema.
-	private List<CategoryDTO> categories = new ArrayList<>();
 
 	//@Null
 	//@Size(min = 1, max = 12, message = "Esse campo deve conter entre 1 e 12 caracteres.")
@@ -127,6 +115,14 @@ public class ProductDTO implements Serializable {
 		this.price = price;
 	}
 
+	public List<CategoryDTO> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<CategoryDTO> categories) {
+		this.categories = categories;
+	}
+
 	public Double getPromotionalPrice() {
 		return promotionalPrice;
 	}
@@ -141,14 +137,6 @@ public class ProductDTO implements Serializable {
 
 	public void setPaymentTerms(String paymentTerms) {
 		this.paymentTerms = paymentTerms;
-	}
-
-	public List<CategoryDTO> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(List<CategoryDTO> categories) {
-		this.categories = categories;
 	}
 
 	public String getSizes() {
