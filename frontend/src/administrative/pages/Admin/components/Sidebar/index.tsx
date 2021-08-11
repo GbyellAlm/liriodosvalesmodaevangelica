@@ -47,7 +47,7 @@ const Sidebar = () => {
                 <li>
                     <NavLink to="/" className="c-9e9e9e f-s-14 f-w-600 b-b-1-s-e5e5e5 view-sidebar-store" target="_blank">
                         <img src={websiteIcon} alt="Ícone do 'Visualizar site'" className="sidebar-icons" />
-                        &nbsp; VISUALIZAR LOJA
+                        &nbsp; VISUALIZAR CATÁLOGO
                     </NavLink>
                 </li>
             </ul>

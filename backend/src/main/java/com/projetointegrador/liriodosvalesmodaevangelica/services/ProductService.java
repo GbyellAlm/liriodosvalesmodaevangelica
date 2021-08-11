@@ -61,6 +61,11 @@ public class ProductService {
 	public ProductDTO insert(ProductDTO dto) {
 		Product entity = new Product();
 		copyDTOToEntity(dto, entity);
+		// Gambiarra provisória para poder fazer o inicio do cap 9.
+		if (entity.getCategories().size() == 0) {
+			Category cat = categoryRepository.getOne(1L);
+			entity.getCategories().add(cat);
+		}
 		entity = repository.save(entity);
 
 		ProductImage imageEntity = new ProductImage();
@@ -79,6 +84,11 @@ public class ProductService {
 		try {
 			Product entity = repository.getOne(id);
 			copyDTOToEntity(dto, entity);
+			// Gambiarra provisória para poder fazer o inicio do cap 9.
+			if (entity.getCategories().size() == 0) {
+				Category cat = categoryRepository.getOne(1L);
+				entity.getCategories().add(cat);
+			}
 			entity = repository.save(entity);
 			return new ProductDTO(entity);
 		} catch (EntityNotFoundException e) {

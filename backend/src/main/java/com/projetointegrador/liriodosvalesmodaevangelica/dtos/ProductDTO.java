@@ -39,8 +39,7 @@ public class ProductDTO implements Serializable {
 	@NotBlank(message = "Campo obrigatório.")
 	@Size(min = 39, max = 41, message = "Esse campo deve conter entre 39 e 41 caracteres.")
 	private String paymentTerms;
-
-	//@Null
+	
 	//@Size(min = 1, max = 12, message = "Esse campo deve conter entre 1 e 12 caracteres.")
 	private String sizes;
 
