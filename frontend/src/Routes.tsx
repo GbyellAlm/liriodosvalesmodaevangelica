@@ -8,7 +8,7 @@ import About from './customer/pages/About';
 import CustomerFooter from './customer/components/Footer';
 import AdminNavbar from './administrative/components/Navbar';
 import Auth from './administrative/pages/Auth';
-import PrivateRoute from './core/Routes/PrivateRoute';
+import PrivateRoute from './core/components/Routes/PrivateRoute';
 import Admin from './administrative/pages/Admin';
 import AdminFooter from './administrative/components/Footer';
 

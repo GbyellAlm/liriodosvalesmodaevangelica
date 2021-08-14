@@ -41,20 +41,19 @@ const ProductDetails = () => {
                     <ProductImagesCarousel product={product} />
                 </div>
                 <div className="col-6 product-details">
-                    <h5 className="f-w-600">
+                    <h1 className="f-s-20 f-w-600 m-b-15">
                         {product?.name}
-                    </h5>
+                    </h1>
                     {product?.promotionalPrice !== null && product?.price && <OldProductPrice price={product?.price} />}
                     {product?.price && <ProductPrice price={product?.promotionalPrice !== null ? product?.promotionalPrice : product?.price} />}
                     <p className="c-9e9e9e f-s-14">
                         {product?.paymentTerms}
                     </p>
-                    <br />
                     {product?.sizes !== null && product?.sizes && <ProductSizes sizes={product?.sizes} />}
                 </div>
             </div>
             <div className="product-description">
-                <h5 className="f-w-600">Descrição do produto</h5>
+                <h2 className="f-s-18 f-w-600">Descrição do produto</h2>
                 <div className="f-s-14">
                     <p dangerouslySetInnerHTML={{ __html: description }} />
                 </div>

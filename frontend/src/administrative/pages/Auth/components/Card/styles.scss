@@ -1,6 +1,7 @@
 .auth-card-container {
     align-items: center;
-    background: url(../../../../../core/assets/images/auth-background.svg) no-repeat;
+    background: rgb(255, 255, 255);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 25%, rgba(223, 223, 223, 1) 100%);
     background-size: 100%;
     display: flex;
     flex-direction: row;

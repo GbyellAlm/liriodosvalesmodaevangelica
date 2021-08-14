@@ -1,0 +1,37 @@
+.admin-product-card-container {
+    margin-bottom: 15px;
+}
+
+.p-b-t-15 {
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.admin-card-product-image {
+    height: 120px;
+    width: 120px;
+}
+
+.p-l-r-15 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.admin-card-product-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 500px;
+}
+
+.admin-card-product-description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 600px;
+}
+
+.p-b-t-28 {
+    padding-bottom: 28px;
+    padding-top: 28px;
+}

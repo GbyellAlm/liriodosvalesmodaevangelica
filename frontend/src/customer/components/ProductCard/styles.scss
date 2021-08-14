@@ -1,28 +1,26 @@
-.product-card-container {
-    height: 310px;
+.customer-product-card-container {
+    height: 319px;
     margin-top: 25px;
-    padding-left: 15px;
-    padding-right: 15px;
     padding-top: 15px;
     text-align: center;
 }
 
-.product-card-image {
+.customer-card-product-image {
     height: 150px;
 }
 
-.product-card-info-container {
+.customer-product-card-info {
     border-top: 1px solid #e1e1e1;
     margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
     padding-top: 12px;
     text-align: left;
 }
 
-.product-name {
+.customer-card-product-name {
     color: #263238;
-    line-height: normal;
     overflow: hidden;
-    padding-bottom: 8px;
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 221px;

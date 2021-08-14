@@ -7,9 +7,9 @@ const formatPrice = (price: number) => {
 }
 
 const ProductPrice = ({ price }: Props) => (
-    <div className="d-flex f-w-700 new-f-s">
-        <span className="c-9e9e9e p-r-3">R$</span>
-        <p className="c-63c0e1">{formatPrice(price)}</p>
+    <div className="d-flex f-w-700">
+        <span className="c-9e9e9e f-s-14">R$&nbsp;</span>
+        <span className="c-63c0e1 f-s-16 new-f-s">{formatPrice(price)}</span>
     </div>
 );
 

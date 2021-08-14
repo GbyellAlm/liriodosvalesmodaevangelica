@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { makePrivateRequest } from '../../../../../../core/utils/request';
+import { toast } from 'react-toastify';
 import BaseForm from '../../BaseForm';
 import './styles.scss';
 
@@ -26,13 +28,30 @@ const Form = () => {
         name === "category" && value === "7" ? setPromotionalPriceField("d-block") : setPromotionalPriceField("d-none");
     }
 
+    const history = useHistory();
+
     const onSubmit = (data: FormState) => {
         const payload = {
             ...data,
             images: [{ url: data.image1, mainImage: true }]
         }
 
-        makePrivateRequest({ url: '/products', method: 'POST', data: payload });
+        makePrivateRequest({ url: '/products', method: 'POST', data: payload })
+            .then(() => {
+                toast.success("Produto cadastrado com sucesso!", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                });
+                history.push("/admin/products");
+            })
+            .catch(() => {
+                toast.error("Erro ao salvar o produto!")
+            });
     }
 
     return (

@@ -11,17 +11,17 @@ const ProductCard = ({ product }: Props) => {
     const images = product.images;
 
     return (
-        <div className="b-1-s-e5e5e5 b-r-10 product-card-container">
+        <div className="b-1-s-e5e5e5 b-r-10 customer-product-card-container">
             {images.map((image) => {
-                return image.mainImage === true && <img src={image.url} className="product-card-image" alt="Foto principal do produto" />;
+                return image.mainImage === true && <img src={image.url} alt="Foto principal do produto" className="customer-card-product-image" />;
             })}
-            <div className="product-card-info-container">
-                <p className="product-name f-s-14 f-w-600" title={product.name}>
+            <div className="customer-product-card-info">
+                <h3 className="f-s-16 f-w-600 customer-card-product-name" title={product.name}>
                     {product.name}
-                </p>
+                </h3>
                 {product.promotionalPrice !== null && <OldProductPrice price={product.price} />}
                 <ProductPrice price={product.promotionalPrice !== null ? product.promotionalPrice : product.price} />
-                <p className="c-9e9e9e f-s-12">
+                <p className="c-9e9e9e f-s-14">
                     {product.paymentTerms}
                 </p>
             </div>
