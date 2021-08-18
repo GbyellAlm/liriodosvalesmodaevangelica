@@ -25,8 +25,8 @@ const BaseForm = ({ children }: Props) => {
 
     return (
         <div className="base-container b-r-10 b-s-1-10 p-25">
-            <Helmet title="Administrativo: Cadastrar novo produto · Lírio dos Vales - Moda Evangélica" />
-            <PageOrSectionTitle title={isEditing ? "EDITAR PRODUTO" : "CADASTRAR NOVO PRODUTO"} />
+            <Helmet title={isEditing ? "Administrativo: Editar produto · Lírio dos Vales - Moda Evangélica" : "Administrativo: Cadastrar um produto · Lírio dos Vales - Moda Evangélica"} />
+            <PageOrSectionTitle title={isEditing ? "EDITAR PRODUTO" : "CADASTRAR UM PRODUTO"} />
             {children}
             <div className="base-form-actions">
                 <button className="btn btn-outline-danger mr-3 b-r-10" type="button" onClick={handleCancel}>

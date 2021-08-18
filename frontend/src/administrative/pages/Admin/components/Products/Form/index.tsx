@@ -65,7 +65,7 @@ const Form = () => {
             data: payload
         })
             .then(() => {
-                toast.success("Produto salvo com sucesso!", {
+                toast.success(isEditing === true ? "Produto salvo com sucesso!" : "Produto cadastrado com sucesso!", {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -77,7 +77,7 @@ const Form = () => {
                 history.push("/admin/products");
             })
             .catch(() => {
-                toast.error("Erro ao salvar o produto!")
+                toast.error(isEditing === true ? "Erro ao salvar o produto!" : "Erro ao cadastrar o produto!")
             });
     }
 

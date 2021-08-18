@@ -6,9 +6,10 @@ import './styles.scss';
 
 type Props = {
     product: Product;
+    onRemove: (productId: number) => void;
 }
 
-const Card = ({ product }: Props) => {
+const Card = ({ product, onRemove }: Props) => {
     const images = product.images;
 
     return (
@@ -36,7 +37,7 @@ const Card = ({ product }: Props) => {
                     <Link to={`/admin/products/${product.id}`} type="button" className="btn btn-outline-secondary btn-block mb-4 b-r-10 f-s-14 btn-edit">
                         Editar
                     </Link>
-                    <button type="button" className="btn btn-outline-danger btn-block b-r-10 f-s-14">
+                    <button type="button" className="btn btn-outline-danger btn-block b-r-10 f-s-14" onClick={() => onRemove(product.id)}>
                         Excluir
                     </button>
                 </div>
