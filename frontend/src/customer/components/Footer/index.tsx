@@ -1,7 +1,7 @@
 import './styles.scss';
 
 const Footer = () => (
-    <footer className="bg-primary text-center text-white customer-footer">
+    <footer className="bg-primary text-white text-center customer-footer">
         <div className="f-s-14">
             <p>Lírio dos Vales - Moda Evangélica</p>
             <p>Rua Manoel Vieira Garção, 99 | sala 02 | Centro | Itajaí - SC</p>

@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { makeLogin } from '../../../../../core/utils/request';
 import { saveSessionData } from '../../../../../core/utils/auth';
-import { Helmet } from 'react-helmet';
 import AuthCard from '../Card/';
+import { Helmet } from 'react-helmet';
 import './styles.scss';
 
 type FormState = {
@@ -83,7 +83,9 @@ const Login = () => {
                 )}
 
                 <div className="d-grid">
-                    <button className="btn btn-primary btn-lg b-r-10 text-white login-submit" type="submit">ENTRAR</button>
+                    <button className="btn btn-primary btn-lg b-r-10 text-white login-submit" type="submit">
+                        ENTRAR
+                    </button>
                 </div>
             </form>
         </AuthCard>

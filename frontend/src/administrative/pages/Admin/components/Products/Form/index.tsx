@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { makePrivateRequest } from '../../../../../../core/utils/request';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import { makePrivateRequest, makeRequest } from '../../../../../../core/utils/request';
 import { toast } from 'react-toastify';
 import BaseForm from '../../BaseForm';
 import './styles.scss';
@@ -16,8 +16,12 @@ type FormState = {
     description: string;
 }
 
+type ParamsType = {
+    productId: string;
+}
+
 const Form = () => {
-    const { register, handleSubmit, errors } = useForm<FormState>();
+    const { register, handleSubmit, errors, setValue } = useForm<FormState>();
 
     const [promotionalPriceField, setPromotionalPriceField] = useState("d-none");
 
@@ -30,15 +34,38 @@ const Form = () => {
 
     const history = useHistory();
 
+    const { productId } = useParams<ParamsType>();
+
+    const isEditing = productId !== 'new-product';
+
+    useEffect(() => {
+        if (isEditing) {
+            makeRequest({ url: `/products/${productId}` })
+                .then(response => {
+                    setValue('name', response.data.name);
+                    setValue('price', response.data.price);
+                    setValue('promotionalPrice', response.data.promotionalPrice);
+                    setValue('paymentTerms', response.data.paymentTerms);
+                    setValue('sizes', response.data.sizes);
+                    //setValue('image1', response.data.image1);
+                    setValue('description', response.data.description);
+                })
+        }
+    }, [isEditing, productId, setValue]);
+
     const onSubmit = (data: FormState) => {
         const payload = {
             ...data,
             images: [{ url: data.image1, mainImage: true }]
         }
 
-        makePrivateRequest({ url: '/products', method: 'POST', data: payload })
+        makePrivateRequest({
+            url: isEditing ? `/products/${productId}` : '/products',
+            method: isEditing ? 'PUT' : 'POST',
+            data: payload
+        })
             .then(() => {
-                toast.success("Produto cadastrado com sucesso!", {
+                toast.success("Produto salvo com sucesso!", {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -147,7 +174,7 @@ const Form = () => {
                             className="form-control b-r-10 f-s-14"
                             id="image1"
                             name="image1"
-                            ref={register({ required: "Campo obrigatório" })}
+                            ref={register({ required: false })}
                             placeholder="Ex: https://images-shoptime.b2w.io/produtos/01/00/img/2866624/7/2866624746_1SZ.jpg"
                         />
                         {errors.image1 && (

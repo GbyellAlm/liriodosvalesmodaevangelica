@@ -18,12 +18,12 @@ const ProductDetails = () => {
 
     const [product, setProduct] = useState<Product>();
 
+    const history = useHistory();
+
     useEffect(() => {
         makeRequest({ url: `/products/${productId}` })
             .then(response => setProduct(response.data))
     }, [productId]);
-
-    const history = useHistory();
 
     let description = ""
     if (product?.description !== undefined) {
@@ -31,10 +31,12 @@ const ProductDetails = () => {
     }
 
     return (
-        <div className="m-25 base-container m-h-485 b-r-10 b-s-1-10 p-25 product-details-container">
+        <div className="m-25 base-container m-h-485 b-r-10 b-s-1-10 p-25">
             <Helmet title={product?.name + " · Lírio dos Vales - Moda Evangélica"} />
             <div>
-                <button className="btn btn-sm btn-primary text-white back-button" type="button" onClick={history.goBack}>Voltar</button>
+                <button type="button" className="btn btn-sm btn-primary text-white back-button" onClick={history.goBack}>
+                    Voltar
+                </button>
             </div>
             <div className="row">
                 <div className="col-6 d-flex b-1-s-e5e5e5 b-r-10 justify-content-center product-images-container">

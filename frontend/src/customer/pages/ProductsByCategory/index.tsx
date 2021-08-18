@@ -21,8 +21,8 @@ const ProductsByCategory = () => {
 
     useEffect(() => {
         const params = {
-            page: activePage,
-            linesPerPage: 15
+            linesPerPage: 15,
+            page: activePage
         }
 
         makeRequest({ url: `/products/categoryId/${catId}`, params })

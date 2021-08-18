@@ -7,9 +7,9 @@ const formatPrice = (price: number) => {
 }
 
 const OldProductPrice = ({ price }: Props) => (
-    <div className="d-flex f-s-14">
-        <span className="c-9e9e9e"><s>De: R$&nbsp;</s></span>
-        <span className="c-9e9e9e"><s>{formatPrice(price)}</s></span>
+    <div className="d-flex c-9e9e9e f-s-14">
+        <span><s>De: R$&nbsp;</s></span>
+        <span><s>{formatPrice(price)}</s></span>
     </div>
 );
 

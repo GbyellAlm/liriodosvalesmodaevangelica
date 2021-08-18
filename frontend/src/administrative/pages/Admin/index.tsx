@@ -6,7 +6,7 @@ import './styles.scss';
 const Admin = () => (
     <div className="admin-container">
         <Sidebar />
-        <div className="admin-content m-25">
+        <div className="m-25 admin-content">
             <Switch>
                 <Route path="/admin/products">
                     <Products />
