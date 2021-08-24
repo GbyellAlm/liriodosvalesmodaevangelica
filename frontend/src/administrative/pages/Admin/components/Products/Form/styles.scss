@@ -21,6 +21,19 @@
     //font-style: italic;
 }
 
+.categories-select__control {
+    border: 1px solid #ced4da;
+    border-radius: 10px !important;
+}
+
+.categories-select__placeholder {
+    color: #9e9e9e !important;
+}
+
+.categories-select__indicator-separator {
+    display: none;
+}
+
 .text-editor {
     height: 50px;
     margin-top: 55px;
@@ -37,14 +50,14 @@
     min-height: 40px;
 }
 
-.Toastify__toast-body {
-    padding: 0;
-}
-
 .Toastify__toast--success {
     background: #198754;
 }
 
 .Toastify__toast--error {
     background: #dc3545;
+}
+
+.Toastify__toast-body {
+    padding: 0;
 }

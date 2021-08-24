@@ -1,14 +1,19 @@
-import { useForm } from 'react-hook-form';
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { Category } from '../../../../../../core/types/Product';
 import { makePrivateRequest, makeRequest } from '../../../../../../core/utils/request';
+import { Controller, useForm } from 'react-hook-form';
+import { useHistory, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import BaseForm from '../../BaseForm';
+import PriceField from './PriceField';
+import PromotionalPriceField from './PromotionalPriceField';
+import Select from 'react-select';
 import './styles.scss';
 
-type FormState = {
+export type FormState = {
     name: string;
-    price: string;
+    price: number;
+    categories: Category[];
     promotionalPrice: string;
     paymentTerms: string;
     sizes: string
@@ -21,7 +26,16 @@ type ParamsType = {
 }
 
 const Form = () => {
-    const { register, handleSubmit, errors, setValue } = useForm<FormState>();
+    const [isLoadingCategories, setIsLoadingCategories] = useState(false);
+
+    const [categories, setCategories] = useState<Category[]>([]);
+
+    useEffect(() => {
+        setIsLoadingCategories(true);
+        makePrivateRequest({ url: '/categories' })
+            .then(response => setCategories(response.data))
+            .finally(() => setIsLoadingCategories(false));
+    }, []);
 
     const [promotionalPriceField, setPromotionalPriceField] = useState("d-none");
 
@@ -29,29 +43,12 @@ const Form = () => {
         const name = event.target.name;
         const value = event.target.value;
 
-        name === "category" && value === "7" ? setPromotionalPriceField("d-block") : setPromotionalPriceField("d-none");
+        name === "categories" && value === "7" ? setPromotionalPriceField("d-block") : setPromotionalPriceField("d-none");
     }
 
+    const { register, handleSubmit, errors, setValue, control, watch } = useForm<FormState>();
+
     const history = useHistory();
-
-    const { productId } = useParams<ParamsType>();
-
-    const isEditing = productId !== 'new-product';
-
-    useEffect(() => {
-        if (isEditing) {
-            makeRequest({ url: `/products/${productId}` })
-                .then(response => {
-                    setValue('name', response.data.name);
-                    setValue('price', response.data.price);
-                    setValue('promotionalPrice', response.data.promotionalPrice);
-                    setValue('paymentTerms', response.data.paymentTerms);
-                    setValue('sizes', response.data.sizes);
-                    //setValue('image1', response.data.image1);
-                    setValue('description', response.data.description);
-                })
-        }
-    }, [isEditing, productId, setValue]);
 
     const onSubmit = (data: FormState) => {
         const payload = {
@@ -81,16 +78,39 @@ const Form = () => {
             });
     }
 
+    const { productId } = useParams<ParamsType>();
+
+    const isEditing = productId !== 'new-product';
+
+    useEffect(() => {
+        if (isEditing) {
+            makeRequest({ url: `/products/${productId}` })
+                .then(response => {
+                    setValue('name', response.data.name);
+                    setValue('price', response.data.price);
+                    setValue('categories', response.data.categories);
+                    setValue('promotionalPrice', response.data.promotionalPrice);
+                    setValue('paymentTerms', response.data.paymentTerms);
+                    setValue('sizes', response.data.sizes);
+                    //setValue('image1', response.data.image1);
+                    setValue('description', response.data.description);
+                })
+        }
+    }, [isEditing, productId, setValue]);
+
+    const selectedCategory = watch("categories");
+
+    const [selectedValue, setSelectedValue] = useState([]);
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <BaseForm>
                 <div className="row">
                     <div className="col-6 m-t-25">
-                        <label htmlFor="name" className="form-label f-s-14">Nome <b>*</b></label>
+                        <label htmlFor="name" className="form-label">Nome <b>*</b></label>
                         <input
                             type="text"
-                            className="form-control b-r-10 f-s-14"
-                            id="name"
+                            className="form-control b-r-10"
                             name="name"
                             ref={register({ required: "Campo obrigatório" })}
                         />
@@ -100,29 +120,38 @@ const Form = () => {
                             </div>
                         )}
 
-                        <label htmlFor="price" className="form-label m-t-16 f-s-14">Preço <b>*</b></label>
-                        <input
-                            type="number"
-                            className="form-control b-r-10 f-s-14"
-                            id="price"
-                            name="price"
-                            ref={register({ required: "Campo obrigatório" })}
-                        />
+                        <label htmlFor="price" className="form-label m-t-16">Preço <b>*</b></label>
+                        <PriceField control={control} />
                         {errors.price && (
                             <div className="invalid-feedback d-block">
                                 {errors.price.message}
                             </div>
                         )}
 
+                        <label htmlFor="categories" className="form-label m-t-16">Categorias <b>*</b></label>
+                        <Controller
+                            as={Select}
+                            classNamePrefix="categories-select"
+                            isMulti
+                            name="categories"
+                            placeholder="-- Selecione --"
+                            options={categories}
+                            getOptionValue={(option: Category) => String(option.id)}
+                            getOptionLabel={(option: Category) => option.name}
+                            control={control}
+                            rules={{ required: true }}
+                            isLoading={isLoadingCategories}
+                            defaultValue=""
+                        />
+                        {errors.categories && (
+                            <div className="invalid-feedback d-block">
+                                Campo obrigatório
+                            </div>
+                        )}
+
                         <div className={promotionalPriceField}>
                             <label htmlFor="promotionalPrice" className="form-label m-t-16 f-s-14">Preço promocional <b>*</b></label>
-                            <input
-                                type="number"
-                                className="form-control b-r-10 f-s-14"
-                                id="promotionalPrice"
-                                name="promotionalPrice"
-                                ref={promotionalPriceField === "d-block" ? register({ required: "Campo obrigatório" }) : register({ required: false })}
-                            />
+                            <PromotionalPriceField control={control} />
                             {errors.promotionalPrice && (
                                 <div className="invalid-feedback d-block">
                                     {errors.promotionalPrice.message}
@@ -134,14 +163,13 @@ const Form = () => {
                         <input
                             type="text"
                             className="form-control b-r-10 f-s-14"
-                            id="paymentTerms"
                             name="paymentTerms"
+                            placeholder="Ex: em até 4x de R$ 26,25 s/ juros no cartão"
                             ref={register({
                                 required: "Campo obrigatório",
                                 minLength: { value: 39, message: 'O campo deve ter no mínimo 39 caracteres' },
                                 maxLength: { value: 41, message: 'O campo deve ter no máximo 41 caracteres' }
                             })}
-                            placeholder="Ex: em até 4x de R$ 26,25 s/ juros no cartão"
                         />
                         {errors.paymentTerms && (
                             <div className="invalid-feedback d-block">
@@ -153,7 +181,6 @@ const Form = () => {
                         <input
                             type="text"
                             className="form-control b-r-10 f-s-14"
-                            id="sizes"
                             name="sizes"
                             placeholder="Ex: P, M, G e GG"
                             ref={register({
@@ -172,10 +199,9 @@ const Form = () => {
                         <input
                             type="url"
                             className="form-control b-r-10 f-s-14"
-                            id="image1"
                             name="image1"
-                            ref={register({ required: false })}
                             placeholder="Ex: https://images-shoptime.b2w.io/produtos/01/00/img/2866624/7/2866624746_1SZ.jpg"
+                            ref={register({ required: false })}
                         />
                         {errors.image1 && (
                             <div className="invalid-feedback d-block">
@@ -191,7 +217,6 @@ const Form = () => {
                         <label htmlFor="description" className="form-label m-t-16 f-s-14">Descrição <b>*</b></label>
                         <textarea
                             className="form-control b-r-10 f-s-14"
-                            id="description"
                             name="description"
                             cols={30}
                             rows={20}
