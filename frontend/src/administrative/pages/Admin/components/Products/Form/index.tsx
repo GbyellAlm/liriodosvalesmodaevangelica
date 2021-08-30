@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import BaseForm from '../../BaseForm';
 import PriceField from './PriceField';
 import PromotionalPriceField from './PromotionalPriceField';
+import CurrencyInput from 'react-currency-input-field';
 import Select from 'react-select';
 import './styles.scss';
 
@@ -100,8 +101,6 @@ const Form = () => {
 
     const selectedCategory = watch("categories");
 
-    const [selectedValue, setSelectedValue] = useState([]);
-
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <BaseForm>
@@ -151,7 +150,29 @@ const Form = () => {
 
                         <div className={promotionalPriceField}>
                             <label htmlFor="promotionalPrice" className="form-label m-t-16 f-s-14">Preço promocional <b>*</b></label>
-                            <PromotionalPriceField control={control} />
+                            <Controller
+                                name="promotionalPrice"
+                                control={control}
+                                ref={register({
+                                    required: selectedCategory?.map(x => (
+                                        x.id === 7
+                                    ))
+                                })}
+                                render={({ value, onChange }) => (
+                                    <CurrencyInput
+                                        className="form-control b-r-10"
+                                        intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
+                                        disableGroupSeparators={true}
+                                        fixedDecimalLength={2}
+                                        decimalSeparator="."
+                                        value={value}
+                                        onValueChange={onChange}
+                                    />
+                                )}
+                                defaultValue=""
+
+                            />
+
                             {errors.promotionalPrice && (
                                 <div className="invalid-feedback d-block">
                                     {errors.promotionalPrice.message}

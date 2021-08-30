@@ -1,8 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../core/assets/images/logo.svg';
+import { useState } from 'react';
 import './styles.scss';
 
 const Navbar = () => {
+    const [productName, setProductName] = useState('');
+
+    const handleChange = (productName: string) => {
+        setProductName(productName);
+    }
+
     return (
         <nav className="navbar bg-primary navbar-dark py-1 navbar-expand-xl f-s-14">
             <div className="container-fluid">
@@ -35,7 +42,14 @@ const Navbar = () => {
                     </ul>
                     <form>
                         <div className="input-group">
-                            <input className="form-control f-s-14 search-input" type="search" placeholder="Pesquisar produto" aria-label="Pesquise produto" />
+                            <input
+                                className="form-control f-s-14 search-input"
+                                type="search"
+                                placeholder="Pesquisar produto"
+                                aria-label="Pesquisar produto"
+                                value={productName}
+                                onChange={event => handleChange(event.target.value)}
+                            />
                             <button className="btn btn-sm text-white search-button" type="submit">Pesquisar</button>
                         </div>
                     </form>
