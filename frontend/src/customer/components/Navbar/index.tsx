@@ -1,13 +1,21 @@
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../core/assets/images/logo.svg';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import './styles.scss';
 
-const Navbar = () => {
-    const [productName, setProductName] = useState('');
+type FormState = {
+    name: string;
+}
 
-    const handleChange = (productName: string) => {
-        setProductName(productName);
+const Navbar = () => {
+    const { register, handleSubmit, reset } = useForm<FormState>();
+
+    const history = useHistory();
+
+    const onSubmit = (data: FormState) => {
+        history.push(`/search/${data.name}`);
+        reset();
     }
 
     return (
@@ -37,20 +45,15 @@ const Navbar = () => {
                             <NavLink to="/category/5" className="nav-link">Presentes</NavLink>
                         </li>
                         <li className="nav-item p-r-9">
-                            <NavLink to="/about" className="nav-link">Sobre nós</NavLink>
+                            <NavLink to="/about-us" className="nav-link">Sobre nós</NavLink>
                         </li>
                     </ul>
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="input-group">
-                            <input
-                                className="form-control f-s-14 search-input"
-                                type="search"
-                                placeholder="Pesquisar produto"
-                                aria-label="Pesquisar produto"
-                                value={productName}
-                                onChange={event => handleChange(event.target.value)}
-                            />
-                            <button className="btn btn-sm text-white search-button" type="submit">Pesquisar</button>
+                            <input className="form-control f-s-14 search-input" type="search" placeholder="Encontre o produto desejado..." aria-label="Encontre o produto desejado..." name="name" ref={register({ required: true })} />
+                            <button className="btn btn-sm text-white search-button" type="submit" title="Buscar">
+                                <i className="bi bi-search"></i>
+                            </button>
                         </div>
                     </form>
                 </div>

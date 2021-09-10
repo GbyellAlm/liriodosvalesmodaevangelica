@@ -11,17 +11,21 @@ public class AboutUsDTO implements Serializable {
 
 	private Long id;
 
-	// Não consegui validar esse campo, mesmo usando os validadores próprios para o
-	// tipo desse atributo (NotNull (funciona pois também tenho uma validação igual
-	// na entidade), NotEmpty e NotBlank). P.S. Penso que essa validação pode ser
-	// feita no front, e que deve existir um validador que funcione aqui.
-	@NotBlank(message = "Campo obrigatório.")
-	private String imgUrl;
+	/*
+	 * Não consegui validar esse campo, mesmo usando os validadores próprios para o
+	 * tipo desse atributo (NotNull (funciona, pois também tenho uma validação igual
+	 * na entidade), NotEmpty e NotBlank). OBS. Penso que essa validação pode ser
+	 * feita no front, e que deve existir um validador que funcione aqui.
+	 */
+	@NotBlank(message = "Campo obrigatório")
+	private String imageURL;
 
-	// Não consegui validar esse campo, mesmo usando os validadores próprios para o
-	// tipo desse atributo (NotNull (funciona pois também tenho uma validação igual
-	// na entidade), NotEmpty e NotBlank). P.S. Penso que essa validação pode ser
-	// feita no front, e que deve existir um validador que funcione aqui.
+	/*
+	 * Não consegui validar esse campo, mesmo usando os validadores próprios para o
+	 * tipo desse atributo (NotNull (funciona, pois também tenho uma validação igual
+	 * na entidade), NotEmpty e NotBlank). OBS. Penso que essa validação pode ser
+	 * feita no front, e que deve existir um validador que funcione aqui.
+	 */
 	@NotBlank(message = "Campo obrigatório.")
 	private String description;
 
@@ -29,15 +33,15 @@ public class AboutUsDTO implements Serializable {
 
 	}
 
-	public AboutUsDTO(Long id, String imgUrl, String description) {
+	public AboutUsDTO(Long id, String imageURL, String description) {
 		this.id = id;
-		this.imgUrl = imgUrl;
+		this.imageURL = imageURL;
 		this.description = description;
 	}
 
 	public AboutUsDTO(AboutUs entity) {
 		this.id = entity.getId();
-		this.imgUrl = entity.getImgUrl();
+		this.imageURL = entity.getImageURL();
 		this.description = entity.getDescription();
 	}
 
@@ -49,12 +53,12 @@ public class AboutUsDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getImgUrl() {
-		return imgUrl;
+	public String getImageURL() {
+		return imageURL;
 	}
 
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
 	}
 
 	public String getDescription() {

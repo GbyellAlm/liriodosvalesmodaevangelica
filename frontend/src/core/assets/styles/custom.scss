@@ -1,14 +1,14 @@
-$theme-colors: (
-    "primary": #63c0e1,
-    "secondary": #e1e1e1,
-);
-
 $body-bg: #f2f2f2;
 $body-color: #263238;
 
 $navbar-dark-color: rgba(255, 255, 255, 0.65);
 $navbar-dark-hover-color: #fff;
 $navbar-dark-toggler-border-color: #fff;
+
+$theme-colors: (
+    "primary": #63c0e1,
+    "secondary": #e1e1e1,
+);
 
 @import "~bootstrap/scss/bootstrap.scss";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css");

@@ -1,27 +1,28 @@
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import history from './core/utils/history';
 import CustomerNavbar from './customer/components/Navbar';
-import Home from './customer/pages/Home';
+import Homepage from './customer/pages/Homepage';
 import ProductDetails from './customer/components/ProductDetails';
 import ProductsByCategory from './customer/pages/ProductsByCategory';
-import About from './customer/pages/About';
+import AboutUs from './customer/pages/AboutUs';
 import CustomerFooter from './customer/components/Footer';
 import AdminNavbar from './administrative/components/Navbar';
 import Auth from './administrative/pages/Auth';
 import PrivateRoute from './core/components/Routes/PrivateRoute';
 import Admin from './administrative/pages/Admin';
 import AdminFooter from './administrative/components/Footer';
+import ProductSearch from './customer/pages/ProductSearch';
 
 const Routes = () => (
     <Router history={history}>
         <Switch>
             <Route path="/" exact>
                 <CustomerNavbar />
-                <Home />
+                <Homepage />
                 <CustomerFooter />
             </Route>
 
-            <Route path="/products/:productId">
+            <Route path="/product/:productId">
                 <CustomerNavbar />
                 <ProductDetails />
                 <CustomerFooter />
@@ -33,9 +34,15 @@ const Routes = () => (
                 <CustomerFooter />
             </Route>
 
-            <Route path="/about">
+            <Route path="/about-us">
                 <CustomerNavbar />
-                <About />
+                <AboutUs />
+                <CustomerFooter />
+            </Route>
+
+            <Route path="/search/:productName">
+                <CustomerNavbar />
+                <ProductSearch />
                 <CustomerFooter />
             </Route>
 

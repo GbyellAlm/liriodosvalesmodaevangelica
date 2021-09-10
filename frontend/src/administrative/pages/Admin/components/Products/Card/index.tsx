@@ -10,15 +10,11 @@ type Props = {
 }
 
 const Card = ({ product, onRemove }: Props) => {
-    const images = product.images;
-
     return (
         <div className="base-container b-r-10 b-s-1-10 admin-product-card-container">
             <div className="row">
                 <div className="col-2 text-center border-right p-b-t-15">
-                    {images.map(image => {
-                        return image.mainImage === true && <img src={image.url} alt={product.name} className="main-admin-product-image" />
-                    })}
+                    <img src={product.imageURL} alt={product.name} className="admin-product-image" />
                 </div>
                 <div className="col-7 p-b-t-15 p-l-r-15">
                     <h3 className="f-s-16 f-w-600 admin-product-name" title={product.name}>

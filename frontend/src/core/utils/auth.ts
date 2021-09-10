@@ -23,22 +23,18 @@ export const saveSessionData = (loginResponse: LoginResponse) => {
 
 export const getSessionData = () => {
     const sessionData = localStorage.getItem('authData') ?? '{}';
-
     const parsedSessionData = JSON.parse(sessionData);
-
     return parsedSessionData as LoginResponse;
 }
 
 export const getAccessTokenDecoded = () => {
     const sessionData = getSessionData();
-
     const tokenDecoded = jwtDecode(sessionData.access_token);
     return tokenDecoded as AccessToken;
 }
 
 export const isTokenValid = () => {
     const { exp } = getAccessTokenDecoded();
-
     if (Date.now() <= exp * 1000) {
         return true
     } return false;
@@ -46,7 +42,6 @@ export const isTokenValid = () => {
 
 export const isAuthenticated = () => {
     const sessionData = getSessionData();
-
     return sessionData.access_token && isTokenValid();
 }
 

@@ -4,6 +4,6 @@ export type AboutResponse = {
 
 export type About = {
     id: number;
-    imgUrl: string;
+    imageURL: string;
     description: string;
 }

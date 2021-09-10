@@ -44,7 +44,7 @@ public class ResourceExceptionHandler {
 		for (FieldError f : e.getBindingResult().getFieldErrors()) {
 			err.addError(f.getField(), f.getDefaultMessage());
 		}
-		
+
 		return ResponseEntity.status(status).body(err);
 	}
 

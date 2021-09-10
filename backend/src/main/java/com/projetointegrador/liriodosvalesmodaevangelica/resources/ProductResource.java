@@ -29,28 +29,27 @@ public class ProductResource {
 	@Autowired
 	private ProductService service;
 
-	@GetMapping
-	public ResponseEntity<Page<ProductDTO>> findAllByCategoryIdOrName(
-			@RequestParam(value = "catId", defaultValue = "0") Long catId,
-			@RequestParam(value = "name", defaultValue = "") String name,
-			@RequestParam(value = "page", defaultValue = "0") Integer page,
-			@RequestParam(value = "linesPerPage", defaultValue = "15") Integer linesPerPage,
-			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
-			@RequestParam(value = "orderBy", defaultValue = "name") String orderBy) {
-		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		Page<ProductDTO> list = service.findAllByCategoryIdOrName(catId, name.trim(), pageRequest);
-		return ResponseEntity.ok().body(list);
-	}
-
 	@GetMapping(value = "/categoryId/{catId}")
 	public ResponseEntity<Page<ProductDTO>> findAllByCategoryId(@PathVariable Long catId,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "15") Integer linesPerPage,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
 			@RequestParam(value = "orderBy", defaultValue = "name") String orderBy) {
-
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		Page<ProductDTO> list = service.findAllByCategoryId(catId, pageRequest);
+		return ResponseEntity.ok().body(list);
+	}
+
+	@GetMapping
+	public ResponseEntity<Page<ProductDTO>> findAllByCategoryIdOrProductName(
+			@RequestParam(value = "catId", defaultValue = "1") Long catId,
+			@RequestParam(value = "name", defaultValue = "") String name,
+			@RequestParam(value = "page", defaultValue = "0") Integer page,
+			@RequestParam(value = "linesPerPage", defaultValue = "15") Integer linesPerPage,
+			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
+			@RequestParam(value = "orderBy", defaultValue = "name") String orderBy) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		Page<ProductDTO> list = service.findAllByCategoryIdOrProductName(catId, name.trim(), pageRequest);
 		return ResponseEntity.ok().body(list);
 	}
 

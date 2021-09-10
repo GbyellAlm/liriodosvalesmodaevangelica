@@ -8,15 +8,11 @@ type Props = {
 }
 
 const ProductCard = ({ product }: Props) => {
-    const images = product.images;
-
     return (
         <div className="b-1-s-e5e5e5 b-r-10 customer-product-card-container">
-            {images.map(image => {
-                return image.mainImage === true && <img src={image.url} alt={product.name} className="main-customer-product-image" />;
-            })}
+            <img src={product.imageURL} alt={product.name} className="customer-card-product-image" />
             <div className="customer-product-card-info">
-                <h3 className="f-s-16 f-w-600 customer-product-name" title={product.name}>
+                <h3 className="f-s-16 f-w-600 customer-card-product-name" title={product.name}>
                     {product.name}
                 </h3>
                 {product.promotionalPrice !== null && <OldProductPrice price={product.price} />}

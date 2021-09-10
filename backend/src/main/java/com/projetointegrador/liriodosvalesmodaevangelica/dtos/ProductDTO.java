@@ -6,71 +6,65 @@ import java.util.List;
 import java.util.Set;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import com.projetointegrador.liriodosvalesmodaevangelica.entities.Category;
 import com.projetointegrador.liriodosvalesmodaevangelica.entities.Product;
-import com.projetointegrador.liriodosvalesmodaevangelica.entities.ProductImage;
 
 public class ProductDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
 
-	@NotBlank(message = "Campo obrigatório.")
+	@NotBlank(message = "Campo obrigatório")
 	private String name;
 
-	@NotNull(message = "Campo obrigatório.")
-	@Positive(message = "Esse campo deve conter um valor positivo.")
+	@NotNull(message = "Campo obrigatório")
+	@Positive(message = "Este campo deve conter somente valor positivo")
 	private Double price;
 
-	// Não consegui validar esse campo. Tentei o unico validador que
-	// serve para o tipo List (NotNull (NotNull dentro do "<>" do List)) e não
-	// funcionou. P.S. Penso que, em último caso, a validação por si só no front irá
-	// resolver esse problema.
+	/*
+	 * Não consegui validar esse campo. Tentei o unico validador que serve para o
+	 * tipo List (NotNull (NotNull dentro do "<>" do List)) e não funcionou. OBS.
+	 * Penso que, em último caso, a validação por si só no front irá resolver o
+	 * problema.
+	 */
 	private List<CategoryDTO> categories = new ArrayList<>();
 
-	@Positive(message = "Esse campo deve conter um valor positivo.")
+	@Positive(message = "Este campo deve conter somente valor positivo")
 	private Double promotionalPrice;
 
-	@NotBlank(message = "Campo obrigatório.")
-	@Size(min = 39, max = 41, message = "Esse campo deve conter entre 39 e 41 caracteres.")
+	@NotBlank(message = "Campo obrigatório")
+	@Size(min = 39, max = 41, message = "Este campo deve conter de 39 a 41 caracteres")
 	private String paymentTerms;
-	
-	//@Size(min = 1, max = 12, message = "Esse campo deve conter entre 1 e 12 caracteres.")
+
+	// @Size(min = 1, max = 12, message = "Este campo deve conter de 1 a 12
+	// caracteres")
 	private String sizes;
 
-	// Não consegui validar direito esse campo. O unico validador que funciona + ou
-	// - para esse campo é o NotEmpty (funciona + ou menos pois não permite inserir
-	// uma lista de imagens vazia, entretanto permite inserir os atributos
-	// "mainImage" e "url" nulos e vazios.). P.S. Penso que deve existir um
-	// validador que funciona 100% para listas, que essa validação pode ser feita no
-	// front e, que essa validação pode ser totalmente diferente quando eu for
-	// implementar o upload de imagens.
-	// -----------------------------------------------------------------------------
-	// ATENÇÃO: Se eu não conseguir validar no front o fato de que o produto só pode
-	// ter 1 imagem com o atributo "mainImage = true", codar essa validação.
-	@NotEmpty(message = "A lista não pode ser vazia.")
-	private List<ProductImageDTO> images = new ArrayList<>();
+	private String imageURL;
 
-	@NotBlank(message = "Campo obrigatório.")
+	@NotBlank(message = "Campo obrigatório")
 	private String description;
 
 	public ProductDTO() {
 
 	}
 
-	public ProductDTO(Long id, String name, Double price, Double promotionalPrice, String paymentTerms, String sizes,
-			String description) {
+	public ProductDTO(Long id, @NotBlank(message = "Campo obrigatório") String name,
+			@NotNull(message = "Campo obrigatório") @Positive(message = "Este campo deve conter somente valor positivo") Double price,
+			@Positive(message = "Este campo deve conter somente valor positivo") Double promotionalPrice,
+			@NotBlank(message = "Campo obrigatório") @Size(min = 39, max = 41, message = "Este campo deve conter de 39 a 41 caracteres") String paymentTerms,
+			String sizes, String imageURL, @NotBlank(message = "Campo obrigatório") String description) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.promotionalPrice = promotionalPrice;
 		this.paymentTerms = paymentTerms;
 		this.sizes = sizes;
+		this.imageURL = imageURL;
 		this.description = description;
 	}
 
@@ -81,13 +75,13 @@ public class ProductDTO implements Serializable {
 		this.promotionalPrice = entity.getPromotionalPrice();
 		this.paymentTerms = entity.getPaymentTerms();
 		this.sizes = entity.getSizes();
+		this.imageURL = entity.getImageURL();
 		this.description = entity.getDescription();
 	}
 
-	public ProductDTO(Product entity, Set<Category> categories, Set<ProductImage> images) {
+	public ProductDTO(Product entity, Set<Category> categories) {
 		this(entity);
 		categories.forEach(cat -> this.categories.add(new CategoryDTO(cat)));
-		images.forEach(img -> this.images.add(new ProductImageDTO(img)));
 	}
 
 	public Long getId() {
@@ -146,12 +140,12 @@ public class ProductDTO implements Serializable {
 		this.sizes = sizes;
 	}
 
-	public List<ProductImageDTO> getImages() {
-		return images;
+	public String getImageURL() {
+		return imageURL;
 	}
 
-	public void setImages(List<ProductImageDTO> images) {
-		this.images = images;
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
 	}
 
 	public String getDescription() {

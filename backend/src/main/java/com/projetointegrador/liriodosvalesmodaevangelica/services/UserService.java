@@ -36,10 +36,10 @@ public class UserService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = repository.findByEmail(username);
 		if (user == null) {
-			logger.error("User not found: " + username);
-			throw new UsernameNotFoundException("Endereço de e-mail não encontrado.");
+			logger.error("Usuário não encontrado: " + username);
+			throw new UsernameNotFoundException("E-mail não encontrado");
 		}
-		logger.info("User found: " + username);
+		logger.info("Usuário encontrado: " + username);
 		return user;
 	}
 
@@ -59,7 +59,7 @@ public class UserService implements UserDetailsService {
 			entity = repository.save(entity);
 			return new UserDTO(entity);
 		} catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("O usuário que você está querendo atualizar não existe.");
+			throw new ResourceNotFoundException("Id não encontrado");
 		}
 	}
 }

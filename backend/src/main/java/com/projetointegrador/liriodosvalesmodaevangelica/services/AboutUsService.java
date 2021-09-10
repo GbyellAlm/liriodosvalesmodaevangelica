@@ -24,7 +24,7 @@ public class AboutUsService {
 	@Transactional(readOnly = true)
 	public AboutUsDTO findById(Long id) {
 		Optional<AboutUs> obj = repository.findById(id);
-		AboutUs entity = obj.orElseThrow(() -> new ResourceNotFoundException("O 'Sobre nós' solicitado não existe."));
+		AboutUs entity = obj.orElseThrow(() -> new ResourceNotFoundException("Id não encontrado"));
 		return new AboutUsDTO(entity);
 	}
 
@@ -38,12 +38,12 @@ public class AboutUsService {
 	public AboutUsDTO update(Long id, AboutUsDTO dto) {
 		try {
 			AboutUs entity = repository.getOne(id);
-			entity.setImgUrl(dto.getImgUrl());
+			entity.setImageURL(dto.getImageURL());
 			entity.setDescription(dto.getDescription());
 			entity = repository.save(entity);
 			return new AboutUsDTO(entity);
 		} catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("O 'Sobre nós' que você está querendo atualizar não existe.");
+			throw new ResourceNotFoundException("Id não encontrado");
 		}
 	}
 }

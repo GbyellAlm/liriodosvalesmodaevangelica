@@ -17,7 +17,7 @@ public class AboutUs implements Serializable {
 	private Long id;
 
 	@Column(nullable = false)
-	private String imgUrl;
+	private String imageURL;
 
 	@Column(columnDefinition = "TEXT", nullable = false)
 	private String description;
@@ -26,9 +26,9 @@ public class AboutUs implements Serializable {
 
 	}
 
-	public AboutUs(Long id, String imgUrl, String description) {
+	public AboutUs(Long id, String imageURL, String description) {
 		this.id = id;
-		this.imgUrl = imgUrl;
+		this.imageURL = imageURL;
 		this.description = description;
 	}
 
@@ -40,12 +40,12 @@ public class AboutUs implements Serializable {
 		this.id = id;
 	}
 
-	public String getImgUrl() {
-		return imgUrl;
+	public String getImageURL() {
+		return imageURL;
 	}
 
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
 	}
 
 	public String getDescription() {

@@ -10,11 +10,11 @@ import ProductCard from '../../components/ProductCard';
 import Pagination from '../../../core/components/Pagination';
 
 type ParamsType = {
-    catId: string;
+    productName: string;
 }
 
-const ProductsByCategory = () => {
-    const { catId } = useParams<ParamsType>();
+const ProductSearch = () => {
+    const { productName } = useParams<ParamsType>();
 
     const [productsResponse, setProductsResponse] = useState<ProductsResponse>();
 
@@ -24,33 +24,22 @@ const ProductsByCategory = () => {
 
     useEffect(() => {
         const params = {
-            direction: 'DESC',
-            linesPerPage: 15,
-            orderBy: 'id',
+            name: productName,
             page: activePage
         }
 
         setIsLoading(true);
-        makeRequest({ url: `/products/categoryId/${catId}`, params })
+        makeRequest({ url: '/products', params })
             .then(response => setProductsResponse(response.data))
             .finally(() => {
                 setIsLoading(false);
-            })
-    }, [catId, activePage]);
+            });
+    }, [productName, activePage]);
 
     return (
         <div className="m-25 base-container m-h-484 b-r-10 b-s-1-10 p-25">
-            {catId === "1" && <Helmet title="Bíblias | Lírio dos vales - Moda Evangélica" />}
-            {catId === "2" && <Helmet title="Feminino | Lírio dos vales - Moda Evangélica" />}
-            {catId === "3" && <Helmet title="Masculino | Lírio dos vales - Moda Evangélica" />}
-            {catId === "4" && <Helmet title="Livros | Lírio dos vales - Moda Evangélica" />}
-            {catId === "5" && <Helmet title="Presentes | Lírio dos vales - Moda Evangélica" />}
-
-            {catId === "1" && <PageOrSectionTitle title="Bíblias" />}
-            {catId === "2" && <PageOrSectionTitle title="Feminino" />}
-            {catId === "3" && <PageOrSectionTitle title="Masculino" />}
-            {catId === "4" && <PageOrSectionTitle title="Livros" />}
-            {catId === "5" && <PageOrSectionTitle title="Presentes" />}
+            <Helmet title={"'" + productName + "' | Lírio dos Vales - Moda Evangélica"} />
+            <PageOrSectionTitle title={"Resultados da pesquisa de '" + productName + "'"} />
             <div className="product-layout">
                 {isLoading ? <ProductCardLoader /> : (
                     productsResponse?.content.map(product => (
@@ -65,4 +54,4 @@ const ProductsByCategory = () => {
     )
 }
 
-export default ProductsByCategory;
+export default ProductSearch;

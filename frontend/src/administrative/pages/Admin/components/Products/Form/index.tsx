@@ -5,20 +5,18 @@ import { Controller, useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import BaseForm from '../../BaseForm';
-import PriceField from './PriceField';
-import PromotionalPriceField from './PromotionalPriceField';
 import CurrencyInput from 'react-currency-input-field';
 import Select from 'react-select';
 import './styles.scss';
 
-export type FormState = {
+type FormState = {
     name: string;
     price: number;
     categories: Category[];
     promotionalPrice: string;
     paymentTerms: string;
     sizes: string
-    image1: string;
+    imageURL: string;
     description: string;
 }
 
@@ -27,6 +25,8 @@ type ParamsType = {
 }
 
 const Form = () => {
+    const { register, handleSubmit, errors, setValue, control, watch } = useForm<FormState>();
+
     const [isLoadingCategories, setIsLoadingCategories] = useState(false);
 
     const [categories, setCategories] = useState<Category[]>([]);
@@ -38,29 +38,31 @@ const Form = () => {
             .finally(() => setIsLoadingCategories(false));
     }, []);
 
-    const [promotionalPriceField, setPromotionalPriceField] = useState("d-none");
+    //const [promotionalPriceField, setPromotionalPriceField] = useState("d-none");
 
-    const handleOnChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const name = event.target.name;
-        const value = event.target.value;
+    //const [validation, setValidation] = useState(false);
 
-        name === "categories" && value === "7" ? setPromotionalPriceField("d-block") : setPromotionalPriceField("d-none");
-    }
+    //const selectedCategories = watch("categories");
 
-    const { register, handleSubmit, errors, setValue, control, watch } = useForm<FormState>();
+    /*selectedCategories?.map(cat => {
+        if (cat.id === 7) {
+            setValidacao(true);
+        }
+    })*/
+
+    const { productId } = useParams<ParamsType>();
+
+    const isEditing = productId !== 'new-product';
 
     const history = useHistory();
 
     const onSubmit = (data: FormState) => {
-        const payload = {
-            ...data,
-            images: [{ url: data.image1, mainImage: true }]
-        }
+
 
         makePrivateRequest({
             url: isEditing ? `/products/${productId}` : '/products',
             method: isEditing ? 'PUT' : 'POST',
-            data: payload
+            data: data
         })
             .then(() => {
                 toast.success(isEditing === true ? "Produto salvo com sucesso!" : "Produto cadastrado com sucesso!", {
@@ -79,10 +81,6 @@ const Form = () => {
             });
     }
 
-    const { productId } = useParams<ParamsType>();
-
-    const isEditing = productId !== 'new-product';
-
     useEffect(() => {
         if (isEditing) {
             makeRequest({ url: `/products/${productId}` })
@@ -90,16 +88,14 @@ const Form = () => {
                     setValue('name', response.data.name);
                     setValue('price', response.data.price);
                     setValue('categories', response.data.categories);
-                    setValue('promotionalPrice', response.data.promotionalPrice);
+                    response.data.promotionalPrice !== null && setValue('promotionalPrice', response.data.promotionalPrice);
                     setValue('paymentTerms', response.data.paymentTerms);
                     setValue('sizes', response.data.sizes);
-                    //setValue('image1', response.data.image1);
+                    setValue('imageURL', response.data.imageURL);
                     setValue('description', response.data.description);
                 })
         }
     }, [isEditing, productId, setValue]);
-
-    const selectedCategory = watch("categories");
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -110,6 +106,7 @@ const Form = () => {
                         <input
                             type="text"
                             className="form-control b-r-10"
+                            id="name"
                             name="name"
                             ref={register({ required: "Campo obrigatório" })}
                         />
@@ -120,7 +117,24 @@ const Form = () => {
                         )}
 
                         <label htmlFor="price" className="form-label m-t-16">Preço <b>*</b></label>
-                        <PriceField control={control} />
+                        <Controller
+                            defaultValue=""
+                            id="price"
+                            name="price"
+                            control={control}
+                            rules={{ required: "Campo obrigatório" }}
+                            render={({ value, onChange }) => (
+                                <CurrencyInput
+                                    className="form-control b-r-10"
+                                    intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
+                                    disableGroupSeparators={true}
+                                    fixedDecimalLength={2}
+                                    decimalSeparator="."
+                                    value={value}
+                                    onValueChange={onChange}
+                                />
+                            )}
+                        />
                         {errors.price && (
                             <div className="invalid-feedback d-block">
                                 {errors.price.message}
@@ -131,16 +145,17 @@ const Form = () => {
                         <Controller
                             as={Select}
                             classNamePrefix="categories-select"
-                            isMulti
-                            name="categories"
                             placeholder="-- Selecione --"
+                            defaultValue=""
+                            isMulti
+                            id="categories"
+                            name="categories"
+                            isLoading={isLoadingCategories}
                             options={categories}
                             getOptionValue={(option: Category) => String(option.id)}
                             getOptionLabel={(option: Category) => option.name}
                             control={control}
                             rules={{ required: true }}
-                            isLoading={isLoadingCategories}
-                            defaultValue=""
                         />
                         {errors.categories && (
                             <div className="invalid-feedback d-block">
@@ -148,16 +163,16 @@ const Form = () => {
                             </div>
                         )}
 
-                        <div className={promotionalPriceField}>
+                        <div className="">
                             <label htmlFor="promotionalPrice" className="form-label m-t-16 f-s-14">Preço promocional <b>*</b></label>
                             <Controller
+                                defaultValue=""
+                                id="promotionalPrice"
                                 name="promotionalPrice"
                                 control={control}
-                                ref={register({
-                                    required: selectedCategory?.map(x => (
-                                        x.id === 7
-                                    ))
-                                })}
+                                rules={{
+                                    required: false
+                                }}
                                 render={({ value, onChange }) => (
                                     <CurrencyInput
                                         className="form-control b-r-10"
@@ -169,10 +184,7 @@ const Form = () => {
                                         onValueChange={onChange}
                                     />
                                 )}
-                                defaultValue=""
-
                             />
-
                             {errors.promotionalPrice && (
                                 <div className="invalid-feedback d-block">
                                     {errors.promotionalPrice.message}
@@ -184,8 +196,9 @@ const Form = () => {
                         <input
                             type="text"
                             className="form-control b-r-10 f-s-14"
-                            name="paymentTerms"
                             placeholder="Ex: em até 4x de R$ 26,25 s/ juros no cartão"
+                            id="paymentTerms"
+                            name="paymentTerms"
                             ref={register({
                                 required: "Campo obrigatório",
                                 minLength: { value: 39, message: 'O campo deve ter no mínimo 39 caracteres' },
@@ -202,8 +215,9 @@ const Form = () => {
                         <input
                             type="text"
                             className="form-control b-r-10 f-s-14"
-                            name="sizes"
                             placeholder="Ex: P, M, G e GG"
+                            id="sizes"
+                            name="sizes"
                             ref={register({
                                 required: false,
                                 minLength: { value: 1, message: 'O campo deve ter no mínimo 1 caracter' },
@@ -216,28 +230,31 @@ const Form = () => {
                             </div>
                         )}
 
-                        <label htmlFor="image1" className="form-label m-t-16 f-s-14">Link da foto 1 <b>*</b></label>
+                        <label htmlFor="imageURL" className="form-label m-t-16 f-s-14">Link da foto 1 <b>*</b></label>
                         <input
                             type="url"
                             className="form-control b-r-10 f-s-14"
-                            name="image1"
                             placeholder="Ex: https://images-shoptime.b2w.io/produtos/01/00/img/2866624/7/2866624746_1SZ.jpg"
+                            id="imageURL"
+                            name="imageURL"
                             ref={register({ required: false })}
                         />
-                        {errors.image1 && (
+                        {errors.imageURL && (
                             <div className="invalid-feedback d-block">
-                                {errors.image1.message}
+                                {errors.imageURL.message}
                             </div>
                         )}
 
                     </div>
                     <div className="col-6">
                         <div className="b-1-s-e5e5e5 b-r-10 text-editor">
-                            <p>*Rich text*</p>
+                            <p>* Rich text *</p>
                         </div>
+
                         <label htmlFor="description" className="form-label m-t-16 f-s-14">Descrição <b>*</b></label>
                         <textarea
                             className="form-control b-r-10 f-s-14"
+                            id="description"
                             name="description"
                             cols={30}
                             rows={20}

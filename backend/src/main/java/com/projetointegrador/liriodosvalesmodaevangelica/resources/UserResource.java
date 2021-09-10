@@ -17,7 +17,7 @@ import com.projetointegrador.liriodosvalesmodaevangelica.dtos.UserUpdateDTO;
 import com.projetointegrador.liriodosvalesmodaevangelica.services.UserService;
 
 @RestController
-// Comentei o campo abaixo porque penso que como é somente eu que vou lidar com o "CRUD" de usuários, não faz sentido ter esse endpoint para os outros (Pais do Ezequiel e estranhos). Também é inseguro para a aplicação deixar esse endpoint liberado.
+// Comentei o campo abaixo, pois não faz sentido ter esse endpoint liberado.
 //@RequestMapping(value = "/users")
 public class UserResource {
 

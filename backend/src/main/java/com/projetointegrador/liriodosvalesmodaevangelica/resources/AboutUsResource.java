@@ -27,8 +27,10 @@ public class AboutUsResource {
 		return ResponseEntity.ok().body(dto);
 	}
 
-	// Não sei se vai ser útil, pois acho que o endpoint "findById" já é o
-	// suficiente para listar e editar o "sobre nós" no administrativo.
+	/*
+	 * Não sei se vai ser útil, pois acho que o endpoint "findById" já é o
+	 * suficiente para listar e editar o "sobre nós" no administrativo.
+	 */
 	@GetMapping
 	public ResponseEntity<List<AboutUsDTO>> findAll() {
 		List<AboutUsDTO> list = service.findAll();

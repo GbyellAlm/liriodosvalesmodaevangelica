@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Product implements Serializable {
@@ -27,22 +26,22 @@ public class Product implements Serializable {
 
 	@Column(nullable = false)
 	private Double price;
-	
+
 	@ManyToMany
 	@JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private Set<Category> categories = new HashSet<>();
-	
+
 	@Column(nullable = true)
 	private Double promotionalPrice;
 
 	@Column(nullable = false)
 	private String paymentTerms;
-	
+
 	@Column(nullable = true)
 	private String sizes;
 
-	@OneToMany(mappedBy = "product", orphanRemoval = true)
-	private Set<ProductImage> images = new HashSet<>();
+	@Column(nullable = true)
+	private String imageURL;
 
 	@Column(columnDefinition = "TEXT", nullable = false)
 	private String description;
@@ -52,13 +51,14 @@ public class Product implements Serializable {
 	}
 
 	public Product(Long id, String name, Double price, Double promotionalPrice, String paymentTerms, String sizes,
-			String description) {
+			String imageURL, String description) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.promotionalPrice = promotionalPrice;
 		this.paymentTerms = paymentTerms;
 		this.sizes = sizes;
+		this.imageURL = imageURL;
 		this.description = description;
 	}
 
@@ -114,8 +114,12 @@ public class Product implements Serializable {
 		this.sizes = sizes;
 	}
 
-	public Set<ProductImage> getImages() {
-		return images;
+	public String getImageURL() {
+		return imageURL;
+	}
+
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
 	}
 
 	public String getDescription() {
