@@ -1,5 +1,6 @@
 package com.projetointegrador.liriodosvalesmodaevangelica.services;
 
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -12,9 +13,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.projetointegrador.liriodosvalesmodaevangelica.dtos.CategoryDTO;
 import com.projetointegrador.liriodosvalesmodaevangelica.dtos.ProductDTO;
+import com.projetointegrador.liriodosvalesmodaevangelica.dtos.ImageUriDTO;
 import com.projetointegrador.liriodosvalesmodaevangelica.entities.Category;
 import com.projetointegrador.liriodosvalesmodaevangelica.entities.Product;
 import com.projetointegrador.liriodosvalesmodaevangelica.repositories.CategoryRepository;
@@ -25,10 +28,13 @@ import com.projetointegrador.liriodosvalesmodaevangelica.services.exceptions.Res
 public class ProductService {
 
 	@Autowired
+	private CategoryRepository categoryRepository;
+
+	@Autowired
 	private ProductRepository repository;
 
 	@Autowired
-	private CategoryRepository categoryRepository;
+	private S3Service s3Service;
 
 	@Transactional(readOnly = true)
 	public Page<ProductDTO> findAllByCategoryId(Long catId, PageRequest pageRequest) {
@@ -38,17 +44,17 @@ public class ProductService {
 	}
 
 	@Transactional(readOnly = true)
-	public Page<ProductDTO> findAllByCategoryIdOrProductName(Long catId, String name, PageRequest pageRequest) {
-		List<Category> categories = (catId == 0) ? null : Arrays.asList(categoryRepository.getOne(catId));
-		Page<Product> page = repository.findAllByCategoryIdOrProductName(categories, name, pageRequest);
-		return page.map(prod -> new ProductDTO(prod, prod.getCategories()));
-	}
-
-	@Transactional(readOnly = true)
 	public ProductDTO findById(Long id) {
 		Optional<Product> obj = repository.findById(id);
 		Product entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entidade não encontrada"));
 		return new ProductDTO(entity, entity.getCategories());
+	}
+
+	@Transactional(readOnly = true)
+	public Page<ProductDTO> findAllByProductNameOrCategoryId(String name, Long catId, PageRequest pageRequest) {
+		List<Category> categories = (catId == 0) ? null : Arrays.asList(categoryRepository.getOne(catId));
+		Page<Product> page = repository.findAllByProductNameOrCategoryId(name, categories, pageRequest);
+		return page.map(prod -> new ProductDTO(prod, prod.getCategories()));
 	}
 
 	@Transactional
@@ -91,6 +97,11 @@ public class ProductService {
 		} catch (EmptyResultDataAccessException e) {
 			throw new ResourceNotFoundException("Id não encontrado");
 		}
+	}
+
+	public ImageUriDTO uploadImage(MultipartFile imageFile) {
+		URL url = s3Service.uploadImage(imageFile);
+		return new ImageUriDTO(url.toString());
 	}
 
 	private void copyDTOToEntity(ProductDTO dto, Product entity) {

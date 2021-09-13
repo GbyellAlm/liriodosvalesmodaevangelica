@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import com.projetointegrador.liriodosvalesmodaevangelica.dtos.ProductDTO;
+import com.projetointegrador.liriodosvalesmodaevangelica.dtos.ImageUriDTO;
 import com.projetointegrador.liriodosvalesmodaevangelica.services.ProductService;
 
 @RestController
@@ -40,23 +43,23 @@ public class ProductResource {
 		return ResponseEntity.ok().body(list);
 	}
 
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
+		ProductDTO dto = service.findById(id);
+		return ResponseEntity.ok().body(dto);
+	}
+
 	@GetMapping
-	public ResponseEntity<Page<ProductDTO>> findAllByCategoryIdOrProductName(
-			@RequestParam(value = "catId", defaultValue = "1") Long catId,
+	public ResponseEntity<Page<ProductDTO>> findAllByProductNameOrCategoryId(
 			@RequestParam(value = "name", defaultValue = "") String name,
+			@RequestParam(value = "catId", defaultValue = "1") Long catId,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "15") Integer linesPerPage,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
 			@RequestParam(value = "orderBy", defaultValue = "name") String orderBy) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		Page<ProductDTO> list = service.findAllByCategoryIdOrProductName(catId, name.trim(), pageRequest);
+		Page<ProductDTO> list = service.findAllByProductNameOrCategoryId(name.trim(), catId, pageRequest);
 		return ResponseEntity.ok().body(list);
-	}
-
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
-		ProductDTO dto = service.findById(id);
-		return ResponseEntity.ok().body(dto);
 	}
 
 	@PostMapping
@@ -76,5 +79,11 @@ public class ProductResource {
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
+	}
+
+	@PostMapping(value = "/image")
+	public ResponseEntity<ImageUriDTO> uploadImage(@RequestParam("imageFile") MultipartFile imageFile) {
+		ImageUriDTO dto = service.uploadImage(imageFile);
+		return ResponseEntity.ok().body(dto);
 	}
 }
