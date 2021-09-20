@@ -1,17 +1,17 @@
-import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import history from './core/utils/history';
+import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import CustomerNavbar from './customer/components/Navbar';
-import Homepage from './customer/pages/Homepage';
+import Homepage from './customer/pages/Home';
 import ProductDetails from './customer/components/ProductDetails';
 import ProductsByCategory from './customer/pages/ProductsByCategory';
 import AboutUs from './customer/pages/AboutUs';
+import ProductSearch from './customer/pages/ProductSearch';
 import CustomerFooter from './customer/components/Footer';
 import AdminNavbar from './administrative/components/Navbar';
 import Auth from './administrative/pages/Auth';
 import PrivateRoute from './core/components/Routes/PrivateRoute';
 import Admin from './administrative/pages/Admin';
 import AdminFooter from './administrative/components/Footer';
-import ProductSearch from './customer/pages/ProductSearch';
 
 const Routes = () => (
     <Router history={history}>

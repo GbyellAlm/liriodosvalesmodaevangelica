@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { makeLogin } from '../../../../../core/utils/request';
-import { saveSessionData } from '../../../../../core/utils/auth';
-import AuthCard from '../Card/';
+import { makeLogin } from 'core/utils/request';
+import { saveSessionData } from 'core/utils/auth';
+import AuthCard from '../Card';
 import { Helmet } from 'react-helmet';
 import './styles.scss';
 
@@ -34,31 +34,29 @@ const Login = () => {
                 saveSessionData(response.data);
                 history.push(from);
             })
-            .catch(() => {
-                setHasError(true);
-            });
+            .catch(() => { setHasError(true); });
     }
 
     return (
         <AuthCard title="LOGIN">
-            <Helmet title="Administrativo: Login · Lírio dos Vales - Moda Evangélica" />
+            <Helmet title="Administrativo: Login | Lírio dos Vales - Moda Evangélica" />
             {hasError && (
                 <div className="alert alert-danger">
-                    <p className="text-center f-s-14">E-mail e/ou senha incorretos</p>
+                    <p className="text-center">E-mail e/ou senha incorretos</p>
                 </div>
             )}
             <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-                <label htmlFor="username" className="form-label f-s-14">E-mail:</label>
+                <label htmlFor="username" className="form-label">E-mail:</label>
                 <input
                     type="email"
-                    className={`form-control b-r-10 f-s-14 ${errors.username ? 'is-invalid' : ''}`}
+                    className={`form-control b-r-10 ${errors.username ? 'is-invalid' : ''}`}
                     id="username"
                     name="username"
                     ref={register({
                         required: "Campo obrigatório",
                         pattern: {
                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                            message: "Endereço de e-mail inválido"
+                            message: "E-mail inválido"
                         }
                     })}
                 />
@@ -68,10 +66,10 @@ const Login = () => {
                     </div>
                 )}
 
-                <label htmlFor="password" className="form-label m-t-16 f-s-14">Senha:</label>
+                <label htmlFor="password" className="form-label m-t-16">Senha:</label>
                 <input
                     type="password"
-                    className={`form-control b-r-10 f-s-14 ${errors.password ? 'is-invalid' : ''}`}
+                    className={`form-control b-r-10 ${errors.password ? 'is-invalid' : ''}`}
                     id="password"
                     name="password"
                     ref={register({ required: "Campo obrigatório" })}
@@ -83,7 +81,7 @@ const Login = () => {
                 )}
 
                 <div className="d-grid">
-                    <button className="btn btn-primary btn-lg b-r-10 text-white login-submit" type="submit">
+                    <button className="btn btn-lg btn-primary b-r-10 text-white login-submit" type="submit">
                         ENTRAR
                     </button>
                 </div>

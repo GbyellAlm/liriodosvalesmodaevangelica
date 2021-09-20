@@ -1,6 +1,6 @@
-import { Product } from '../../../../../../core/types/Product';
-import OldProductPrice from '../../../../../../core/components/OldProductPrice';
-import ProductPrice from '../../../../../../core/components/ProductPrice';
+import { Product } from 'core/types/Product';
+import OldProductPrice from 'core/components/OldProductPrice';
+import ProductPrice from 'core/components/ProductPrice';
 import { Link } from 'react-router-dom';
 import './styles.scss';
 
@@ -14,7 +14,7 @@ const Card = ({ product, onRemove }: Props) => {
         <div className="base-container b-r-10 b-s-1-10 admin-product-card-container">
             <div className="row">
                 <div className="col-2 text-center border-right p-b-t-15">
-                    <img src={product.imageURL} alt={product.name} className="admin-product-image" />
+                    <img src={product.imageURL} alt={product.name} className="img-fluid admin-product-image" />
                 </div>
                 <div className="col-7 p-b-t-15 p-l-r-15">
                     <h3 className="f-s-16 f-w-600 admin-product-name" title={product.name}>
@@ -22,19 +22,19 @@ const Card = ({ product, onRemove }: Props) => {
                     </h3>
                     {product.promotionalPrice !== null && <OldProductPrice price={product.price} />}
                     <ProductPrice price={product.promotionalPrice !== null ? product.promotionalPrice : product.price} />
-                    <p className="c-9e9e9e f-s-14">
+                    <p className="c-9e9e9e">
                         {product.paymentTerms}
                     </p>
-                    <p className="c-9e9e9e f-s-14 pt-1 admin-product-description">
+                    <p className="pt-1 c-9e9e9e admin-product-description">
                         {product.description}
                     </p>
                 </div>
-                <div className="col-3 p-b-t-28 p-l-r-15">
-                    <Link to={`/admin/products/${product.id}`} type="button" className="btn btn-outline-secondary btn-block mb-4 b-r-10 f-s-14 btn-edit">
-                        Editar
+                <div className="col-3">
+                    <Link to={`/admin/products/${product.id}`} type="button" className="btn btn-outline-secondary btn-block mt-3 b-r-10 btn-edit">
+                        EDITAR
                     </Link>
-                    <button type="button" className="btn btn-outline-danger btn-block b-r-10 f-s-14" onClick={() => onRemove(product.id)}>
-                        Excluir
+                    <button type="button" className="btn btn-outline-danger btn-block b-r-10" onClick={() => onRemove(product.id)}>
+                        EXCLUIR
                     </button>
                 </div>
             </div>

@@ -1,5 +1,13 @@
 .admin-product-card-container {
     margin-bottom: 15px;
+
+    .old-product-price-container {
+        font-size: 16px;
+    }
+
+    .product-price {
+        font-size: 20px;
+    }
 }
 
 .p-b-t-15 {
@@ -8,8 +16,7 @@
 }
 
 .admin-product-image {
-    height: 120px;
-    width: 120px;
+    width: 150px;
 }
 
 .p-l-r-15 {
@@ -20,6 +27,7 @@
 .admin-product-name {
     overflow: hidden;
     text-overflow: ellipsis;
+    text-transform: uppercase;
     white-space: nowrap;
     width: 500px;
 }

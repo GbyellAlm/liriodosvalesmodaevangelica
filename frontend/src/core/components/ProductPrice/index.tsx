@@ -1,3 +1,5 @@
+import './styles.scss';
+
 type Props = {
     price: number;
 }
@@ -7,9 +9,9 @@ const formatPrice = (price: number) => {
 }
 
 const ProductPrice = ({ price }: Props) => (
-    <div className="d-flex f-w-700">
-        <span className="c-9e9e9e f-s-14">R$&nbsp;</span>
-        <span className="c-63c0e1 f-s-16 new-f-s">{formatPrice(price)}</span>
+    <div className="d-flex">
+        <span className="c-9e9e9e f-w-600">R$&nbsp;</span>
+        <span className="c-63c0e1 product-price">{formatPrice(price)}</span>
     </div>
 );
 

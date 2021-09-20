@@ -42,4 +42,4 @@ INSERT INTO product_category (product_id, category_id) VALUES (13, 3);
 INSERT INTO product_category (product_id, category_id) VALUES (14, 2);
 INSERT INTO product_category (product_id, category_id) VALUES (15, 2);
 
-INSERT INTO User (user_Name, email, password) VALUES ('Administrador', 'liriodosvales_2009@hotmail.com', '$2a$10$.v05InGkIEBeTrT353DLweSQxTpDLKAiD1..9S0XtQZFyXhXMnsxi');
+INSERT INTO tb_user (user_Name, email, password) VALUES ('Administrador', 'liriodosvales_2009@hotmail.com', '$2a$10$.v05InGkIEBeTrT353DLweSQxTpDLKAiD1..9S0XtQZFyXhXMnsxi');

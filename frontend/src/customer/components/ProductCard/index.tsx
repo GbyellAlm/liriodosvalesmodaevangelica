@@ -1,6 +1,6 @@
-import { Product } from '../../../core/types/Product';
-import OldProductPrice from '../../../core/components/OldProductPrice';
-import ProductPrice from '../../../core/components/ProductPrice';
+import { Product } from 'core/types/Product';
+import OldProductPrice from 'core/components/OldProductPrice';
+import ProductPrice from 'core/components/ProductPrice';
 import './styles.scss';
 
 type Props = {

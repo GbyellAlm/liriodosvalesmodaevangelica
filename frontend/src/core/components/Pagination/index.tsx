@@ -19,7 +19,7 @@ const Pagination = ({ totalPages, activePage, onChange }: Props) => {
         <div className="pagination-container">
             <ArrowIcon className={`pagination-previous ${previousClass}`} onClick={() => onChange(activePage - 1)} />
             {items.map(item => (
-                <div className={`f-s-14 f-w-600 pagination-item ${item === activePage ? 'active' : ''}`} key={item} onClick={() => onChange(item)}>
+                <div className={`f-w-600 pagination-item ${item === activePage ? 'active' : ''}`} key={item} onClick={() => onChange(item)}>
                     {item + 1}
                 </div>
             ))}

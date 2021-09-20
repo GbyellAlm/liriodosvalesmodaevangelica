@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Category } from '../../../../../../core/types/Product';
-import { makePrivateRequest, makeRequest } from '../../../../../../core/utils/request';
 import { Controller, useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Category } from 'core/types/Product';
+import { makePrivateRequest, makeRequest } from 'core/utils/request';
 import { toast } from 'react-toastify';
 import BaseForm from '../../BaseForm';
-import CurrencyInput from 'react-currency-input-field';
-import Select from 'react-select';
+import PriceField from './PriceField';
+import Select, { Theme } from 'react-select';
+import helpIcon from 'core/assets/images/help-icon.png';
+import PromotionalPriceField from './PromocionalPriceField';
+import ImageUpload from '../ImageUpload';
 import './styles.scss';
 
-type FormState = {
+export type FormState = {
     name: string;
     price: number;
     categories: Category[];
@@ -25,7 +28,11 @@ type ParamsType = {
 }
 
 const Form = () => {
-    const { register, handleSubmit, errors, setValue, control, watch } = useForm<FormState>();
+    const { register, handleSubmit, errors, setValue, control } = useForm<FormState>();
+
+    const { productId } = useParams<ParamsType>();
+
+    const isEditing = productId !== 'new-product';
 
     const [isLoadingCategories, setIsLoadingCategories] = useState(false);
 
@@ -38,34 +45,27 @@ const Form = () => {
             .finally(() => setIsLoadingCategories(false));
     }, []);
 
-    //const [promotionalPriceField, setPromotionalPriceField] = useState("d-none");
+    const [uploadedImageURL, setUploadedImageURL] = useState('');
 
-    //const [validation, setValidation] = useState(false);
-
-    //const selectedCategories = watch("categories");
-
-    /*selectedCategories?.map(cat => {
-        if (cat.id === 7) {
-            setValidacao(true);
-        }
-    })*/
-
-    const { productId } = useParams<ParamsType>();
-
-    const isEditing = productId !== 'new-product';
+    const onUploadSuccess = (imageURL: string) => {
+        setUploadedImageURL(imageURL);
+    }
 
     const history = useHistory();
 
     const onSubmit = (data: FormState) => {
-
+        const payload = {
+            ...data,
+            imageURL: uploadedImageURL || productImageURL
+        }
 
         makePrivateRequest({
             url: isEditing ? `/products/${productId}` : '/products',
             method: isEditing ? 'PUT' : 'POST',
-            data: data
+            data: payload
         })
             .then(() => {
-                toast.success(isEditing === true ? "Produto salvo com sucesso!" : "Produto cadastrado com sucesso!", {
+                toast.success(isEditing === true ? "Produto salvo com sucesso." : "Produto cadastrado com sucesso.", {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -77,9 +77,11 @@ const Form = () => {
                 history.push("/admin/products");
             })
             .catch(() => {
-                toast.error(isEditing === true ? "Erro ao salvar o produto!" : "Erro ao cadastrar o produto!")
+                toast.error(isEditing === true ? "Erro ao salvar o produto." : "Erro ao cadastrar o produto.")
             });
     }
+
+    const [productImageURL, setProductImageURL] = useState('');
 
     useEffect(() => {
         if (isEditing) {
@@ -91,7 +93,7 @@ const Form = () => {
                     response.data.promotionalPrice !== null && setValue('promotionalPrice', response.data.promotionalPrice);
                     setValue('paymentTerms', response.data.paymentTerms);
                     setValue('sizes', response.data.sizes);
-                    setValue('imageURL', response.data.imageURL);
+                    setProductImageURL(response.data.imageURL);
                     setValue('description', response.data.description);
                 })
         }
@@ -101,11 +103,12 @@ const Form = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
             <BaseForm>
                 <div className="row">
-                    <div className="col-6 m-t-25">
-                        <label htmlFor="name" className="form-label">Nome <b>*</b></label>
+                    <div className="col-6 mt-4">
+                        <label htmlFor="name" className="form-label">NOME DO PRODUTO <b>*</b></label>
                         <input
                             type="text"
                             className="form-control b-r-10"
+                            placeholder="Ex: Bíblia c/ espaço para anotações, Leão pintura, Espiral"
                             id="name"
                             name="name"
                             ref={register({ required: "Campo obrigatório" })}
@@ -116,36 +119,27 @@ const Form = () => {
                             </div>
                         )}
 
-                        <label htmlFor="price" className="form-label m-t-16">Preço <b>*</b></label>
-                        <Controller
-                            defaultValue=""
-                            id="price"
-                            name="price"
-                            control={control}
-                            rules={{ required: "Campo obrigatório" }}
-                            render={({ value, onChange }) => (
-                                <CurrencyInput
-                                    className="form-control b-r-10"
-                                    intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
-                                    disableGroupSeparators={true}
-                                    fixedDecimalLength={2}
-                                    decimalSeparator="."
-                                    value={value}
-                                    onValueChange={onChange}
-                                />
-                            )}
-                        />
+                        <label htmlFor="price" className="form-label mt-3">PREÇO DO PRODUTO <b>*</b></label>
+                        <PriceField control={control} />
                         {errors.price && (
                             <div className="invalid-feedback d-block">
                                 {errors.price.message}
                             </div>
                         )}
 
-                        <label htmlFor="categories" className="form-label m-t-16">Categorias <b>*</b></label>
+                        <label htmlFor="categories" className="form-label mt-3">CATEGORIAS DO PRODUTO <b>*</b></label>
                         <Controller
                             as={Select}
                             classNamePrefix="categories-select"
-                            placeholder="-- Selecione --"
+                            theme={(theme: Theme) => ({
+                                ...theme,
+                                colors: {
+                                    ...theme.colors,
+                                    primary25: 'rgba(99, 192, 225, 0.4)',
+                                    primary: '#63c0e1'
+                                },
+                            })}
+                            placeholder="Selecione"
                             defaultValue=""
                             isMulti
                             id="categories"
@@ -163,39 +157,21 @@ const Form = () => {
                             </div>
                         )}
 
-                        <div className="">
-                            <label htmlFor="promotionalPrice" className="form-label m-t-16 f-s-14">Preço promocional <b>*</b></label>
-                            <Controller
-                                defaultValue=""
-                                id="promotionalPrice"
-                                name="promotionalPrice"
-                                control={control}
-                                rules={{
-                                    required: false
-                                }}
-                                render={({ value, onChange }) => (
-                                    <CurrencyInput
-                                        className="form-control b-r-10"
-                                        intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
-                                        disableGroupSeparators={true}
-                                        fixedDecimalLength={2}
-                                        decimalSeparator="."
-                                        value={value}
-                                        onValueChange={onChange}
-                                    />
-                                )}
-                            />
-                            {errors.promotionalPrice && (
-                                <div className="invalid-feedback d-block">
-                                    {errors.promotionalPrice.message}
-                                </div>
-                            )}
-                        </div>
+                        <label htmlFor="promotionalPrice" className="form-label mt-3">
+                            PREÇO PROMOCIONAL DO PRODUTO
+                            &nbsp;<img src={helpIcon} alt="Ícone de ajuda" title="Este campo só deve ser preenchido se o produto estiver em promoção." />
+                        </label>
+                        <PromotionalPriceField control={control} />
+                        {errors.promotionalPrice && (
+                            <div className="invalid-feedback d-block">
+                                {errors.promotionalPrice.message}
+                            </div>
+                        )}
 
-                        <label htmlFor="paymentTerms" className="form-label m-t-16 f-s-14">Condições de pagamento <b>*</b></label>
+                        <label htmlFor="paymentTerms" className="form-label mt-3">CONDIÇÕES DE PAGAMENTO DO PRODUTO <b>*</b></label>
                         <input
                             type="text"
-                            className="form-control b-r-10 f-s-14"
+                            className="form-control b-r-10"
                             placeholder="Ex: em até 4x de R$ 26,25 s/ juros no cartão"
                             id="paymentTerms"
                             name="paymentTerms"
@@ -211,10 +187,13 @@ const Form = () => {
                             </div>
                         )}
 
-                        <label htmlFor="sizes" className="form-label m-t-16 f-s-14">Tamanhos disponíveis <i>(somente para roupas)</i></label>
+                        <label htmlFor="sizes" className="form-label mt-3">
+                            TAMANHOS DO PRODUTO
+                            &nbsp;<img src={helpIcon} alt="Ícone de ajuda" title="Este campo só deve ser preenchido se o produto for uma roupa." />
+                        </label>
                         <input
                             type="text"
-                            className="form-control b-r-10 f-s-14"
+                            className="form-control b-r-10"
                             placeholder="Ex: P, M, G e GG"
                             id="sizes"
                             name="sizes"
@@ -230,34 +209,17 @@ const Form = () => {
                             </div>
                         )}
 
-                        <label htmlFor="imageURL" className="form-label m-t-16 f-s-14">Link da foto 1 <b>*</b></label>
-                        <input
-                            type="url"
-                            className="form-control b-r-10 f-s-14"
-                            placeholder="Ex: https://images-shoptime.b2w.io/produtos/01/00/img/2866624/7/2866624746_1SZ.jpg"
-                            id="imageURL"
-                            name="imageURL"
-                            ref={register({ required: false })}
-                        />
-                        {errors.imageURL && (
-                            <div className="invalid-feedback d-block">
-                                {errors.imageURL.message}
-                            </div>
-                        )}
-
+                        <ImageUpload onUploadSuccess={onUploadSuccess} productImageURL={productImageURL} />
                     </div>
                     <div className="col-6">
-                        <div className="b-1-s-e5e5e5 b-r-10 text-editor">
-                            <p>* Rich text *</p>
-                        </div>
-
-                        <label htmlFor="description" className="form-label m-t-16 f-s-14">Descrição <b>*</b></label>
+                        <label htmlFor="description" className="form-label mt-4">DESCRIÇÃO DO PRODUTO <b>*</b></label>
                         <textarea
-                            className="form-control b-r-10 f-s-14"
+                            className="form-control b-r-10"
+                            placeholder="Ex: Bíblia Sagrada, com a linguagem na versão ARC (Revista Corrigida) de João Ferreira de Almeida. Sendo a versão mais utilizada pelos evangélicos do Brasil. Com sua fidelidade traduzida dos textos originais pelo missionário português João Ferreira de Almeida, esta obra tem como destaque sua linguagem elegante e culta. Agora a mais nova edição da Casa Publicadora Paulista, apresentamos a vocês a Bíblia com Espaço para Anotações Pautados, com diferenciais exclusivos e também muito procurados, a bíblia com espaço para anotações contém Harpa, Corinhos e Índice lateral."
                             id="description"
                             name="description"
                             cols={30}
-                            rows={20}
+                            rows={15}
                             ref={register({ required: "Campo obrigatório" })}
                         />
                         {errors.description && (

@@ -1,13 +1,13 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { ProductsResponse } from '../../../core/types/Product';
-import { makeRequest } from '../../../core/utils/request';
+import { ProductsResponse } from 'core/types/Product';
+import { makeRequest } from 'core/utils/request';
 import { Helmet } from 'react-helmet';
-import PageOrSectionTitle from '../../../core/components/PageOrSectionTitle';
-import { Link } from 'react-router-dom';
+import PageOrSectionTitle from 'core/components/PageOrSectionTitle';
 import ProductCardLoader from '../../components/Loaders/CustomerProductCardLoader';
+import { Link } from 'react-router-dom';
 import ProductCard from '../../components/ProductCard';
-import Pagination from '../../../core/components/Pagination';
+import Pagination from 'core/components/Pagination';
 
 type ParamsType = {
     catId: string;
@@ -16,26 +16,24 @@ type ParamsType = {
 const ProductsByCategory = () => {
     const { catId } = useParams<ParamsType>();
 
-    const [productsResponse, setProductsResponse] = useState<ProductsResponse>();
-
     const [isLoading, setIsLoading] = useState(false);
+
+    const [productsResponse, setProductsResponse] = useState<ProductsResponse>();
 
     const [activePage, setActivePage] = useState(0);
 
     useEffect(() => {
         const params = {
-            direction: 'DESC',
+            page: activePage,
             linesPerPage: 15,
-            orderBy: 'id',
-            page: activePage
+            direction: 'DESC',
+            orderBy: 'id'
         }
 
         setIsLoading(true);
         makeRequest({ url: `/products/categoryId/${catId}`, params })
             .then(response => setProductsResponse(response.data))
-            .finally(() => {
-                setIsLoading(false);
-            })
+            .finally(() => { setIsLoading(false); })
     }, [catId, activePage]);
 
     return (
@@ -60,7 +58,7 @@ const ProductsByCategory = () => {
                     ))
                 )}
             </div>
-            {productsResponse && <Pagination totalPages={productsResponse.totalPages} activePage={activePage} onChange={page => setActivePage(page)} />}
+            {productsResponse?.content.length !== 0 && productsResponse && <Pagination totalPages={productsResponse.totalPages} activePage={activePage} onChange={page => setActivePage(page)} />}
         </div>
     )
 }

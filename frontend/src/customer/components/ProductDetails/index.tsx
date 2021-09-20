@@ -1,14 +1,14 @@
 import { useHistory, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Product } from '../../../core/types/Product';
-import { makeRequest } from '../../../core/utils/request';
+import { Product } from 'core/types/Product';
+import { makeRequest } from 'core/utils/request';
 import { Helmet } from 'react-helmet';
-import ProductImageLoader from '../../components/Loaders/ProductImageLoader';
-import ProductInfoLoader from '../../components/Loaders/ProductInfoLoader';
-import ProductDescriptionLoader from '../../components/Loaders/ProductDescriptionLoader';
-import OldProductPrice from '../../../core/components/OldProductPrice';
-import ProductPrice from '../../../core/components/ProductPrice';
-import ProductSizes from '../../../core/components/ProductSizes';
+import ProductImageLoader from '../Loaders/ProductImageLoader';
+import ProductInfoLoader from '../Loaders/ProductInfoLoader';
+import OldProductPrice from 'core/components/OldProductPrice';
+import ProductPrice from 'core/components/ProductPrice';
+import ProductSizes from 'core/components/ProductSizes';
+import ProductDescriptionLoader from '../Loaders/ProductDescriptionLoader';
 import './styles.scss';
 
 type ParamsType = {
@@ -18,61 +18,67 @@ type ParamsType = {
 const ProductDetails = () => {
     const { productId } = useParams<ParamsType>();
 
-    const [product, setProduct] = useState<Product>();
+    const history = useHistory();
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const history = useHistory();
+    const [productResponse, setProductResponse] = useState<Product>();
 
     useEffect(() => {
         setIsLoading(true);
         makeRequest({ url: `/products/${productId}` })
-            .then(response => setProduct(response.data))
-            .finally(() => {
-                setIsLoading(false);
-            });
+            .then(response => setProductResponse(response.data))
+            .finally(() => { setIsLoading(false); });
     }, [productId]);
 
     let description = ""
-    if (product?.description !== undefined) {
-        description = product?.description;
+    if (productResponse?.description !== undefined) {
+        description = productResponse?.description;
     }
 
     return (
         <div className="m-25 base-container m-h-484 b-r-10 b-s-1-10 p-25">
-            <Helmet title={product?.name + " | Lírio dos Vales - Moda Evangélica"} />
+            <Helmet title={productResponse?.name + " | Lírio dos Vales - Moda Evangélica"} />
             <div>
                 <button type="button" className="btn btn-sm btn-primary text-white back-button" onClick={history.goBack}>
                     Voltar
                 </button>
             </div>
             <div className="row">
-                <div className="col-6 d-flex b-1-s-e5e5e5 b-r-10 justify-content-center product-image-container">
+                <div className="col-6 d-flex b-1-s-e5e5e5 b-r-10 justify-content-center">
                     {isLoading ? <ProductImageLoader /> : (
                         <>
-                            <img src={product?.imageURL} alt={product?.name} className="admin-card-product-image" />
+                            <img src={productResponse?.imageURL} alt={productResponse?.name} className="product-image" />
                         </>
                     )}
                 </div>
                 <div className="col-6 product-details">
                     {isLoading ? <ProductInfoLoader /> : (
                         <>
-                            <h1 className="f-s-20 f-w-600">
-                                {product?.name}
+                            <h1 className="product-name">
+                                {productResponse?.name}
                             </h1>
-                            {product?.promotionalPrice !== null && product?.price && <OldProductPrice price={product?.price} />}
-                            {product?.price && <ProductPrice price={product?.promotionalPrice !== null ? product?.promotionalPrice : product?.price} />}
-                            <p className="c-9e9e9e f-s-14">
-                                {product?.paymentTerms}
+                            {productResponse?.promotionalPrice !== null
+                                && productResponse?.price
+                                && <OldProductPrice price={productResponse?.price} />
+                            }
+                            {productResponse?.price
+                                && <ProductPrice price={productResponse?.promotionalPrice !== null ? productResponse?.promotionalPrice : productResponse?.price} />
+                            }
+                            <p className="c-9e9e9e">
+                                {productResponse?.paymentTerms}
                             </p>
-                            {product?.sizes !== null && product?.sizes && <ProductSizes sizes={product?.sizes} />}
+                            {productResponse?.sizes !== null
+                                && productResponse?.sizes
+                                && <ProductSizes sizes={productResponse?.sizes} />
+                            }
                         </>
                     )}
                 </div>
             </div>
-            <div className="product-description">
-                <h2 className="f-s-18 f-w-600">Descrição do produto</h2>
-                <div className="f-s-14">
+            <div className="product-description-container">
+                <h2 className="product-description-title">Descrição do produto</h2>
+                <div>
                     {isLoading ? <ProductDescriptionLoader /> : (
                         <>
                             <p dangerouslySetInnerHTML={{ __html: description }} />

@@ -1,13 +1,13 @@
 import { useHistory } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
-import { Category, ProductsResponse } from '../../../../../../core/types/Product';
-import { makePrivateRequest, makeRequest } from '../../../../../../core/utils/request';
+import { Category, ProductsResponse } from 'core/types/Product';
+import { makePrivateRequest, makeRequest } from 'core/utils/request';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet';
 import Select from 'react-select';
 import AdminProductCardLoader from '../../Loaders/AdminProductCardLoader';
 import Card from '../Card';
-import Pagination from '../../../../../../core/components/Pagination';
+import Pagination from 'core/components/Pagination';
 import './styles.scss';
 
 const List = () => {
@@ -34,28 +34,26 @@ const List = () => {
         setSelectedCategory(category);
     }
 
-    const [productsResponse, setProductsResponse] = useState<ProductsResponse>();
-
     const [isLoading, setIsLoading] = useState(false);
+
+    const [productsResponse, setProductsResponse] = useState<ProductsResponse>();
 
     const [activePage, setActivePage] = useState(0);
 
     const getProducts = useCallback(() => {
         const params = {
             catId: selectedCategory?.id,
-            direction: 'DESC',
-            linesPerPage: 4,
             page: activePage,
+            linesPerPage: 4,
+            direction: 'DESC',
             orderBy: 'id'
         }
 
         setIsLoading(true);
         makeRequest({ url: '/products', params })
             .then(response => setProductsResponse(response.data))
-            .finally(() => {
-                setIsLoading(false);
-            })
-    }, [activePage, selectedCategory]);
+            .finally(() => { setIsLoading(false); })
+    }, [selectedCategory, activePage]);
 
     useEffect(() => {
         getProducts();
@@ -66,7 +64,7 @@ const List = () => {
         if (confirm) {
             makePrivateRequest({ url: `/products/${productId}`, method: 'DELETE' })
                 .then(() => {
-                    toast.success("Produto excluído com sucesso!", {
+                    toast.success("Produto excluído com sucesso.", {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -78,22 +76,29 @@ const List = () => {
                     getProducts();
                 })
                 .catch(() => {
-                    toast.error("Erro ao excluir o produto!");
-                })
+                    toast.error("Erro ao excluir o produto.");
+                });
         }
     }
 
     return (
         <div className="admin-product-list-container">
-            <Helmet title="Administrativo: Produtos · Lírio dos Vales - Moda Evangélica" />
+            <Helmet title="Administrativo: Produtos | Lírio dos Vales - Moda Evangélica" />
             <div className="d-flex">
-                <button className="btn btn-primary btn-lg b-r-10 text-white f-s-14" type="button" onClick={handleCreate}>
-                    CADASTRAR NOVO PRODUTO
+                <button className="btn btn-lg btn-primary b-r-10 text-white" type="button" title="Cadastrar novo produto" onClick={handleCreate}>
+                    NOVO
                 </button>
-                <div className="ml-3 base-container b-r-10 b-s-1-10 product-category-filter-container">
+                <div className="ml-2 base-container b-r-10 b-s-1-10 product-category-filter-container" title="Filtrar por categoria">
                     <Select
                         classNamePrefix="product-category-select"
-                        placeholder="Filtrar por categoria"
+                        theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                                ...theme.colors,
+                                primary25: 'rgba(99, 192, 225, 0.4)',
+                                primary: '#63c0e1'
+                            },
+                        })}
                         name="category"
                         isLoading={isLoadingCategories}
                         options={categories}
@@ -111,7 +116,7 @@ const List = () => {
                     ))
                 )}
             </div>
-            {productsResponse && <Pagination totalPages={productsResponse.totalPages} activePage={activePage} onChange={page => setActivePage(page)} />}
+            {productsResponse?.content.length !== 0 && productsResponse && <Pagination totalPages={productsResponse.totalPages} activePage={activePage} onChange={page => setActivePage(page)} />}
         </div>
     )
 }

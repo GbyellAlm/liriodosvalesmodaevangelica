@@ -1,13 +1,14 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { ProductsResponse } from '../../../core/types/Product';
-import { makeRequest } from '../../../core/utils/request';
+import { ProductsResponse } from 'core/types/Product';
+import { makeRequest } from 'core/utils/request';
 import { Helmet } from 'react-helmet';
-import PageOrSectionTitle from '../../../core/components/PageOrSectionTitle';
-import { Link } from 'react-router-dom';
+import PageOrSectionTitle from 'core/components/PageOrSectionTitle';
 import ProductCardLoader from '../../components/Loaders/CustomerProductCardLoader';
+import { Link } from 'react-router-dom';
 import ProductCard from '../../components/ProductCard';
-import Pagination from '../../../core/components/Pagination';
+import Pagination from 'core/components/Pagination';
+import './styles.scss';
 
 type ParamsType = {
     productName: string;
@@ -16,9 +17,9 @@ type ParamsType = {
 const ProductSearch = () => {
     const { productName } = useParams<ParamsType>();
 
-    const [productsResponse, setProductsResponse] = useState<ProductsResponse>();
-
     const [isLoading, setIsLoading] = useState(false);
+
+    const [productsResponse, setProductsResponse] = useState<ProductsResponse>();
 
     const [activePage, setActivePage] = useState(0);
 
@@ -31,25 +32,35 @@ const ProductSearch = () => {
         setIsLoading(true);
         makeRequest({ url: '/products', params })
             .then(response => setProductsResponse(response.data))
-            .finally(() => {
-                setIsLoading(false);
-            });
+            .finally(() => { setIsLoading(false); });
     }, [productName, activePage]);
 
     return (
         <div className="m-25 base-container m-h-484 b-r-10 b-s-1-10 p-25">
-            <Helmet title={"'" + productName + "' | Lírio dos Vales - Moda Evangélica"} />
-            <PageOrSectionTitle title={"Resultados da pesquisa de '" + productName + "'"} />
-            <div className="product-layout">
-                {isLoading ? <ProductCardLoader /> : (
-                    productsResponse?.content.map(product => (
-                        <Link to={`/product/${product.id}`} key={product.id}>
-                            <ProductCard product={product} />
-                        </Link>
-                    ))
+            <Helmet title={`"` + productName + `" | Lírio dos Vales - Moda Evangélica`} />
+            <PageOrSectionTitle title={`Resultados da pesquisa de "` + productName + `"`} />
+            {isLoading ?
+                <div className="product-layout">
+                    <ProductCardLoader />
+                </div>
+                : (
+                    productsResponse?.content.length !== 0 ?
+                        <div className="product-layout">
+                            {productsResponse?.content.map(product => (
+                                <Link to={`/product/${product.id}`} key={product.id}>
+                                    <ProductCard product={product} />
+                                </Link>
+                            ))}
+                        </div>
+                        :
+                        <div className="search-unsuccessful">
+                            <p>Sua pesquisa por <b>"{productName}"</b> não correspondeu a nenhum produto.</p>
+                            <p className="m-t-16"><b>Sugestões:</b></p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Certifique-se de escrever corretamente todas as palavras</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Tente palavras-chave mais genéricas</p>
+                        </div>
                 )}
-            </div>
-            {productsResponse && <Pagination totalPages={productsResponse.totalPages} activePage={activePage} onChange={page => setActivePage(page)} />}
+            {productsResponse?.content.length !== 0 && productsResponse && <Pagination totalPages={productsResponse.totalPages} activePage={activePage} onChange={page => setActivePage(page)} />}
         </div>
     )
 }

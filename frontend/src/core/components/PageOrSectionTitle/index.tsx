@@ -7,7 +7,7 @@ type Props = {
 const PageOrSectionTitle = ({ title }: Props) => {
     return (
         <div className="b-b-1-s-e5e5e5">
-            <h1 className="f-s-16 f-w-600 title">{title}</h1>
+            <h1 className="f-s-18 f-w-600 title">{title}</h1>
         </div>
     )
 }

@@ -8,16 +8,15 @@ const AdminProductCardLoader = () => {
         <>
             {loaderItems.map(item => (
                 <ContentLoader
-                    key={item}
                     speed={2}
-                    width={1109}
-                    height={152}
-                    viewBox="0 0 1109 152"
-                    className="m-b-15"
-                    backgroundColor="#f2f2f2"
-                    foregroundColor="#eaebeb"
+                    width={1139}
+                    height={180}
+                    viewBox="0 0 1139 180"
+                    className="mb-3"
+                    backgroundColor="#fafafa"
+                    foregroundColor="#f6f6f6"
                 >
-                    <rect x="0" y="0" rx="10" ry="10" width="1109" height="152" />
+                    <rect x="0" y="0" rx="10" ry="10" width="1139" height="180" />
                 </ContentLoader>
             ))}
         </>
