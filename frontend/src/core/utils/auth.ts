@@ -1,8 +1,8 @@
 import jwtDecode from "jwt-decode";
 import history from './history';
 
-export const CLIENT_ID = 'liriodosvalesmodaevangelica';
-export const CLIENT_SECRET = '3hefiSplgAb28uP*b';
+export const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? 'liriodosvalesmodaevangelica';
+export const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET ?? '3hefiSplgAb28uP*b';
 
 type LoginResponse = {
     access_token: string;
