@@ -54,10 +54,10 @@ const ProductSearch = () => {
                         </div>
                         :
                         <div className="search-unsuccessful">
-                            <p>Sua pesquisa por <b>"{productName}"</b> não correspondeu a nenhum produto.</p>
-                            <p className="m-t-16"><b>Sugestões:</b></p>
-                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Certifique-se de escrever corretamente todas as palavras</p>
-                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Tente palavras-chave mais genéricas</p>
+                            <p>Sua pesquisa por <b>"{productName}"</b> não correspondeu a nenhum produto :(</p>
+                            <p className="m-t-16"><b>Dicas:</b></p>
+                            <p>* Certifique-se de escrever corretamente todas as palavras (acentuação e grafia);</p>
+                            <p>* Pesquise por palavras-chave mais genéricas, por exemplo: "Pentecostal" ao invés de "Bíblia pentecostal", "Blusa" ao invés de "Blusas".</p>
                         </div>
                 )}
             {productsResponse?.content.length !== 0 && productsResponse && <Pagination totalPages={productsResponse.totalPages} activePage={activePage} onChange={page => setActivePage(page)} />}

@@ -52,7 +52,7 @@ public class ProductResource {
 	@GetMapping
 	public ResponseEntity<Page<ProductDTO>> findAllByProductNameOrCategoryId(
 			@RequestParam(value = "name", defaultValue = "") String name,
-			@RequestParam(value = "catId", defaultValue = "1") Long catId,
+			@RequestParam(value = "catId", defaultValue = "0") Long catId,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "15") Integer linesPerPage,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,

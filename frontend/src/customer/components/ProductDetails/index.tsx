@@ -45,14 +45,14 @@ const ProductDetails = () => {
                 </button>
             </div>
             <div className="row">
-                <div className="col-6 d-flex b-1-s-e5e5e5 b-r-10 justify-content-center">
+                <div className="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 d-flex b-1-s-e5e5e5 b-r-10 justify-content-center">
                     {isLoading ? <ProductImageLoader /> : (
                         <>
-                            <img src={productResponse?.imageURL} alt={productResponse?.name} className="product-image" />
+                            <img src={productResponse?.imageURL} alt={productResponse?.name} className="img-fluid product-image" />
                         </>
                     )}
                 </div>
-                <div className="col-6 product-details">
+                <div className="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 product-details">
                     {isLoading ? <ProductInfoLoader /> : (
                         <>
                             <h1 className="product-name">
