@@ -18,13 +18,13 @@ const Sidebar = () => {
         <nav className="sidebar-container">
             <ul>
                 <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle b-b-1-s-e5e5e5 sidebar-user" href="#" id="sidebarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a className="nav-link dropdown-toggle b-b-1-s-e5e5e5 sidebar-user" href="none" id="sidebarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src={userIcon} alt="Ícone de usuário" className="sidebar-icons" />
                         &nbsp; {sessionData.username}
                     </a>
                     <ul className="dropdown-menu" aria-labelledby="sidebarDropdown">
                         <li>
-                            <a className="dropdown-item" href="#" onClick={handleLogout}>
+                            <a className="dropdown-item" href="none" onClick={handleLogout}>
                                 <img src={logoutIcon} alt="Ícone de logout" className="sidebar-icons" />
                                 &nbsp; Sair
                             </a>
