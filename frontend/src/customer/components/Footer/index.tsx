@@ -9,10 +9,10 @@ const Footer = () => (
             <p>(47) 3349-3854 | (47) 99116-8031</p>
         </div>
         <div>
-            <a href="https://www.facebook.com/LivrariaLirioDosValesItajai97" target="_blank" title="Siga nosso Facebook!">
+            <a href="https://www.facebook.com/LivrariaLirioDosValesItajai97" target="_blank" rel="noreferrer" title="Siga nosso Facebook!">
                 <i className="bi bi-facebook"></i>
             </a>
-            <a href="https://www.instagram.com/moda.liriodosvales/" target="_blank" title="Siga nosso Instagram!">
+            <a href="https://www.instagram.com/moda.liriodosvales/" target="_blank" rel="noreferrer" title="Siga nosso Instagram!">
                 <i className="bi bi-instagram"></i>
             </a>
         </div>
