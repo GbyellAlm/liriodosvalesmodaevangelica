@@ -26,10 +26,10 @@
     color: #9e9e9e;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;600;700&display=swap");
 
 * {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Cabin", sans-serif;
 }
 
 .f-s-12 {
@@ -42,6 +42,10 @@
 
 .f-s-16 {
     font-size: 16px;
+}
+
+.f-s-18 {
+    font-size: 18px;
 }
 
 .f-s-20 {
@@ -57,7 +61,7 @@
 }
 
 .m-h-484 {
-    min-height: 484px;
+    min-height: 490px;
 }
 
 .m-b-15 {
@@ -66,10 +70,6 @@
 
 .m-t-16 {
     margin-top: 16px;
-}
-
-.m-t-25 {
-    margin-top: 25px;
 }
 
 .m-25 {
@@ -94,8 +94,52 @@
     justify-content: space-between;
 }
 
-ul {
-    list-style-type: none;
-    margin-bottom: 0;
-    padding-left: 0;
+
+@media (max-width: 852px) {
+    .product-layout {
+        grid-template-columns: repeat(auto-fill, 210px);
+    }
+}
+
+@media (max-width: 576px) {
+    .product-layout {
+        grid-template-columns: repeat(auto-fill, 251px);
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 320px) {
+    .product-layout {
+        grid-template-columns: repeat(auto-fill, 210px);
+    }
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    &:hover {
+        text-decoration: none;
+        color: unset;
+    }
+}
+
+.row {
+    margin: 0;
+}
+
+#robbu-whatsapp-button {
+    background: #4caf50 !important;
+    height: 70px !important;
+    width: 70px !important;
+}
+
+#robbu-whatsapp-button:hover {
+    background: #53be57 !important;
+}
+
+.rwb-tooltip {
+    background: #fff !important;
 }

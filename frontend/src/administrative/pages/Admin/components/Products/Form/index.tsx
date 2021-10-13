@@ -7,7 +7,6 @@ import { toast } from 'react-toastify';
 import BaseForm from '../../BaseForm';
 import PriceField from './PriceField';
 import Select, { Theme } from 'react-select';
-import helpIcon from 'core/assets/images/help-icon.png';
 import PromotionalPriceField from './PromocionalPriceField';
 import ImageUpload from '../ImageUpload';
 import './styles.scss';
@@ -103,7 +102,7 @@ const Form = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
             <BaseForm>
                 <div className="row">
-                    <div className="col-6 mt-4">
+                    <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-4">
                         <label htmlFor="name" className="form-label">NOME DO PRODUTO <b>*</b></label>
                         <input
                             type="text"
@@ -157,11 +156,9 @@ const Form = () => {
                             </div>
                         )}
 
-                        <label htmlFor="promotionalPrice" className="form-label mt-3">
-                            PREÇO PROMOCIONAL DO PRODUTO
-                            &nbsp;<img src={helpIcon} alt="Ícone de ajuda" title="Este campo só deve ser preenchido se o produto estiver em promoção." />
-                        </label>
+                        <label htmlFor="promotionalPrice" className="form-label mt-3">PREÇO PROMOCIONAL DO PRODUTO</label>
                         <PromotionalPriceField control={control} />
+                        <small id="promotionalPriceHelp" className="form-text text-warning">Este campo só deve ser preenchido se o produto estiver em promoção</small>
                         {errors.promotionalPrice && (
                             <div className="invalid-feedback d-block">
                                 {errors.promotionalPrice.message}
@@ -187,22 +184,21 @@ const Form = () => {
                             </div>
                         )}
 
-                        <label htmlFor="sizes" className="form-label mt-3">
-                            TAMANHOS DO PRODUTO
-                            &nbsp;<img src={helpIcon} alt="Ícone de ajuda" title="Este campo só deve ser preenchido se o produto for uma roupa." />
-                        </label>
+                        <label htmlFor="sizes" className="form-label mt-3">TAMANHOS DO PRODUTO</label>
                         <input
                             type="text"
                             className="form-control b-r-10"
-                            placeholder="Ex: P, M, G e GG"
+                            placeholder="Ex: P, M, G e GG."
                             id="sizes"
                             name="sizes"
+                            aria-describedby="sizesHelp"
                             ref={register({
                                 required: false,
                                 minLength: { value: 1, message: 'O campo deve ter no mínimo 1 caracter' },
                                 maxLength: { value: 12, message: 'O campo deve ter no máximo 12 caracteres' }
                             })}
                         />
+                        <small id="sizesHelp" className="form-text text-warning">Este campo só deve ser preenchido se o produto for uma roupa</small>
                         {errors.sizes && (
                             <div className="invalid-feedback d-block">
                                 {errors.sizes.message}
@@ -211,7 +207,7 @@ const Form = () => {
 
                         <ImageUpload onUploadSuccess={onUploadSuccess} productImageURL={productImageURL} />
                     </div>
-                    <div className="col-6">
+                    <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                         <label htmlFor="description" className="form-label mt-4">DESCRIÇÃO DO PRODUTO <b>*</b></label>
                         <textarea
                             className="form-control b-r-10"

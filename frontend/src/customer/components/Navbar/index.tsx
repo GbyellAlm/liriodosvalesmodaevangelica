@@ -9,6 +9,13 @@ type FormState = {
 }
 
 const Navbar = () => {
+    const handleCollapse = () => {
+        var nav = document.getElementById("navbar");
+        var btn = document.getElementById("navbarBtn");
+        nav?.classList.remove("show");
+        btn?.classList.add("collapsed");
+    };
+
     const { register, handleSubmit, reset } = useForm<FormState>();
 
     const history = useHistory();
@@ -26,6 +33,7 @@ const Navbar = () => {
                 </NavLink>
                 <button
                     className="navbar-toggler"
+                    id="navbarBtn"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#navbar"
@@ -38,22 +46,59 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbar">
                     <ul className="navbar-nav mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <NavLink to="/category/1" className="nav-link" aria-current="page">Bíblias</NavLink>
+                            <NavLink
+                                to="/category/1"
+                                className="nav-link"
+                                aria-current="page"
+                                onClick={handleCollapse}
+                            >
+                                Bíblias
+                            </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/category/2" className="nav-link">Feminino</NavLink>
+                            <NavLink
+                                to="/category/2"
+                                className="nav-link"
+                                onClick={handleCollapse}
+                            >
+                                Feminino
+                            </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/category/3" className="nav-link">Masculino</NavLink>
+                            <NavLink
+                                to="/category/3"
+                                className="nav-link"
+                                onClick={handleCollapse}
+                            >
+                                Masculino
+                            </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/category/4" className="nav-link">Livros</NavLink>
+                            <NavLink
+                                to="/category/4"
+                                className="nav-link"
+                                onClick={handleCollapse}
+                            >
+                                Livros
+                            </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/category/5" className="nav-link">Presentes</NavLink>
+                            <NavLink
+                                to="/category/5"
+                                className="nav-link"
+                                onClick={handleCollapse}
+                            >
+                                Presentes
+                            </NavLink>
                         </li>
                         <li className="nav-item p-r-9">
-                            <NavLink to="/about-us" className="nav-link">Sobre nós</NavLink>
+                            <NavLink
+                                to="/about-us"
+                                className="nav-link"
+                                onClick={handleCollapse}
+                            >
+                                Sobre nós
+                            </NavLink>
                         </li>
                     </ul>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -66,7 +111,7 @@ const Navbar = () => {
                                 name="name"
                                 ref={register({ required: true })}
                             />
-                            <button className="btn text-white search-button" type="submit" title="Buscar">
+                            <button className="btn text-white search-button" type="submit" title="Buscar" onClick={handleCollapse}>
                                 <i className="bi bi-search"></i>
                             </button>
                         </div>

@@ -37,12 +37,12 @@ const ProductsByCategory = () => {
     }, [catId, activePage]);
 
     return (
-        <div className="m-25 base-container m-h-484 b-r-10 b-s-1-10 p-25">
-            {catId === "1" && <Helmet title="Bíblias | Lírio dos vales - Moda Evangélica" />}
-            {catId === "2" && <Helmet title="Feminino | Lírio dos vales - Moda Evangélica" />}
-            {catId === "3" && <Helmet title="Masculino | Lírio dos vales - Moda Evangélica" />}
-            {catId === "4" && <Helmet title="Livros | Lírio dos vales - Moda Evangélica" />}
-            {catId === "5" && <Helmet title="Presentes | Lírio dos vales - Moda Evangélica" />}
+        <div className="m-25 m-h-484 base-container b-r-10 b-s-1-10 p-25">
+            {catId === "1" && <Helmet title="Bíblias | Lírio dos Vales - Moda Evangélica" />}
+            {catId === "2" && <Helmet title="Feminino | Lírio dos Vales - Moda Evangélica" />}
+            {catId === "3" && <Helmet title="Masculino | Lírio dos Vales - Moda Evangélica" />}
+            {catId === "4" && <Helmet title="Livros | Lírio dos Vales - Moda Evangélica" />}
+            {catId === "5" && <Helmet title="Presentes | Lírio dos Vales - Moda Evangélica" />}
 
             {catId === "1" && <PageOrSectionTitle title="Bíblias" />}
             {catId === "2" && <PageOrSectionTitle title="Feminino" />}

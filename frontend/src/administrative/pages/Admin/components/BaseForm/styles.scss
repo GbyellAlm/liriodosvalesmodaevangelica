@@ -1,3 +1,10 @@
 .base-form-actions {
     text-align: right;
 }
+
+
+@media (max-width: 576px) {
+    .base-form-actions {
+        padding-top: 25px;
+    }
+}

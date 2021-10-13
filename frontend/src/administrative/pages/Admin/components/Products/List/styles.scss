@@ -1,5 +1,5 @@
 .product-category-filter-container {
-    padding: 7px;
+    padding: 4px;
     width: 45%;
 }
 
@@ -12,4 +12,11 @@
 
 .product-category-select__indicator-separator {
     display: none;
+}
+
+
+@media (max-width: 768px) {
+    .product-category-filter-container {
+        width: 100%;
+    }
 }

@@ -13,6 +13,7 @@ const PromocionalPriceField = ({ control }: Props) => (
         name="promotionalPrice"
         control={control}
         rules={{ required: false }}
+        aria-describedby="promotionalPriceHelp"
         render={({ value, onChange }) => (
             <CurrencyInput
                 className="form-control b-r-10"

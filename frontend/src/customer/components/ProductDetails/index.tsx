@@ -37,7 +37,7 @@ const ProductDetails = () => {
     }
 
     return (
-        <div className="m-25 base-container m-h-484 b-r-10 b-s-1-10 p-25">
+        <div className="m-25 m-h-484 base-container b-r-10 b-s-1-10 p-25">
             <Helmet title={productResponse?.name + " | Lírio dos Vales - Moda Evangélica"} />
             <div>
                 <button type="button" className="btn btn-sm btn-primary text-white back-button" onClick={history.goBack}>
@@ -45,14 +45,14 @@ const ProductDetails = () => {
                 </button>
             </div>
             <div className="row">
-                <div className="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 d-flex b-1-s-e5e5e5 b-r-10 justify-content-center">
+                <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 b-1-s-e5e5e5 b-r-10 d-flex justify-content-center">
                     {isLoading ? <ProductImageLoader /> : (
                         <>
                             <img src={productResponse?.imageURL} alt={productResponse?.name} className="img-fluid product-image" />
                         </>
                     )}
                 </div>
-                <div className="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 product-details">
+                <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 product-infos">
                     {isLoading ? <ProductInfoLoader /> : (
                         <>
                             <h1 className="product-name">
@@ -77,7 +77,7 @@ const ProductDetails = () => {
                 </div>
             </div>
             <div className="product-description-container">
-                <h2 className="product-description-title">Descrição do produto</h2>
+                <h2 className="product-description-title">Descrição do produto:</h2>
                 <div>
                     {isLoading ? <ProductDescriptionLoader /> : (
                         <>

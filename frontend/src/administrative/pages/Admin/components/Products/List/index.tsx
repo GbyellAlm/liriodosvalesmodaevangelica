@@ -82,10 +82,14 @@ const List = () => {
     }
 
     return (
-        <div className="admin-product-list-container">
+        <div>
             <Helmet title="Administrativo: Produtos | Lírio dos Vales - Moda Evangélica" />
             <div className="d-flex">
-                <button className="btn btn-lg btn-primary b-r-10 text-white" type="button" title="Cadastrar novo produto" onClick={handleCreate}>
+                <button className="btn btn-lg btn-primary b-r-10 f-s-16 text-white"
+                    type="button"
+                    title="Cadastrar novo produto"
+                    onClick={handleCreate}
+                >
                     NOVO
                 </button>
                 <div className="ml-2 base-container b-r-10 b-s-1-10 product-category-filter-container" title="Filtrar por categoria">
@@ -109,7 +113,7 @@ const List = () => {
                     />
                 </div>
             </div>
-            <div className="admin-list-container">
+            <div className="admin-product-list-container">
                 {isLoading ? <AdminProductCardLoader /> : (
                     productsResponse?.content.map(product => (
                         <Card product={product} key={product.id} onRemove={onRemove} />

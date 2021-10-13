@@ -6,10 +6,17 @@
 }
 
 .login-form {
-    margin-top: 55px;
+    margin-top: 35px;
 }
 
 .login-submit {
-    margin-bottom: 35px;
-    margin-top: 55px;
+    margin: 35px 0;
+    font-size: 1rem;
+}
+
+
+@media (max-width: 576px) {
+    .login-form {
+        margin-top: 30px;
+    }
 }

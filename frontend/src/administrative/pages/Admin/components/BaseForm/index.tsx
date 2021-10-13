@@ -28,8 +28,8 @@ const BaseForm = ({ children }: Props) => {
             <Helmet title={isEditing ? "Administrativo: Editar produto | Lírio dos Vales - Moda Evangélica" : "Administrativo: Cadastrar novo produto | Lírio dos Vales - Moda Evangélica"} />
             <PageOrSectionTitle title={isEditing ? "Editar produto" : "Cadastrar novo produto"} />
             {children}
-            <div className="base-form-actions pr-3">
-                <button className="btn btn-outline-danger b-r-10 mr-2" type="button" onClick={handleCancel}>
+            <div className="pr-3 base-form-actions">
+                <button className="btn btn-outline-danger mr-2 b-r-10" type="button" onClick={handleCancel}>
                     CANCELAR
                 </button>
                 <button className="btn btn-primary b-r-10 text-white" type="submit">

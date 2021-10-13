@@ -32,3 +32,11 @@
         width: 150px;
     }
 }
+
+
+@media (max-width: 576px) {
+    .upload-placeholder {
+        margin-top: 10px;
+        padding-left: 0;
+    }
+}

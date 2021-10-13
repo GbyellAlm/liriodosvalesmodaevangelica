@@ -4,10 +4,11 @@ const ProductImageLoader = () => (
     <ContentLoader
         speed={2}
         width={708}
-        height={431}
+        height="100%"
         viewBox="0 0 708 431"
-        backgroundColor="#fafafa"
-        foregroundColor="#f6f6f6"
+        className="py-3"
+        backgroundColor="#faf9f9"
+        foregroundColor="#f5f5f5"
     >
         <rect x="0" y="0" rx="0" ry="0" width="708" height="431" />
     </ContentLoader>

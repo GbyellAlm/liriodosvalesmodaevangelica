@@ -36,7 +36,7 @@ const ProductSearch = () => {
     }, [productName, activePage]);
 
     return (
-        <div className="m-25 base-container m-h-484 b-r-10 b-s-1-10 p-25">
+        <div className="m-25 m-h-484 base-container b-r-10 b-s-1-10 p-25">
             <Helmet title={`"` + productName + `" | Lírio dos Vales - Moda Evangélica`} />
             <PageOrSectionTitle title={`Resultados da pesquisa de "` + productName + `"`} />
             {isLoading ?
@@ -54,10 +54,12 @@ const ProductSearch = () => {
                         </div>
                         :
                         <div className="search-unsuccessful">
-                            <p>Sua pesquisa por <b>"{productName}"</b> não correspondeu a nenhum produto :(</p>
-                            <p className="m-t-16"><b>Dicas:</b></p>
-                            <p>* Certifique-se de escrever corretamente todas as palavras (acentuação e grafia);</p>
-                            <p>* Pesquise por palavras-chave mais genéricas, por exemplo: "Pentecostal" ao invés de "Bíblia pentecostal", "Blusa" ao invés de "Blusas".</p>
+                            <p>Sua pesquisa por <b>"{productName}"</b> não correspondeu a nenhum produto.</p>
+                            <p className="mt-2"><b>Dicas:</b></p>
+                            <ul>
+                                <li>Certifique-se de escrever corretamente todas as palavras (acentuação + grafia);</li>
+                                <li>Pesquise por palavras-chave mais genéricas, por exemplo: <u>Pentecostal</u> ao invés de <i>Bíblia pentecostal</i> e <u>Blusa</u> ao invés de <i>Blusas</i>.</li>
+                            </ul>
                         </div>
                 )}
             {productsResponse?.content.length !== 0 && productsResponse && <Pagination totalPages={productsResponse.totalPages} activePage={activePage} onChange={page => setActivePage(page)} />}

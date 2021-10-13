@@ -1,6 +1,4 @@
 .admin-container {
-    background: rgb(255, 255, 255);
-    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 25%, rgba(242, 242, 242, 1) 100%);
     display: flex;
 }
 
@@ -8,7 +6,7 @@
     flex: 1;
 }
 
-.admin-list-container {
+.admin-product-list-container {
     margin-top: 25px;
 }
 
@@ -36,4 +34,11 @@
 
 .Toastify__toast-body {
     padding: 0;
+}
+
+
+@media (max-width: 992px) {
+    .admin-container {
+        flex-direction: column;
+    }
 }

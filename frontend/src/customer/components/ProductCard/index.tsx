@@ -17,7 +17,7 @@ const ProductCard = ({ product }: Props) => {
                 </h3>
                 {product.promotionalPrice !== null && <OldProductPrice price={product.price} />}
                 <ProductPrice price={product.promotionalPrice !== null ? product.promotionalPrice : product.price} />
-                <p className="c-9e9e9e f-s-14">
+                <p className="f-s-14 c-9e9e9e">
                     {product.paymentTerms}
                 </p>
             </div>

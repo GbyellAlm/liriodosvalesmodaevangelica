@@ -17,7 +17,7 @@ type LocationState = {
 }
 
 const Login = () => {
-    const { register, handleSubmit, errors } = useForm<FormState>();
+    const { register, handleSubmit, errors, reset } = useForm<FormState>();
 
     const [hasError, setHasError] = useState(false);
 
@@ -34,7 +34,10 @@ const Login = () => {
                 saveSessionData(response.data);
                 history.push(from);
             })
-            .catch(() => { setHasError(true); });
+            .catch(() => {
+                reset();
+                setHasError(true);
+            });
     }
 
     return (
@@ -82,7 +85,7 @@ const Login = () => {
 
                 <div className="d-grid">
                     <button className="btn btn-lg btn-primary b-r-10 text-white login-submit" type="submit">
-                        ENTRAR
+                        FAZER LOGIN
                     </button>
                 </div>
             </form>

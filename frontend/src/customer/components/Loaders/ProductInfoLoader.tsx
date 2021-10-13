@@ -3,11 +3,11 @@ import ContentLoader from "react-content-loader";
 const ProductInfoLoader = () => (
     <ContentLoader
         speed={2}
-        width={550}
+        width="100%"
         height={150}
-        viewBox="0 0 550 150"
-        backgroundColor="#fafafa"
-        foregroundColor="#f6f6f6"
+        viewBox="0 0 100% 150"
+        backgroundColor="#faf9f9"
+        foregroundColor="#f5f5f5"
     >
         <rect x="0" y="0" rx="0" ry="0" width="550" height="18" />
         <rect x="0" y="37" rx="0" ry="0" width="94" height="16" />

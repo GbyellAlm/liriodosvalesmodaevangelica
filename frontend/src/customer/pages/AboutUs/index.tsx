@@ -25,12 +25,12 @@ const AboutUs = () => {
     }
 
     return (
-        <div className="m-25 base-container m-h-484 b-r-10 b-s-1-10 p-25">
-            <Helmet title="Sobre nós | Lírio dos vales - Moda Evangélica" />
+        <div className="m-25 m-h-484 base-container b-r-10 b-s-1-10 p-25">
+            <Helmet title="Sobre nós | Lírio dos Vales - Moda Evangélica" />
             <PageOrSectionTitle title="Sobre nós" />
             <div className="store-photo-container">
                 {isLoading ? <StorePhotoLoader /> : (
-                    <img src={aboutResponse?.imageURL} className="img-fluid" alt="Fachada da loja" />
+                    <img src={aboutResponse?.imageURL} alt="Fachada da loja" className="img-fluid" />
                 )}
             </div>
             <div className="store-description-container">

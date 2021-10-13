@@ -11,13 +11,14 @@ const ProductCardLoader = () => {
                     key={item}
                     speed={2}
                     width={251}
-                    height={319}
-                    viewBox="0 0 251 319"
-                    className="m-t-25"
-                    backgroundColor="#fafafa"
-                    foregroundColor="#f6f6f6"
+                    height={315}
+                    viewBox="0 0 251 315"
+                    className="p-t-25"
+                    backgroundColor="#faf9f9"
+                    foregroundColor="#f5f5f5"
+                    style={{ width: '100%', height: '100%' }}
                 >
-                    <rect x="0" y="0" rx="10" ry="10" width="251" height="319" />
+                    <rect x="0" y="0" rx="10" ry="10" width="251" height="315" />
                 </ContentLoader>
             ))}
         </>
