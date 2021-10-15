@@ -50,7 +50,7 @@ const ProductDetails = () => {
                     title="Em cima da imagem, role a bolinha do mouse (scroll) para ampliar/ diminuir a imagem. Uma vez ampliada, arraste a imagem para ir visualizando a mesma."
                 >
                     {isLoading ? <ProductImageLoader /> : (
-                        <TransformWrapper doubleClick={{ mode: 'reset' }}>
+                        <TransformWrapper>
                             <TransformComponent>
                                 <img src={productResponse?.imageURL} alt={productResponse?.name} className="img-fluid product-image" />
                             </TransformComponent>
