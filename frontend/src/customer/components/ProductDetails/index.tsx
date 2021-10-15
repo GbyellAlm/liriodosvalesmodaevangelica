@@ -4,6 +4,7 @@ import { Product } from 'core/types/Product';
 import { makeRequest } from 'core/utils/request';
 import { Helmet } from 'react-helmet';
 import ProductImageLoader from '../Loaders/ProductImageLoader';
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import ProductInfoLoader from '../Loaders/ProductInfoLoader';
 import OldProductPrice from 'core/components/OldProductPrice';
 import ProductPrice from 'core/components/ProductPrice';
@@ -45,11 +46,15 @@ const ProductDetails = () => {
                 </button>
             </div>
             <div className="row">
-                <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 b-1-s-e5e5e5 b-r-10 d-flex justify-content-center">
+                <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 b-1-s-e5e5e5 b-r-10 d-flex justify-content-center"
+                    title="Em cima da imagem, role a bolinha do mouse (scroll) para ampliar/ diminuir a imagem. Uma vez ampliada, arraste a imagem para ir visualizando a mesma."
+                >
                     {isLoading ? <ProductImageLoader /> : (
-                        <>
-                            <img src={productResponse?.imageURL} alt={productResponse?.name} className="img-fluid product-image" />
-                        </>
+                        <TransformWrapper doubleClick={{ mode: 'reset' }}>
+                            <TransformComponent>
+                                <img src={productResponse?.imageURL} alt={productResponse?.name} className="img-fluid product-image" />
+                            </TransformComponent>
+                        </TransformWrapper>
                     )}
                 </div>
                 <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 product-infos">
