@@ -13,7 +13,7 @@ public class UserDTO implements Serializable {
 
 	private Long id;
 
-	@Size(min = 5, max = 10, message = "Este campo deve conter de 5 a 10 caracteres")
+	@Size(min = 5, max = 32, message = "Este campo deve conter de 5 a 32 caracteres")
 	private String userName;
 
 	@Email(message = "E-mail invalido")

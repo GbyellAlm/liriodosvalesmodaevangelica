@@ -4,8 +4,17 @@
     width: 60px;
 }
 
+.image-zoom {
+    padding-top: 12px;
+
+    button {
+        border: none;
+        border-radius: 10px;
+        margin-right: 5px;
+    }
+}
+
 .product-image {
-    align-items: center;
     height: 430px;
     padding-bottom: 12px;
     padding-top: 12px;
@@ -38,7 +47,6 @@
     text-transform: uppercase;
 }
 
-
 @media (max-width: 991px) {
     .product-infos {
         padding-left: 0;
@@ -48,12 +56,6 @@
 }
 
 @media (max-width: 576px) {
-    .product-infos {
-        padding-left: 0;
-        padding-right: 0;
-        padding-top: 25px;
-    }
-
     .product-image {
         height: 100%;
     }

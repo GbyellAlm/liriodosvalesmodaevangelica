@@ -19,8 +19,8 @@ const Sidebar = () => {
             <ul className="sidebar-list">
                 <li className="nav-item dropdown">
                     <a
-                        className="nav-link dropdown-toggle b-b-1-s-e5e5e5 sidebar-user"
                         href="none"
+                        className="nav-link dropdown-toggle b-b-1-s-e5e5e5 sidebar-user"
                         id="sidebarDropdown"
                         role="button"
                         data-bs-toggle="dropdown"

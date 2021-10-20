@@ -31,6 +31,7 @@ const List = () => {
     const [selectedCategory, setSelectedCategory] = useState<Category>({ "id": 1, "name": "Bíblias" });
 
     const handleChange = (category: Category) => {
+        setActivePage(0);
         setSelectedCategory(category);
     }
 

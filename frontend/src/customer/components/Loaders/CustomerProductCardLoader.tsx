@@ -10,8 +10,6 @@ const ProductCardLoader = () => {
                 <ContentLoader
                     key={item}
                     speed={2}
-                    width={251}
-                    height={315}
                     viewBox="0 0 251 315"
                     className="p-t-25"
                     backgroundColor="#faf9f9"

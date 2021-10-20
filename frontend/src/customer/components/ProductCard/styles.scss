@@ -26,7 +26,6 @@
     white-space: nowrap;
 }
 
-
 @media (max-width: 852px) {
     .customer-product-card-container {
         height: 311px;
@@ -38,5 +37,17 @@
         padding-left: 11px;
         padding-right: 11px;
         padding-top: 11px;
+    }
+}
+
+@media (max-width: 576px) {
+    .customer-product-card-container {
+        padding-top: 12px;
+    }
+    .customer-product-card-info {
+        margin-top: 12px;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 12px;
     }
 }

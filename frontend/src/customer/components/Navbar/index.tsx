@@ -9,16 +9,16 @@ type FormState = {
 }
 
 const Navbar = () => {
-    const handleCollapse = () => {
-        var nav = document.getElementById("navbar");
-        var btn = document.getElementById("navbarBtn");
-        nav?.classList.remove("show");
-        btn?.classList.add("collapsed");
-    };
-
     const { register, handleSubmit, reset } = useForm<FormState>();
 
     const history = useHistory();
+
+    const handleCollapse = () => {
+        const nav = document.getElementById("navbar");
+        const btn = document.getElementById("navbarBtn");
+        nav?.classList.remove("show");
+        btn?.classList.add("collapsed");
+    };
 
     const onSubmit = (data: FormState) => {
         history.push(`/search/${data.name}`);
@@ -33,8 +33,8 @@ const Navbar = () => {
                 </NavLink>
                 <button
                     className="navbar-toggler"
-                    id="navbarBtn"
                     type="button"
+                    id="navbarBtn"
                     data-bs-toggle="collapse"
                     data-bs-target="#navbar"
                     aria-controls="navbar"

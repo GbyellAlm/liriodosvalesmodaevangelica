@@ -47,6 +47,34 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
     crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    function showIt2() {
+      document.getElementById("msg1").style.visibility = "visible";
+    }
+    setTimeout("showIt2()", 5000);
+
+    function hiddenIt() {
+      document.getElementById("msg1").style.visibility = "hidden";
+    }
+    setTimeout("hiddenIt()", 15000);
+
+    function showIt3() {
+      document.getElementById("msg1").style.visibility = "visible";
+    }
+    setTimeout("showIt3()", 25000);
+
+    window.onload = function () {
+      msg1.onclick = function () {
+        document.getElementById("msg1").style.visibility = "hidden";
+      };
+    };
+
+    function alertW() {
+      document.getElementById("alertWapp").style.visibility = "visible";
+    }
+    setTimeout("alertW()", 15000);
+  </script>
 </body>
 
 </html>
