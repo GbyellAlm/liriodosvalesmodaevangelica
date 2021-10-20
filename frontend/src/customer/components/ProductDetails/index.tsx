@@ -38,7 +38,7 @@ const ProductDetails = () => {
     }
 
     return (
-        <div className="m-25 m-h-520 base-container b-r-10 b-s-1-10 p-25">
+        <div className="m-25 m-h-100vh base-container b-r-10 b-s-1-10 p-25">
             <Helmet title={productResponse?.name + " | Lírio dos Vales - Moda Evangélica"} />
             <div>
                 <button type="button" className="btn btn-sm btn-primary text-white back-button" onClick={history.goBack}>

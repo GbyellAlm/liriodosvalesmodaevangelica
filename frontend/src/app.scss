@@ -72,8 +72,8 @@ p {
     margin: 25px;
 }
 
-.m-t-16 {
-    margin-top: 16px;
+.m-t-15 {
+    margin-top: 15px;
 }
 
 // SOBRE PADDING:
@@ -90,8 +90,8 @@ p {
     background-color: #fff;
 }
 
-.m-h-520 {
-    min-height: 520px;
+.m-h-100vh {
+    min-height: 100vh;
 }
 
 .product-layout {
@@ -159,7 +159,7 @@ p {
         justify-content: center;
     }
 
-    .m-h-520 {
+    .m-h-100vh {
         min-height: 550px;
     }
 }

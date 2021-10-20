@@ -3,7 +3,7 @@ INSERT INTO Category (name) VALUES ('Feminino');
 INSERT INTO Category (name) VALUES ('Masculino');
 INSERT INTO Category (name) VALUES ('Livros');
 INSERT INTO Category (name) VALUES ('Presentes');
-INSERT INTO Category (name) VALUES ('Produtos em destaque');
+INSERT INTO Category (name) VALUES ('Destaques');
 INSERT INTO Category (name) VALUES ('Promoções');
 
 INSERT INTO about_us (description, imageurl) VALUES ('No mercado de Itajaí - SC desde 1997, a Lírio dos Vales - Moda Evangélica está sempre trazendo o que há de melhor no seguimento evangélico (moda feminina e masculina, e artigos evangélicos). Venha nos conhecer! (Endereço no rodapé do site.)', 'https://l-v-m-e-5212007.s3.sa-east-1.amazonaws.com/fachada-da-loja.png');

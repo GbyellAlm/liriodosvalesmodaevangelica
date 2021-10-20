@@ -42,7 +42,7 @@ const ProductSearch = () => {
     }, [productName]);
 
     return (
-        <div className="m-25 m-h-520 base-container b-r-10 b-s-1-10 p-25">
+        <div className="m-25 m-h-100vh base-container b-r-10 b-s-1-10 p-25">
             <Helmet title={`"` + productName + `" | Lírio dos Vales - Moda Evangélica`} />
             <PageOrSectionTitle title={`"` + productName + `" (` + productsResponse?.content.length + ` produtos)`} />
             {isLoading ?

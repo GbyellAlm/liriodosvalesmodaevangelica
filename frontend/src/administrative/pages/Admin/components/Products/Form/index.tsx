@@ -102,14 +102,14 @@ const Form = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
             <BaseForm>
                 <div className="row">
-                    <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-4">
+                    <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 m-t-21">
                         <label htmlFor="name" className="form-label">NOME DO PRODUTO <b>*</b></label>
                         <input
                             type="text"
                             className="form-control b-r-10"
-                            placeholder="Ex: Bíblia c/ espaço para anotações, Leão pintura, Espiral"
                             id="name"
                             name="name"
+                            placeholder="Ex: Bíblia c/ espaço para anotações, Leão pintura, Espiral"
                             ref={register({ required: "Campo obrigatório" })}
                         />
                         {errors.name && (
@@ -118,7 +118,7 @@ const Form = () => {
                             </div>
                         )}
 
-                        <label htmlFor="price" className="form-label mt-3">PREÇO DO PRODUTO <b>*</b></label>
+                        <label htmlFor="price" className="form-label m-t-15">PREÇO DO PRODUTO <b>*</b></label>
                         <PriceField control={control} />
                         {errors.price && (
                             <div className="invalid-feedback d-block">
@@ -126,7 +126,7 @@ const Form = () => {
                             </div>
                         )}
 
-                        <label htmlFor="categories" className="form-label mt-3">CATEGORIAS DO PRODUTO <b>*</b></label>
+                        <label htmlFor="categories" className="form-label m-t-15">CATEGORIAS DO PRODUTO <b>*</b></label>
                         <Controller
                             as={Select}
                             classNamePrefix="categories-select"
@@ -138,11 +138,12 @@ const Form = () => {
                                     primary: '#63c0e1'
                                 },
                             })}
-                            placeholder="Selecione"
+
                             defaultValue=""
                             isMulti
                             id="categories"
                             name="categories"
+                            placeholder="Selecione"
                             isLoading={isLoadingCategories}
                             options={categories}
                             getOptionValue={(option: Category) => String(option.id)}
@@ -156,7 +157,7 @@ const Form = () => {
                             </div>
                         )}
 
-                        <label htmlFor="promotionalPrice" className="form-label mt-3">PREÇO PROMOCIONAL DO PRODUTO</label>
+                        <label htmlFor="promotionalPrice" className="form-label m-t-15">PREÇO PROMOCIONAL DO PRODUTO</label>
                         <PromotionalPriceField control={control} />
                         <small id="promotionalPriceHelp" className="form-text text-warning">Este campo só deve ser preenchido se o produto estiver em promoção</small>
                         {errors.promotionalPrice && (
@@ -165,13 +166,13 @@ const Form = () => {
                             </div>
                         )}
 
-                        <label htmlFor="paymentTerms" className="form-label mt-3">CONDIÇÕES DE PAGAMENTO DO PRODUTO <b>*</b></label>
+                        <label htmlFor="paymentTerms" className="form-label m-t-15">CONDIÇÕES DE PAGAMENTO DO PRODUTO <b>*</b></label>
                         <input
                             type="text"
                             className="form-control b-r-10"
-                            placeholder="Ex: em até 4x de R$ 26,25 s/ juros no cartão"
                             id="paymentTerms"
                             name="paymentTerms"
+                            placeholder="Ex: em até 4x de R$ 26,25 s/ juros no cartão"
                             ref={register({
                                 required: "Campo obrigatório",
                                 minLength: { value: 39, message: 'O campo deve ter no mínimo 39 caracteres' },
@@ -184,13 +185,13 @@ const Form = () => {
                             </div>
                         )}
 
-                        <label htmlFor="sizes" className="form-label mt-3">TAMANHOS DO PRODUTO</label>
+                        <label htmlFor="sizes" className="form-label m-t-15">TAMANHOS DO PRODUTO</label>
                         <input
                             type="text"
                             className="form-control b-r-10"
-                            placeholder="Ex: P, M, G e GG."
                             id="sizes"
                             name="sizes"
+                            placeholder="Ex: P, M, G e GG."
                             aria-describedby="sizesHelp"
                             ref={register({
                                 required: false,
@@ -208,12 +209,12 @@ const Form = () => {
                         <ImageUpload onUploadSuccess={onUploadSuccess} productImageURL={productImageURL} />
                     </div>
                     <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-                        <label htmlFor="description" className="form-label mt-4">DESCRIÇÃO DO PRODUTO <b>*</b></label>
+                        <label htmlFor="description" className="form-label m-t-21">DESCRIÇÃO DO PRODUTO <b>*</b></label>
                         <textarea
                             className="form-control b-r-10"
-                            placeholder="Ex: Bíblia Sagrada, com a linguagem na versão ARC (Revista Corrigida) de João Ferreira de Almeida. Sendo a versão mais utilizada pelos evangélicos do Brasil. Com sua fidelidade traduzida dos textos originais pelo missionário português João Ferreira de Almeida, esta obra tem como destaque sua linguagem elegante e culta. Agora a mais nova edição da Casa Publicadora Paulista, apresentamos a vocês a Bíblia com Espaço para Anotações Pautados, com diferenciais exclusivos e também muito procurados, a bíblia com espaço para anotações contém Harpa, Corinhos e Índice lateral."
                             id="description"
                             name="description"
+                            placeholder="Ex: Bíblia Sagrada, com a linguagem na versão ARC (Revista Corrigida) de João Ferreira de Almeida. Sendo a versão mais utilizada pelos evangélicos do Brasil. Com sua fidelidade traduzida dos textos originais pelo missionário português João Ferreira de Almeida, esta obra tem como destaque sua linguagem elegante e culta. Agora a mais nova edição da Casa Publicadora Paulista, apresentamos a vocês a Bíblia com Espaço para Anotações Pautados, com diferenciais exclusivos e também muito procurados, a bíblia com espaço para anotações contém Harpa, Corinhos e Índice lateral."
                             cols={30}
                             rows={15}
                             ref={register({ required: "Campo obrigatório" })}

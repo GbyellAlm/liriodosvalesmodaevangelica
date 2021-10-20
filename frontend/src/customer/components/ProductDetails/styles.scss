@@ -5,7 +5,7 @@
 }
 
 .image-zoom {
-    padding-top: 12px;
+    padding-top: 15px;
 
     button {
         border: none;
@@ -16,8 +16,8 @@
 
 .product-image {
     height: 430px;
-    padding-bottom: 12px;
-    padding-top: 12px;
+    padding-bottom: 15px;
+    padding-top: 15px;
 }
 
 .product-infos {
@@ -37,7 +37,7 @@
 }
 
 .product-description-container {
-    margin-top: 25px;
+    margin-top: 24px;
     text-align: justify;
 }
 
@@ -51,7 +51,11 @@
     .product-infos {
         padding-left: 0;
         padding-right: 0;
-        padding-top: 25px;
+        padding-top: 24px;
+    }
+
+    .product-description-container {
+        margin-top: 18px;
     }
 }
 

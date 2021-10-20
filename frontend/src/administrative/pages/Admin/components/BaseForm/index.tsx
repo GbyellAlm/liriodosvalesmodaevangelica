@@ -29,10 +29,10 @@ const BaseForm = ({ children }: Props) => {
             <PageOrSectionTitle title={isEditing ? "Editar produto" : "Cadastrar novo produto"} />
             {children}
             <div className="pr-3 base-form-actions">
-                <button className="btn btn-outline-danger mr-2 b-r-10 px-3 py-2" type="button" onClick={handleCancel}>
+                <button className="btn btn-outline-danger mr-2 b-r-10" type="button" onClick={handleCancel}>
                     CANCELAR
                 </button>
-                <button className="btn btn-primary b-r-10 text-white px-3 py-2" type="submit">
+                <button className="btn btn-primary b-r-10 text-white" type="submit">
                     {isEditing ? "SALVAR" : "CADASTRAR"}
                 </button>
             </div>

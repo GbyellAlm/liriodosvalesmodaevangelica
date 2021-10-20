@@ -51,11 +51,10 @@ const ImageUpload = ({ onUploadSuccess, productImageURL }: Props) => {
     const imageURL = uploadedImageURL || productImageURL;
 
     return (
-        <div className="row mt-4">
+        <div className="row m-t-15">
             <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 pl-0">
                 <div className="upload-button-container">
-                    <label htmlFor="upload">ADICIONAR IMAGEM</label>
-                    <input type="file" id="upload" accept="image/png, image/jpg" onChange={handleChange} hidden />
+                    <input type="file" className="form-control b-r-10" id="upload" accept="image/png, image/jpg" onChange={handleChange} />
                 </div>
                 <small><i>A imagem deve ser JPG, JPEG ou PNG e não deve ultrapassar 10 MB.</i></small>
             </div>

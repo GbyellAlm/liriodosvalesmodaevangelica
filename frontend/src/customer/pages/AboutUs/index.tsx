@@ -25,7 +25,7 @@ const AboutUs = () => {
     }
 
     return (
-        <div className="m-25 m-h-520 base-container b-r-10 b-s-1-10 p-25">
+        <div className="m-25 m-h-100vh base-container b-r-10 b-s-1-10 p-25">
             <Helmet title="Sobre nós | Lírio dos Vales - Moda Evangélica" />
             <PageOrSectionTitle title="Sobre nós" />
             <div className="store-photo-container">

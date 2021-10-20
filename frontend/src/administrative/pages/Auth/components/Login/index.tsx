@@ -45,7 +45,7 @@ const Login = () => {
             <Helmet title="Administrativo: Login | Lírio dos Vales - Moda Evangélica" />
             {hasError && (
                 <div className="alert alert-danger">
-                    <p className="text-center">E-mail e/ou senha incorretos</p>
+                    <p className="text-center">E-mail e/ou senha incorretos.</p>
                 </div>
             )}
             <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
@@ -69,7 +69,7 @@ const Login = () => {
                     </div>
                 )}
 
-                <label htmlFor="password" className="form-label m-t-16">Senha:</label>
+                <label htmlFor="password" className="form-label m-t-15">Senha:</label>
                 <input
                     type="password"
                     className={`form-control b-r-10 ${errors.password ? 'is-invalid' : ''}`}

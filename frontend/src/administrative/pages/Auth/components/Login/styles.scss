@@ -1,8 +1,8 @@
 .alert {
     height: 35px;
     line-height: 35px;
-    margin-top: 13px;
-    padding: 0px 14px;
+    margin-top: 15px;
+    padding: 0px 15px;
 }
 
 .login-form {
@@ -11,12 +11,4 @@
 
 .login-submit {
     margin: 35px 0;
-    font-size: 1rem;
-}
-
-
-@media (max-width: 576px) {
-    .login-form {
-        margin-top: 30px;
-    }
 }

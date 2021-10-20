@@ -86,7 +86,7 @@ const List = () => {
         <div>
             <Helmet title="Administrativo: Produtos | Lírio dos Vales - Moda Evangélica" />
             <div className="d-flex">
-                <button className="btn btn-lg btn-primary b-r-10 f-s-16 text-white"
+                <button className="btn btn-lg btn-primary b-r-10 text-white"
                     type="button"
                     title="Cadastrar novo produto"
                     onClick={handleCreate}
