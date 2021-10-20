@@ -158,6 +158,10 @@ p {
         align-items: center;
         justify-content: center;
     }
+
+    .m-h-520 {
+        min-height: 540px;
+    }
 }
 
 @media (max-width: 320px) {
