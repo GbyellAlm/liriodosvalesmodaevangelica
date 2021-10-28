@@ -8,9 +8,9 @@ type Props = {
 
 const PriceField = ({ control }: Props) => (
     <Controller
-        defaultValue=""
         id="price"
         name="price"
+        defaultValue=""
         control={control}
         rules={{ required: "Campo obrigatório" }}
         render={({ value, onChange }) => (
@@ -18,8 +18,8 @@ const PriceField = ({ control }: Props) => (
                 className="form-control b-r-10"
                 intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
                 disableGroupSeparators={true}
-                fixedDecimalLength={2}
                 decimalSeparator="."
+                fixedDecimalLength={2}
                 value={value}
                 onValueChange={onChange}
             />

@@ -1,5 +1,5 @@
 import { generateList } from '../../utils/list';
-import { ReactComponent as ArrowIcon } from '../../assets/images/arrow.svg';
+import { ReactComponent as ArrowIcon } from '../../assets/images/arrow-icon.svg';
 import './styles.scss';
 
 type Props = {

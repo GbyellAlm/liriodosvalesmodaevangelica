@@ -8,19 +8,19 @@ type Props = {
 
 const PromocionalPriceField = ({ control }: Props) => (
     <Controller
-        defaultValue=""
         id="promotionalPrice"
         name="promotionalPrice"
+        defaultValue=""
+        aria-describedby="promotionalPriceHelp"
         control={control}
         rules={{ required: false }}
-        aria-describedby="promotionalPriceHelp"
         render={({ value, onChange }) => (
             <CurrencyInput
                 className="form-control b-r-10"
                 intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
                 disableGroupSeparators={true}
-                fixedDecimalLength={2}
                 decimalSeparator="."
+                fixedDecimalLength={2}
                 value={value}
                 onValueChange={onChange}
             />

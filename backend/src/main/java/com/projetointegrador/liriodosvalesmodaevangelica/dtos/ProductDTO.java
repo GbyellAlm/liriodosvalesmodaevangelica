@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -25,12 +26,7 @@ public class ProductDTO implements Serializable {
 	@Positive(message = "Este campo deve conter somente valor positivo")
 	private Double price;
 
-	/*
-	 * Não consegui validar esse campo. Tentei o unico validador que serve para o
-	 * tipo List (NotNull (NotNull dentro do "<>" do List)) e não funcionou. OBS.
-	 * Penso que, em último caso, a validação por si só no front irá resolver o
-	 * problema.
-	 */
+	@NotEmpty(message = "Este campo não deve estar vazio")
 	private List<CategoryDTO> categories = new ArrayList<>();
 
 	@Positive(message = "Este campo deve conter somente valor positivo")
@@ -44,9 +40,11 @@ public class ProductDTO implements Serializable {
 	// caracteres")
 	private String sizes;
 
+	@NotBlank(message = "Campo obrigatório")
 	private String imageURL;
 
 	@NotBlank(message = "Campo obrigatório")
+	@Size(min = 9, message = "Este campo deve conter no mínimo 9 caracteres")
 	private String description;
 
 	public ProductDTO() {

@@ -7,11 +7,9 @@ import com.projetointegrador.liriodosvalesmodaevangelica.entities.Category;
 public class CategoryDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	/*
-	 * ATENÇÃO: Não fiz validações aqui pois tenho muita certeza que em momento
-	 * algum vou precisar criar novas categorias.
-	 */
-
+	// ATENÇÃO: Não fiz validações aqui, pois não será útil nessa 1a versão do
+	// sistema, e tenho bastante certeza de que em momento algum precisarei criar
+	// novas categorias.
 	private Long id;
 	private String name;
 

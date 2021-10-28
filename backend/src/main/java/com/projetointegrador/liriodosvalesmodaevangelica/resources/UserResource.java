@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projetointegrador.liriodosvalesmodaevangelica.dtos.UserDTO;
@@ -17,8 +18,8 @@ import com.projetointegrador.liriodosvalesmodaevangelica.dtos.UserUpdateDTO;
 import com.projetointegrador.liriodosvalesmodaevangelica.services.UserService;
 
 @RestController
-// Comentei o campo abaixo, pois não faz sentido ter esse endpoint liberado.
-//@RequestMapping(value = "/users")
+// Comentei o item abaixo, pois esse endpoint não será útil nessa 1a versão do sistema.
+@RequestMapping(value = "/users")
 public class UserResource {
 
 	@Autowired

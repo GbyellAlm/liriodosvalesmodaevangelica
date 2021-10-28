@@ -62,6 +62,12 @@ public class ProductResource {
 		return ResponseEntity.ok().body(list);
 	}
 
+	@PostMapping(value = "/image")
+	public ResponseEntity<ImageUriDTO> uploadImage(@RequestParam("imageFile") MultipartFile imageFile) {
+		ImageUriDTO dto = service.uploadImage(imageFile);
+		return ResponseEntity.ok().body(dto);
+	}
+
 	@PostMapping
 	public ResponseEntity<ProductDTO> insert(@Valid @RequestBody ProductDTO dto) {
 		dto = service.insert(dto);
@@ -81,9 +87,4 @@ public class ProductResource {
 		return ResponseEntity.noContent().build();
 	}
 
-	@PostMapping(value = "/image")
-	public ResponseEntity<ImageUriDTO> uploadImage(@RequestParam("imageFile") MultipartFile imageFile) {
-		ImageUriDTO dto = service.uploadImage(imageFile);
-		return ResponseEntity.ok().body(dto);
-	}
 }

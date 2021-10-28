@@ -19,8 +19,8 @@ const Sidebar = () => {
             <ul className="sidebar-list">
                 <li className="nav-item dropdown">
                     <a
-                        href="none"
                         className="nav-link dropdown-toggle b-b-1-s-e5e5e5 sidebar-user"
+                        href="none"
                         id="sidebarDropdown"
                         role="button"
                         data-bs-toggle="dropdown"
@@ -39,13 +39,13 @@ const Sidebar = () => {
                     </ul>
                 </li>
                 <li>
-                    <NavLink to="/admin/products" className="f-w-600 c-9e9e9e b-b-1-s-e5e5e5 sidebar-links">
+                    <NavLink to="/admin/products" className="f-w-700 c-9e9e9e b-b-1-s-e5e5e5 sidebar-links">
                         <img src={productsIcon} alt="Ícone de produtos" className="sidebar-icons" />
                         &nbsp; PRODUTOS
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/" target="_blank" className="f-w-600 c-9e9e9e b-b-1-s-e5e5e5 view-sidebar-catalog">
+                    <NavLink to="/" target="_blank" className="f-w-700 c-9e9e9e b-b-1-s-e5e5e5 view-sidebar-catalog">
                         <img src={websiteIcon} alt="Ícone de visualizar site" className="sidebar-icons" />
                         &nbsp; VISUALIZAR CATÁLOGO
                     </NavLink>

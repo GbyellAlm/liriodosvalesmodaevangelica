@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,15 +23,11 @@ public class CategoryResource {
 		List<CategoryDTO> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
-
-	/*
-	 * Não sei se vai ser útil, pois acho que o endpoint "findAll" já é o suficiente
-	 * para trabalhar com o "imput" "select" de categorias no cadastro de produtos
-	 * no front.
-	 */
-	@GetMapping(value = "/{id}")
+	
+	// Comentei o código abaixo, pois não será útil nessa 1a versão do sistema.
+	/*@GetMapping(value = "/{id}")
 	public ResponseEntity<CategoryDTO> findById(@PathVariable Long id) {
 		CategoryDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
-	}
+	}*/
 }

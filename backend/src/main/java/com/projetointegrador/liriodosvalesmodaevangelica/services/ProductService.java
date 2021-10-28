@@ -40,6 +40,7 @@ public class ProductService {
 	public Page<ProductDTO> findAllByCategoryId(Long catId, PageRequest pageRequest) {
 		Category category = categoryRepository.getOne(catId);
 		Page<Product> page = repository.findAllByCategoryId(category, pageRequest);
+		repository.findAllWithCategories(page.getContent());
 		return page.map(prod -> new ProductDTO(prod, prod.getCategories()));
 	}
 
@@ -54,20 +55,19 @@ public class ProductService {
 	public Page<ProductDTO> findAllByProductNameOrCategoryId(String name, Long catId, PageRequest pageRequest) {
 		List<Category> categories = (catId == 0) ? null : Arrays.asList(categoryRepository.getOne(catId));
 		Page<Product> page = repository.findAllByProductNameOrCategoryId(name, categories, pageRequest);
+		repository.findAllWithCategories(page.getContent());
 		return page.map(prod -> new ProductDTO(prod, prod.getCategories()));
+	}
+
+	public ImageUriDTO uploadImage(MultipartFile imageFile) {
+		URL url = s3Service.uploadImage(imageFile);
+		return new ImageUriDTO(url.toString());
 	}
 
 	@Transactional
 	public ProductDTO insert(ProductDTO dto) {
 		Product entity = new Product();
 		copyDTOToEntity(dto, entity);
-
-		// Gambiarra provisória para poder fazer o inicio do cap 9.
-		if (entity.getCategories().size() == 0) {
-			Category cat = categoryRepository.getOne(1L);
-			entity.getCategories().add(cat);
-		}
-
 		entity = repository.save(entity);
 		return new ProductDTO(entity);
 	}
@@ -77,13 +77,6 @@ public class ProductService {
 		try {
 			Product entity = repository.getOne(id);
 			copyDTOToEntity(dto, entity);
-
-			// Gambiarra provisória para poder fazer o inicio do cap 9.
-			if (entity.getCategories().size() == 0) {
-				Category cat = categoryRepository.getOne(1L);
-				entity.getCategories().add(cat);
-			}
-
 			entity = repository.save(entity);
 			return new ProductDTO(entity);
 		} catch (EntityNotFoundException e) {
@@ -97,11 +90,6 @@ public class ProductService {
 		} catch (EmptyResultDataAccessException e) {
 			throw new ResourceNotFoundException("Id não encontrado");
 		}
-	}
-
-	public ImageUriDTO uploadImage(MultipartFile imageFile) {
-		URL url = s3Service.uploadImage(imageFile);
-		return new ImageUriDTO(url.toString());
 	}
 
 	private void copyDTOToEntity(ProductDTO dto, Product entity) {

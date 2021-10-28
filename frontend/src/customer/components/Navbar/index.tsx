@@ -111,7 +111,12 @@ const Navbar = () => {
                                 name="name"
                                 ref={register({ required: true })}
                             />
-                            <button className="btn text-white search-button" type="submit" title="Buscar" onClick={handleCollapse}>
+                            <button
+                                className="btn text-white search-button"
+                                type="submit"
+                                title="Buscar"
+                                onClick={handleCollapse}
+                            >
                                 <i className="bi bi-search"></i>
                             </button>
                         </div>

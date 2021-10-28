@@ -43,7 +43,7 @@ const ImageUpload = ({ onUploadSuccess, productImageURL }: Props) => {
                 onUploadSuccess(response.data.imageUri);
             })
             .catch(() => {
-                toast.error("Erro no upload da imagem");
+                toast.error("Erro no upload da imagem.");
             })
             .finally(() => setUploadProgress(0));
     }
@@ -53,9 +53,7 @@ const ImageUpload = ({ onUploadSuccess, productImageURL }: Props) => {
     return (
         <div className="row m-t-15">
             <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 pl-0">
-                <div className="upload-button-container">
-                    <input type="file" className="form-control b-r-10" id="upload" accept="image/png, image/jpg" onChange={handleChange} />
-                </div>
+                <input type="file" className="form-control b-r-10" id="upload" accept="image/png, image/jpg" onChange={handleChange} />
                 <small><i>A imagem deve ser JPG, JPEG ou PNG e não deve ultrapassar 10 MB.</i></small>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 upload-placeholder">

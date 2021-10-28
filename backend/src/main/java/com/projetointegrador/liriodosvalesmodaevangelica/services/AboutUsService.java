@@ -1,10 +1,6 @@
 package com.projetointegrador.liriodosvalesmodaevangelica.services;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
-import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,14 +23,16 @@ public class AboutUsService {
 		AboutUs entity = obj.orElseThrow(() -> new ResourceNotFoundException("Id não encontrado"));
 		return new AboutUsDTO(entity);
 	}
-
-	@Transactional(readOnly = true)
+	
+	// Comentei o código abaixo, pois não será útil nessa 1a versão do sistema.
+	/*@Transactional(readOnly = true)
 	public List<AboutUsDTO> findAll() {
 		List<AboutUs> list = repository.findAll();
 		return list.stream().map(x -> new AboutUsDTO(x)).collect(Collectors.toList());
-	}
-
-	@Transactional
+	}*/
+	
+	// Comentei o código abaixo, pois não será útil nessa 1a versão do sistema.
+	/*@Transactional
 	public AboutUsDTO update(Long id, AboutUsDTO dto) {
 		try {
 			AboutUs entity = repository.getOne(id);
@@ -45,5 +43,5 @@ public class AboutUsService {
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Id não encontrado");
 		}
-	}
+	}*/
 }

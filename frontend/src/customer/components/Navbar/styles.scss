@@ -1,6 +1,6 @@
 .nav-link.active {
     color: #fff;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .p-r-9 {
@@ -13,22 +13,6 @@
 
 .search-input {
     border-radius: 10px 0 0 10px;
-}
-
-/* Chrome, Firefox, Opera, Safari 10.1+ */
-.form-control::placeholder {
-    color: #9e9e9e;
-    opacity: 1; /* Firefox */
-}
-
-/* Internet Explorer 10-11 */
-.form-control:-ms-input-placeholder {
-    color: #9e9e9e;
-}
-
-/* Microsoft Edge */
-.form-control::-ms-input-placeholder {
-    color: #9e9e9e;
 }
 
 .search-button {

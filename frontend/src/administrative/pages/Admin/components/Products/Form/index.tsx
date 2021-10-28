@@ -1,14 +1,18 @@
+import { Category } from 'core/types/Product';
+import { convertToRaw, EditorState } from 'draft-js';
 import { Controller, useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Category } from 'core/types/Product';
 import { makePrivateRequest, makeRequest } from 'core/utils/request';
+import draftToHtml from 'draftjs-to-html';
 import { toast } from 'react-toastify';
+import { stateFromHTML } from 'draft-js-import-html';
 import BaseForm from '../../BaseForm';
 import PriceField from './PriceField';
 import Select, { Theme } from 'react-select';
 import PromotionalPriceField from './PromocionalPriceField';
 import ImageUpload from '../ImageUpload';
+import DescriptionField from './DescriptionField';
 import './styles.scss';
 
 export type FormState = {
@@ -19,7 +23,7 @@ export type FormState = {
     paymentTerms: string;
     sizes: string
     imageURL: string;
-    description: string;
+    description: EditorState;
 }
 
 type ParamsType = {
@@ -50,12 +54,17 @@ const Form = () => {
         setUploadedImageURL(imageURL);
     }
 
+    const getDescriptionFromEditor = (editorState: EditorState) => {
+        return draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    }
+
     const history = useHistory();
 
     const onSubmit = (data: FormState) => {
         const payload = {
             ...data,
-            imageURL: uploadedImageURL || productImageURL
+            imageURL: uploadedImageURL || productImageURL,
+            description: getDescriptionFromEditor(data.description)
         }
 
         makePrivateRequest({
@@ -93,7 +102,9 @@ const Form = () => {
                     setValue('paymentTerms', response.data.paymentTerms);
                     setValue('sizes', response.data.sizes);
                     setProductImageURL(response.data.imageURL);
-                    setValue('description', response.data.description);
+                    const contentState = stateFromHTML(response.data.description);
+                    const descriptionAsEditorState = EditorState.createWithContent(contentState);
+                    setValue('description', descriptionAsEditorState);
                 })
         }
     }, [isEditing, productId, setValue]);
@@ -138,12 +149,11 @@ const Form = () => {
                                     primary: '#63c0e1'
                                 },
                             })}
-
-                            defaultValue=""
                             isMulti
                             id="categories"
                             name="categories"
                             placeholder="Selecione"
+                            defaultValue=""
                             isLoading={isLoadingCategories}
                             options={categories}
                             getOptionValue={(option: Category) => String(option.id)}
@@ -210,18 +220,10 @@ const Form = () => {
                     </div>
                     <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                         <label htmlFor="description" className="form-label m-t-21">DESCRIÇÃO DO PRODUTO <b>*</b></label>
-                        <textarea
-                            className="form-control b-r-10"
-                            id="description"
-                            name="description"
-                            placeholder="Ex: Bíblia Sagrada, com a linguagem na versão ARC (Revista Corrigida) de João Ferreira de Almeida. Sendo a versão mais utilizada pelos evangélicos do Brasil. Com sua fidelidade traduzida dos textos originais pelo missionário português João Ferreira de Almeida, esta obra tem como destaque sua linguagem elegante e culta. Agora a mais nova edição da Casa Publicadora Paulista, apresentamos a vocês a Bíblia com Espaço para Anotações Pautados, com diferenciais exclusivos e também muito procurados, a bíblia com espaço para anotações contém Harpa, Corinhos e Índice lateral."
-                            cols={30}
-                            rows={15}
-                            ref={register({ required: "Campo obrigatório" })}
-                        />
+                        <DescriptionField control={control} />
                         {errors.description && (
                             <div className="invalid-feedback d-block">
-                                {errors.description.message}
+                                Campo obrigatório
                             </div>
                         )}
                     </div>
