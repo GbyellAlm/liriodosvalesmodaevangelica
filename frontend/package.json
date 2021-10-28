@@ -31,6 +31,7 @@
     "react-currency-input-field": "^3.4.2",
     "react-dom": "^17.0.2",
     "react-draft-wysiwyg": "^1.14.7",
+    "react-ga": "^3.3.0",
     "react-helmet": "^6.1.0",
     "react-hook-form": "6.9.6",
     "react-router-dom": "^5.2.0",
