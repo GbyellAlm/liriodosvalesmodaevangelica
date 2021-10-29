@@ -3,11 +3,12 @@ import './app.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import Routes from './Routes';
 import { ToastContainer } from 'react-toastify';
-import ReactGA from 'react-ga';
+//import GA4React from "ga-4-react";
+
+//const ga4react = new GA4React("G-9T6HQD8EJV");
 
 function App() {
-  const TRACKING_ID = "G-P7N1CMRFMG"; // YOUR_OWN_TRACKING_ID
-  ReactGA.initialize(TRACKING_ID);
+  //ga4react.initialize();
 
   return (
     <>

@@ -75,6 +75,19 @@
     }
     setTimeout("alertW()", 15000);
   </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-15M5XV8ZJJ"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host != "localhost") {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-15M5XV8ZJJ');
+    }
+  </script>
 </body>
 
 </html>
