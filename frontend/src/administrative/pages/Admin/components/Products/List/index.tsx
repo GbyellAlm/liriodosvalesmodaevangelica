@@ -114,13 +114,22 @@ const List = () => {
                     />
                 </div>
             </div>
-            <div className="admin-product-list-container">
-                {isLoading ? <AdminProductCardLoader /> : (
-                    productsResponse?.content.map(product => (
-                        <Card product={product} key={product.id} onRemove={onRemove} />
-                    ))
+            {isLoading ?
+                <div className="admin-product-list-container">
+                    <AdminProductCardLoader />
+                </div>
+                : (
+                    productsResponse?.content.length !== 0 ?
+                        <div className="admin-product-list-container">
+                            {productsResponse?.content.map(product => (
+                                <Card product={product} key={product.id} onRemove={onRemove} />
+                            ))}
+                        </div>
+                        :
+                        <div className="search-unsuccessful">
+                            Não há produtos nesta categoria.
+                        </div>
                 )}
-            </div>
             {productsResponse?.content.length !== 0 && productsResponse && <Pagination totalPages={productsResponse.totalPages} activePage={activePage} onChange={page => setActivePage(page)} />}
         </div>
     )

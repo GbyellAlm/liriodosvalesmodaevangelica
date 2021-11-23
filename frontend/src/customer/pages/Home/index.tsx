@@ -33,25 +33,43 @@ const Homepage = () => {
         <div className="m-25 m-h-100vh base-container b-r-10 b-s-1-10 p-25">
             <Helmet title="Lírio dos Vales - Moda Evangélica" />
             <PageOrSectionTitle title="Destaques" />
-            <div className="product-layout m-b-25">
-                {isLoading ? <ProductCardLoader /> : (
-                    highlightsResponse?.content.map(product => (
-                        <Link to={`/product/${product.id}`} key={product.id}>
-                            <ProductCard product={product} />
-                        </Link>
-                    ))
+            {isLoading ?
+                <div className="product-layout m-b-25">
+                    <ProductCardLoader />
+                </div>
+                : (
+                    highlightsResponse?.content.length !== 0 ?
+                        <div className="product-layout m-b-25">
+                            {highlightsResponse?.content.map(product => (
+                                <Link to={`/product/${product.id}`} key={product.id}>
+                                    <ProductCard product={product} />
+                                </Link>
+                            ))}
+                        </div>
+                        :
+                        <div className="search-unsuccessful m-b-25">
+                            No momento, não há produtos nesta categoria.
+                        </div>
                 )}
-            </div>
             <PageOrSectionTitle title="Promoções" />
-            <div className="product-layout">
-                {isLoading ? <ProductCardLoader /> : (
-                    promotionsResponse?.content.map(product => (
-                        <Link to={`/product/${product.id}`} key={product.id}>
-                            <ProductCard product={product} />
-                        </Link>
-                    ))
+            {isLoading ?
+                <div className="product-layout">
+                    <ProductCardLoader />
+                </div>
+                : (
+                    promotionsResponse?.content.length !== 0 ?
+                        <div className="product-layout">
+                            {promotionsResponse?.content.map(product => (
+                                <Link to={`/product/${product.id}`} key={product.id}>
+                                    <ProductCard product={product} />
+                                </Link>
+                            ))}
+                        </div>
+                        :
+                        <div className="search-unsuccessful">
+                            No momento, não há produtos nesta categoria.
+                        </div>
                 )}
-            </div>
             <a href="https://api.whatsapp.com/send?phone=5547991168031&text=Olá!%20Tenho%20dúvidas%20sobre%20um%20produto%20e/ou%20me%20interessei%20por%20um%20produto."
                 className="bt-whatsApp" target="_blank" rel="noreferrer">
                 <img

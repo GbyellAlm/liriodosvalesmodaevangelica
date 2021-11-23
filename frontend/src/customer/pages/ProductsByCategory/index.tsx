@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { ProductsResponse } from 'core/types/Product';
 import { makeRequest } from 'core/utils/request';
 import { Helmet } from 'react-helmet';
-import PageOrSectionTitle from 'core/components/PageOrSectionTitle';
+import Breadcrumb from '../../components/Breadcrumb';
 import ProductCardLoader from '../../components/Loaders/CustomerProductCardLoader';
 import { Link } from 'react-router-dom';
 import ProductCard from '../../components/ProductCard';
@@ -48,20 +48,29 @@ const ProductsByCategory = () => {
             {catId === "4" && <Helmet title="Livros | Lírio dos Vales - Moda Evangélica" />}
             {catId === "5" && <Helmet title="Presentes | Lírio dos Vales - Moda Evangélica" />}
 
-            {catId === "1" && <PageOrSectionTitle title="Bíblias" />}
-            {catId === "2" && <PageOrSectionTitle title="Feminino" />}
-            {catId === "3" && <PageOrSectionTitle title="Masculino" />}
-            {catId === "4" && <PageOrSectionTitle title="Livros" />}
-            {catId === "5" && <PageOrSectionTitle title="Presentes" />}
-            <div className="product-layout">
-                {isLoading ? <ProductCardLoader /> : (
-                    productsResponse?.content.map(product => (
-                        <Link to={`/product/${product.id}`} key={product.id}>
-                            <ProductCard product={product} />
-                        </Link>
-                    ))
+            {catId === "1" && <Breadcrumb catId="1" breadcrumbTitle="Bíblias" />}
+            {catId === "2" && <Breadcrumb catId="2" breadcrumbTitle="Feminino" />}
+            {catId === "3" && <Breadcrumb catId="3" breadcrumbTitle="Masculino" />}
+            {catId === "4" && <Breadcrumb catId="4" breadcrumbTitle="Livros" />}
+            {catId === "5" && <Breadcrumb catId="5" breadcrumbTitle="Presentes" />}
+            {isLoading ?
+                <div className="product-layout">
+                    <ProductCardLoader />
+                </div>
+                : (
+                    productsResponse?.content.length !== 0 ?
+                        <div className="product-layout">
+                            {productsResponse?.content.map(product => (
+                                <Link to={`/product/${product.id}`} key={product.id}>
+                                    <ProductCard product={product} />
+                                </Link>
+                            ))}
+                        </div>
+                        :
+                        <div className="search-unsuccessful">
+                            No momento, não há produtos nesta categoria.
+                        </div>
                 )}
-            </div>
             {productsResponse?.content.length !== 0 && productsResponse && <Pagination totalPages={productsResponse.totalPages} activePage={activePage} onChange={page => setActivePage(page)} />}
             <a href="https://api.whatsapp.com/send?phone=5547991168031&text=Olá!%20Tenho%20dúvidas%20sobre%20um%20produto%20e/ou%20me%20interessei%20por%20um%20produto."
                 className="bt-whatsApp" target="_blank" rel="noreferrer">

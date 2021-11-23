@@ -201,7 +201,7 @@ const Form = () => {
                             className="form-control b-r-10"
                             id="sizes"
                             name="sizes"
-                            placeholder="Ex: P, M, G e GG."
+                            placeholder="Ex: P, M, G e GG"
                             aria-describedby="sizesHelp"
                             ref={register({
                                 required: false,

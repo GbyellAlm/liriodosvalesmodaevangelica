@@ -1,7 +1,7 @@
 import history from './core/utils/history';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import CustomerNavbar from './customer/components/Navbar';
-import Homepage from './customer/pages/Home';
+import Home from './customer/pages/Home';
 import ProductDetails from './customer/components/ProductDetails';
 import ProductsByCategory from './customer/pages/ProductsByCategory';
 import AboutUs from './customer/pages/AboutUs';
@@ -18,7 +18,7 @@ const Routes = () => (
         <Switch>
             <Route path="/" exact>
                 <CustomerNavbar />
-                <Homepage />
+                <Home />
                 <CustomerFooter />
             </Route>
 

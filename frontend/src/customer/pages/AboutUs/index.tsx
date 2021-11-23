@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { About } from 'core/types/About';
 import { makeRequest } from 'core/utils/request';
 import { Helmet } from 'react-helmet';
-import PageOrSectionTitle from 'core/components/PageOrSectionTitle';
+import Breadcrumb from 'customer/components/Breadcrumb';
 import StorePhotoLoader from '../../components/Loaders/StorePhotoLoader';
 import StoreDescriptionLoader from '../../components/Loaders/StoreDescriptionLoader';
 import './styles.scss';
@@ -27,7 +27,7 @@ const AboutUs = () => {
     return (
         <div className="m-25 m-h-100vh base-container b-r-10 b-s-1-10 p-25">
             <Helmet title="Sobre nós | Lírio dos Vales - Moda Evangélica" />
-            <PageOrSectionTitle title="Sobre nós" />
+            <Breadcrumb catId="about-us" breadcrumbTitle="Sobre nós" />
             <div className="store-photo-container">
                 {isLoading ? <StorePhotoLoader /> : (
                     <img src={aboutResponse?.imageURL} alt="Fachada da loja" className="img-fluid" />
