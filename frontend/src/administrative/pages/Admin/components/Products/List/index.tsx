@@ -126,8 +126,8 @@ const List = () => {
                             ))}
                         </div>
                         :
-                        <div className="search-unsuccessful">
-                            Não há produtos nesta categoria.
+                        <div className="search-unsuccessful c-9e9e9e">
+                            Não há produtos nesta categoria
                         </div>
                 )}
             {productsResponse?.content.length !== 0 && productsResponse && <Pagination totalPages={productsResponse.totalPages} activePage={activePage} onChange={page => setActivePage(page)} />}

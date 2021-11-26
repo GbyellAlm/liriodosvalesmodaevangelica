@@ -17,16 +17,18 @@ import './styles.scss';
 
 export type FormState = {
     name: string;
+    unformattedPrice: string;
     price: number;
     categories: Category[];
-    promotionalPrice: string;
+    unformattedPromotionalPrice: string | null;
+    promotionalPrice: number;
     paymentTerms: string;
     sizes: string
     imageURL: string;
     description: EditorState;
 }
 
-type ParamsType = {
+export type ParamsType = {
     productId: string;
 }
 
@@ -64,7 +66,7 @@ const Form = () => {
         const payload = {
             ...data,
             imageURL: uploadedImageURL || productImageURL,
-            description: getDescriptionFromEditor(data.description)
+            description: getDescriptionFromEditor(data.description),
         }
 
         makePrivateRequest({
@@ -73,9 +75,9 @@ const Form = () => {
             data: payload
         })
             .then(() => {
-                toast.success(isEditing === true ? "Produto salvo com sucesso." : "Produto cadastrado com sucesso.", {
+                toast.success(isEditing === true ? "Produto salvo com sucesso" : "Produto cadastrado com sucesso", {
                     position: "top-right",
-                    autoClose: 5000,
+                    autoClose: 3000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: false,
@@ -85,7 +87,9 @@ const Form = () => {
                 history.push("/admin/products");
             })
             .catch(() => {
-                toast.error(isEditing === true ? "Erro ao salvar o produto." : "Erro ao cadastrar o produto.")
+                toast.error("Erro. Verifique se os campos CATEGORIAS e DESCRIÇÃO foram corretamente preenchidos", {
+                    autoClose: 10000,
+                })
             });
     }
 
@@ -96,8 +100,10 @@ const Form = () => {
             makeRequest({ url: `/products/${productId}` })
                 .then(response => {
                     setValue('name', response.data.name);
+                    setValue('unformattedPrice', response.data.price);
                     setValue('price', response.data.price);
                     setValue('categories', response.data.categories);
+                    response.data.promotionalPrice !== null && setValue('unformattedPromotionalPrice', response.data.promotionalPrice);
                     response.data.promotionalPrice !== null && setValue('promotionalPrice', response.data.promotionalPrice);
                     setValue('paymentTerms', response.data.paymentTerms);
                     setValue('sizes', response.data.sizes);
@@ -114,13 +120,12 @@ const Form = () => {
             <BaseForm>
                 <div className="row">
                     <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 m-t-21">
-                        <label htmlFor="name" className="form-label">NOME DO PRODUTO <b>*</b></label>
+                        <label htmlFor="name" className="form-label">Nome*</label>
                         <input
                             type="text"
                             className="form-control b-r-10"
                             id="name"
                             name="name"
-                            placeholder="Ex: Bíblia c/ espaço para anotações, Leão pintura, Espiral"
                             ref={register({ required: "Campo obrigatório" })}
                         />
                         {errors.name && (
@@ -129,15 +134,15 @@ const Form = () => {
                             </div>
                         )}
 
-                        <label htmlFor="price" className="form-label m-t-15">PREÇO DO PRODUTO <b>*</b></label>
+                        <label htmlFor="unformattedPrice" className="form-label m-t-12">Preço*</label>
                         <PriceField control={control} />
-                        {errors.price && (
+                        {errors.unformattedPrice && (
                             <div className="invalid-feedback d-block">
-                                {errors.price.message}
+                                {errors.unformattedPrice.message}
                             </div>
                         )}
 
-                        <label htmlFor="categories" className="form-label m-t-15">CATEGORIAS DO PRODUTO <b>*</b></label>
+                        <label htmlFor="categories" className="form-label m-t-12">Categorias*</label>
                         <Controller
                             as={Select}
                             classNamePrefix="categories-select"
@@ -152,7 +157,7 @@ const Form = () => {
                             isMulti
                             id="categories"
                             name="categories"
-                            placeholder="Selecione"
+                            placeholder="Selecione..."
                             defaultValue=""
                             isLoading={isLoadingCategories}
                             options={categories}
@@ -167,22 +172,22 @@ const Form = () => {
                             </div>
                         )}
 
-                        <label htmlFor="promotionalPrice" className="form-label m-t-15">PREÇO PROMOCIONAL DO PRODUTO</label>
+                        <label htmlFor="unformattedPromotionalPrice" className="form-label m-t-12">Preço promocional</label>
                         <PromotionalPriceField control={control} />
-                        <small id="promotionalPriceHelp" className="form-text text-warning">Este campo só deve ser preenchido se o produto estiver em promoção</small>
-                        {errors.promotionalPrice && (
+                        <span id="unformattedPromotionalPriceHelp" className="form-text text-warning">Este campo só deve ser preenchido se o produto estiver em promoção</span>
+                        {errors.unformattedPromotionalPrice && (
                             <div className="invalid-feedback d-block">
-                                {errors.promotionalPrice.message}
+                                {errors.unformattedPromotionalPrice.message}
                             </div>
                         )}
 
-                        <label htmlFor="paymentTerms" className="form-label m-t-15">CONDIÇÕES DE PAGAMENTO DO PRODUTO <b>*</b></label>
+                        <label htmlFor="paymentTerms" className="form-label m-t-12">Condições de pagamento*</label>
                         <input
                             type="text"
                             className="form-control b-r-10"
                             id="paymentTerms"
                             name="paymentTerms"
-                            placeholder="Ex: em até 4x de R$ 26,25 s/ juros no cartão"
+                            placeholder="em até 4x de R$ 26,25 s/ juros no cartão"
                             ref={register({
                                 required: "Campo obrigatório",
                                 minLength: { value: 39, message: 'O campo deve ter no mínimo 39 caracteres' },
@@ -195,13 +200,13 @@ const Form = () => {
                             </div>
                         )}
 
-                        <label htmlFor="sizes" className="form-label m-t-15">TAMANHOS DO PRODUTO</label>
+                        <label htmlFor="sizes" className="form-label m-t-12">Tamanhos</label>
                         <input
                             type="text"
                             className="form-control b-r-10"
                             id="sizes"
                             name="sizes"
-                            placeholder="Ex: P, M, G e GG"
+                            placeholder="P, M, G e GG"
                             aria-describedby="sizesHelp"
                             ref={register({
                                 required: false,
@@ -209,18 +214,21 @@ const Form = () => {
                                 maxLength: { value: 12, message: 'O campo deve ter no máximo 12 caracteres' }
                             })}
                         />
-                        <small id="sizesHelp" className="form-text text-warning">Este campo só deve ser preenchido se o produto for uma roupa</small>
+                        <span id="sizesHelp" className="form-text text-warning">Este campo só deve ser preenchido se o produto for uma roupa</span>
                         {errors.sizes && (
                             <div className="invalid-feedback d-block">
                                 {errors.sizes.message}
                             </div>
                         )}
 
+                        <label htmlFor="description" className="form-label m-t-12">Imagem*</label>
                         <ImageUpload onUploadSuccess={onUploadSuccess} productImageURL={productImageURL} />
+
                     </div>
                     <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-                        <label htmlFor="description" className="form-label m-t-21">DESCRIÇÃO DO PRODUTO <b>*</b></label>
+                        <label htmlFor="description" className="form-label m-t-21">Descrição*</label>
                         <DescriptionField control={control} />
+                        <span id="descriptionHelp" className="form-text">Este campo deve conter no mínimo 10 caracteres</span>
                         {errors.description && (
                             <div className="invalid-feedback d-block">
                                 Campo obrigatório

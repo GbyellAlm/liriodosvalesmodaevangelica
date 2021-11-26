@@ -67,8 +67,8 @@ const ProductsByCategory = () => {
                             ))}
                         </div>
                         :
-                        <div className="search-unsuccessful">
-                            No momento, não há produtos nesta categoria.
+                        <div className="search-unsuccessful c-9e9e9e">
+                            Não há produtos nesta categoria no momento
                         </div>
                 )}
             {productsResponse?.content.length !== 0 && productsResponse && <Pagination totalPages={productsResponse.totalPages} activePage={activePage} onChange={page => setActivePage(page)} />}

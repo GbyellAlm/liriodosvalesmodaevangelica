@@ -47,8 +47,8 @@ const Homepage = () => {
                             ))}
                         </div>
                         :
-                        <div className="search-unsuccessful m-b-25">
-                            No momento, não há produtos nesta categoria.
+                        <div className="search-unsuccessful c-9e9e9e m-b-25">
+                            Não há produtos nesta categoria no momento
                         </div>
                 )}
             <PageOrSectionTitle title="Promoções" />
@@ -66,8 +66,8 @@ const Homepage = () => {
                             ))}
                         </div>
                         :
-                        <div className="search-unsuccessful">
-                            No momento, não há produtos nesta categoria.
+                        <div className="search-unsuccessful c-9e9e9e">
+                            Não há produtos nesta categoria no momento
                         </div>
                 )}
             <a href="https://api.whatsapp.com/send?phone=5547991168031&text=Olá!%20Tenho%20dúvidas%20sobre%20um%20produto%20e/ou%20me%20interessei%20por%20um%20produto."

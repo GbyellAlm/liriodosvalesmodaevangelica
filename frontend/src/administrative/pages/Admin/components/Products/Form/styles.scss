@@ -2,37 +2,12 @@
     margin-top: 21px;
 }
 
-.base-container {
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
-    .form-control::placeholder {
-        font-style: italic;
-    }
-
-    /* Internet Explorer 10-11 */
-    .form-control:-ms-input-placeholder {
-        font-style: italic;
-    }
-
-    /* Microsoft Edge */
-    .form-control::-ms-input-placeholder {
-        font-style: italic;
-    }
-
-    .categories-select__placeholder {
-        font-style: italic;
-    }
+.m-t-12 {
+    margin-top: 12px;
 }
 
 .categories-select__control {
     border-radius: 10px !important;
-}
-
-.categories-select__placeholder {
-    font-style: normal !important;
-}
-
-.public-DraftEditorPlaceholder-root {
-    font-style: italic;
 }
 
 @media (max-width: 576px) {
@@ -68,6 +43,10 @@
     justify-content: center !important;
 }
 
+.rdw-editor-toolbar {
+    margin-bottom: 6px;
+}
+
 .custom-icon {
     height: 24px !important;
 }
@@ -76,5 +55,5 @@
     border: 1px solid #ced4da;
     border-radius: 10px !important;
     height: 321px !important;
-    padding: 0 7px !important;
+    padding: 0 9px !important;
 }

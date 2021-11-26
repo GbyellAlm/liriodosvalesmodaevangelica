@@ -8,7 +8,6 @@ import java.util.Set;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import com.projetointegrador.liriodosvalesmodaevangelica.entities.Category;
@@ -23,13 +22,15 @@ public class ProductDTO implements Serializable {
 	private String name;
 
 	@NotNull(message = "Campo obrigatório")
-	@Positive(message = "Este campo deve conter somente valor positivo")
+	private String unformattedPrice;
+
 	private Double price;
 
 	@NotEmpty(message = "Este campo não deve estar vazio")
 	private List<CategoryDTO> categories = new ArrayList<>();
 
-	@Positive(message = "Este campo deve conter somente valor positivo")
+	private String unformattedPromotionalPrice;
+
 	private Double promotionalPrice;
 
 	@NotBlank(message = "Campo obrigatório")
@@ -44,7 +45,7 @@ public class ProductDTO implements Serializable {
 	private String imageURL;
 
 	@NotBlank(message = "Campo obrigatório")
-	@Size(min = 9, message = "Este campo deve conter no mínimo 9 caracteres")
+	@Size(min = 10, message = "Este campo deve conter no mínimo 10 caracteres")
 	private String description;
 
 	public ProductDTO() {
@@ -52,13 +53,16 @@ public class ProductDTO implements Serializable {
 	}
 
 	public ProductDTO(Long id, @NotBlank(message = "Campo obrigatório") String name,
-			@NotNull(message = "Campo obrigatório") @Positive(message = "Este campo deve conter somente valor positivo") Double price,
-			@Positive(message = "Este campo deve conter somente valor positivo") Double promotionalPrice,
+			@NotNull(message = "Campo obrigatório") String unformattedPrice, Double price,
+			String unformattedPromotionalPrice, Double promotionalPrice,
 			@NotBlank(message = "Campo obrigatório") @Size(min = 39, max = 41, message = "Este campo deve conter de 39 a 41 caracteres") String paymentTerms,
-			String sizes, String imageURL, @NotBlank(message = "Campo obrigatório") String description) {
+			String sizes, @NotBlank(message = "Campo obrigatório") String imageURL,
+			@NotBlank(message = "Campo obrigatório") @Size(min = 10, message = "Este campo deve conter no mínimo 10 caracteres") String description) {
 		this.id = id;
 		this.name = name;
+		this.unformattedPrice = unformattedPrice;
 		this.price = price;
+		this.unformattedPromotionalPrice = unformattedPromotionalPrice;
 		this.promotionalPrice = promotionalPrice;
 		this.paymentTerms = paymentTerms;
 		this.sizes = sizes;
@@ -98,6 +102,19 @@ public class ProductDTO implements Serializable {
 		this.name = name;
 	}
 
+	public String getUnformattedPrice() {
+		return unformattedPrice;
+	}
+
+	public void setUnformattedPrice(String unformattedPrice) {
+		this.unformattedPrice = unformattedPrice;
+	}
+
+	public void formattedPrice(String unformattedPrice) {
+		String str = unformattedPrice.replaceAll(",", ".");
+		price = Double.parseDouble(str);
+	}
+
 	public Double getPrice() {
 		return price;
 	}
@@ -112,6 +129,19 @@ public class ProductDTO implements Serializable {
 
 	public void setCategories(List<CategoryDTO> categories) {
 		this.categories = categories;
+	}
+
+	public String getUnformattedPromotionalPrice() {
+		return unformattedPromotionalPrice;
+	}
+
+	public void setUnformattedPromotionalPrice(String unformattedPromotionalPrice) {
+		this.unformattedPromotionalPrice = unformattedPromotionalPrice;
+	}
+
+	public void formattedPromotionalPrice(String unformattedPromotionalPrice) {
+		String str = unformattedPromotionalPrice.replaceAll(",", ".");
+		promotionalPrice = Double.parseDouble(str);
 	}
 
 	public Double getPromotionalPrice() {

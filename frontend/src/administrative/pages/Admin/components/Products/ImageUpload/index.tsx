@@ -1,3 +1,5 @@
+import { useParams } from 'react-router-dom';
+import { ParamsType } from '../Form';
 import React, { useState } from 'react';
 import { makePrivateRequest } from 'core/utils/request';
 import { toast } from 'react-toastify';
@@ -10,6 +12,10 @@ type Props = {
 }
 
 const ImageUpload = ({ onUploadSuccess, productImageURL }: Props) => {
+    const { productId } = useParams<ParamsType>();
+
+    const isEditing = productId !== 'new-product';
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedImage = event.target.files?.[0];
 
@@ -51,10 +57,14 @@ const ImageUpload = ({ onUploadSuccess, productImageURL }: Props) => {
     const imageURL = uploadedImageURL || productImageURL;
 
     return (
-        <div className="row m-t-15">
+        <div className="row">
             <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 pl-0">
-                <input type="file" className="form-control b-r-10" id="upload" accept="image/png, image/jpg" onChange={handleChange} />
-                <small><i>A imagem deve ser JPG, JPEG ou PNG e não deve ultrapassar 10 MB.</i></small>
+                {isEditing ?
+                    <input type="file" className="form-control b-r-10" id="upload" accept="image/png, image/jpg" onChange={handleChange} required={false} />
+                    :
+                    <input type="file" className="form-control b-r-10" id="upload" accept="image/png, image/jpg" onChange={handleChange} required />
+                }
+                <small className="form-text">A imagem deve ser JPG, JPEG ou PNG e não deve ultrapassar 10 MB.</small>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 upload-placeholder">
                 {uploadProgress > 0 && (
